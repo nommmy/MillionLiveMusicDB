@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  million_music_db:
+    container_name: million_music_db
+    build: 
+      context: ./web
+      target: base
+    ports:
+      - 12000:3000
+    tty: true
+    volumes:
+      - ./web:/workspace:cached
