@@ -1,19 +1,55 @@
+import {
+  fetchAllMillionArtists,
+  fetchAllMillionTracksFromPlaylist,
+  fetchAudioFeaturesByTrackIds,
+  fetchAllMillionAlbums,
+} from "@/utils/tracks";
 import styles from "./page.module.css";
-import getSpotifyAccessToken from "@/lib/auth";
+import getSpotifyAccessToken, {
+  SpotifyAccessTokenResponse,
+} from "@/utils/auth";
+import {
+  Track,
+  AudioFeatures,
+  Artist,
+  Album,
+} from "@/utils/spotify-response.type";
+import { upsertSupabaseTables } from "@/utils/supabase";
 
 export default async function Home() {
-  const accessToken = await getSpotifyAccessToken();
+  const accessToken: SpotifyAccessTokenResponse = await getSpotifyAccessToken();
+  // 全曲プレイリストから全楽曲情報を取得
+  const playlistId = process.env.SPOTIFY_PLAYLIST_ID;
+  const allTracks: Track[] =
+    (await fetchAllMillionTracksFromPlaylist(accessToken, playlistId)) ?? [];
 
-  const response = await fetch(
-    "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb",
-    {
-      headers: {
-        Authorization: "Bearer " + accessToken,
-      },
-    }
+  // 各楽曲の分析情報を取得
+  const trackIds = Array.from(allTracks, (track: Track) => track.id);
+  const allAudioFeatures: AudioFeatures[] =
+    (await fetchAudioFeaturesByTrackIds(accessToken, trackIds, 100)) ?? [];
+
+  // Artist情報を取得
+  const artistIds: string[] = Array.from(
+    new Set(
+      allTracks.flatMap((data) => data.artists.map((artist) => artist.id))
+    )
+  );
+  const allArtists: Artist[] =
+    (await fetchAllMillionArtists(accessToken, artistIds, 50)) ?? [];
+
+  // Album情報を取得
+  const albumIds: string[] = Array.from(
+    new Set(allTracks.flatMap((data) => data.album.id))
+  );
+  const allAlbums: Album[] =
+    (await fetchAllMillionAlbums(accessToken, albumIds, 20)) ?? [];
+
+  const result = await upsertSupabaseTables(
+    allTracks,
+    allArtists,
+    allAlbums,
+    allAudioFeatures
   );
 
-  const data = await response.json();
-  console.log(data);
   return <main className={styles.main}></main>;
 }
