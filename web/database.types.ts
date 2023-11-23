@@ -240,6 +240,45 @@ export interface Database {
           }
         ]
       }
+      mst_units: {
+        Row: {
+          character_id: string
+          character_name: string
+          id: string
+          unit_id: string
+          unit_name: string
+        }
+        Insert: {
+          character_id: string
+          character_name: string
+          id?: string
+          unit_id: string
+          unit_name: string
+        }
+        Update: {
+          character_id?: string
+          character_name?: string
+          id?: string
+          unit_id?: string
+          unit_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mst_units_character_id_fkey"
+            columns: ["character_id"]
+            isOneToOne: false
+            referencedRelation: "mst_characters"
+            referencedColumns: ["artist_id"]
+          },
+          {
+            foreignKeyName: "mst_units_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "mst_artists"
+            referencedColumns: ["artist_id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never

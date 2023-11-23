@@ -1,11 +1,3 @@
-.cards-container {
-  display: flex;
-  gap: 2vw;
-  flex-wrap: nowrap;
-  padding: 1vw;
-  justify-content: flex-start;
-}
-
 .card {
   flex: 1;
   background-color: white;
@@ -32,4 +24,13 @@
   margin: 0;
   font-size: 0.7rem;
   opacity: 0.5;
+}
+
+.list-index {
+  margin-right: 0.5rem;
+  width: 20px;
+}
+
+.list-index+svg{
+  margin-right: 0.6rem;
 }

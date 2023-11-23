@@ -1,0 +1,16 @@
+.ranking-container {
+  margin: 1vw;
+}
+
+.title-h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.ranking-cards-container {
+  display: flex;
+  gap: 2vw;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
