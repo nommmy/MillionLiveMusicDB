@@ -20,12 +20,17 @@ export const upsertSupabaseTables = async (
   allAlbums: Album[],
   allAudioFeatures: AudioFeatures[]
 ) => {
-  // await upsertAlbums(allAlbums);
-  // await upsertArtists(allArtists);
-  // await upsertTracks(allTracks, allAudioFeasures);
+  const albumData = await upsertAlbums(allAlbums);
+  const artistData = await upsertArtists(allArtists);
+  const trackData = await upsertTracks(allTracks, allAudioFeatures);
+
+  return !!(albumData && artistData && trackData);
 };
 
-const upsertTracks = async (allTracks: Track[], allAudioFeatures: AudioFeatures[]) => {
+const upsertTracks = async (
+  allTracks: Track[],
+  allAudioFeatures: AudioFeatures[]
+) => {
   type TrackSupabase = Database["public"]["Tables"]["mst_tracks"]["Insert"];
   const trackData: TrackSupabase[] = allTracks.map((track, index) => {
     const audioFeature: AudioFeatures = allAudioFeatures[index];
@@ -33,7 +38,8 @@ const upsertTracks = async (allTracks: Track[], allAudioFeatures: AudioFeatures[
       acousticness: audioFeature["acousticness"],
       album_id: track["album"]["id"],
       analysis_url: audioFeature["analysis_url"],
-      artist_id: track["artists"].map((artist) => artist.id),
+      artist_ids: track["artists"].map((artist) => artist.id),
+      artist_names: track["artists"].map((artist) => artist.name),
       danceability: audioFeature["danceability"],
       disc_number: track["disc_number"],
       duration_ms: track["duration_ms"],
@@ -56,7 +62,14 @@ const upsertTracks = async (allTracks: Track[], allAudioFeatures: AudioFeatures[
     };
   });
 
-}
+  const { data, error } = await supabase
+    .from("mst_tracks")
+    .upsert(trackData)
+    .select();
+  if (error) console.error(error);
+
+  return data;
+};
 
 const upsertArtists = async (allArtists: Artist[]) => {
   type ArtistSupabase = Database["public"]["Tables"]["mst_artists"]["Insert"];
@@ -68,6 +81,14 @@ const upsertArtists = async (allArtists: Artist[]) => {
     spotify_external_url: artist["external_urls"]["spotify"],
     total_followers: artist["followers"]["total"],
   }));
+
+  const { data, error } = await supabase
+    .from("mst_artists")
+    .upsert(artistData)
+    .select();
+  if (error) console.error(error);
+
+  return data;
 };
 
 const upsertAlbums = async (allAlbums: Album[]) => {
@@ -76,10 +97,17 @@ const upsertAlbums = async (allAlbums: Album[]) => {
     album_id: album["id"],
     album_image_url: album["images"][0]["url"],
     album_type: album["album_type"],
-    artist_id: [
+    artist_ids: [
       ...new Set(
         album["tracks"]["items"].flatMap((track: Track) =>
           track.artists.flatMap((artist) => artist.id)
+        )
+      ),
+    ],
+    artist_names: [
+      ...new Set(
+        album["tracks"]["items"].flatMap((track: Track) =>
+          track.artists.flatMap((artist) => artist.name)
         )
       ),
     ],
@@ -90,7 +118,11 @@ const upsertAlbums = async (allAlbums: Album[]) => {
     total_tracks: album["total_tracks"],
   }));
 
-  // const { data, error } = await supabase
-  //   .from("mst_albums")
-  //   .upsert({ some_column: "someValue" });
+  const { data, error } = await supabase
+    .from("mst_albums")
+    .upsert(albumData)
+    .select();
+  if (error) console.error(error);
+
+  return data;
 };

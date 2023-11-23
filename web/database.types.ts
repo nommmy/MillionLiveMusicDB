@@ -40,7 +40,8 @@ export interface Database {
           album_id: string
           album_image_url: string
           album_type: string
-          artist_id: string[]
+          artist_ids: string[]
+          artist_names: string[]
           created_at: string
           name: string
           release_date: string
@@ -52,7 +53,8 @@ export interface Database {
           album_id: string
           album_image_url: string
           album_type: string
-          artist_id: string[]
+          artist_ids: string[]
+          artist_names: string[]
           created_at?: string
           name: string
           release_date: string
@@ -64,7 +66,8 @@ export interface Database {
           album_id?: string
           album_image_url?: string
           album_type?: string
-          artist_id?: string[]
+          artist_ids?: string[]
+          artist_names?: string[]
           created_at?: string
           name?: string
           release_date?: string
@@ -104,12 +107,54 @@ export interface Database {
         }
         Relationships: []
       }
+      mst_characters: {
+        Row: {
+          artist_id: string
+          character_name: string
+          character_voice: string
+          color: string
+          image_6th: string | null
+          image_deformed: string | null
+          image_favorite: string | null
+          image_uniform: string | null
+        }
+        Insert: {
+          artist_id: string
+          character_name: string
+          character_voice: string
+          color: string
+          image_6th?: string | null
+          image_deformed?: string | null
+          image_favorite?: string | null
+          image_uniform?: string | null
+        }
+        Update: {
+          artist_id?: string
+          character_name?: string
+          character_voice?: string
+          color?: string
+          image_6th?: string | null
+          image_deformed?: string | null
+          image_favorite?: string | null
+          image_uniform?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mst_characters_artist_id_fkey"
+            columns: ["artist_id"]
+            isOneToOne: true
+            referencedRelation: "mst_artists"
+            referencedColumns: ["artist_id"]
+          }
+        ]
+      }
       mst_tracks: {
         Row: {
           acousticness: number
           album_id: string
           analysis_url: string
-          artist_id: string[]
+          artist_ids: string[]
+          artist_names: string[]
           created_at: string
           danceability: number
           disc_number: number
@@ -135,7 +180,8 @@ export interface Database {
           acousticness: number
           album_id: string
           analysis_url: string
-          artist_id: string[]
+          artist_ids: string[]
+          artist_names: string[]
           created_at?: string
           danceability: number
           disc_number: number
@@ -161,7 +207,8 @@ export interface Database {
           acousticness?: number
           album_id?: string
           analysis_url?: string
-          artist_id?: string[]
+          artist_ids?: string[]
+          artist_names?: string[]
           created_at?: string
           danceability?: number
           disc_number?: number
