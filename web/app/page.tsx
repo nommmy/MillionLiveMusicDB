@@ -1,19 +1,15 @@
+import { supabase } from "@/utils/supabase";
 import styles from "./page.module.css";
-import getSpotifyAccessToken from "@/lib/auth";
+import { Suspense } from "react";
+import Ranking from "./components/ranking/Ranking";
+import Skeleton from "@mui/material/Skeleton";
 
 export default async function Home() {
-  const accessToken = await getSpotifyAccessToken();
-
-  const response = await fetch(
-    "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb",
-    {
-      headers: {
-        Authorization: "Bearer " + accessToken,
-      },
-    }
+  return (
+    <main className={styles.main}>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <Ranking />
+      </Suspense>
+    </main>
   );
-
-  const data = await response.json();
-  console.log(data);
-  return <main className={styles.main}></main>;
 }
