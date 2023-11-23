@@ -40,8 +40,8 @@ export default async function Ranking() {
     <div className={styles["ranking-container"]}>
       <h2 className={styles["title-h2"]}>HOT CHARTS</h2>
       <div className={styles["ranking-cards-container"]}>
-        {cards.map((track) => (
-          <TrackCard key={track.track_id} track={track} />
+        {cards.map((track, index) => (
+          <TrackCard key={track.track_id} track={track} rank={index + 1} />
         ))}
       </div>
       <TrackList listItems={listItems} startIndex={HOT_DISPLAY_NUMBER} />

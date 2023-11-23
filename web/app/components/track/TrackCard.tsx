@@ -5,13 +5,15 @@ import { FC } from "react";
 
 type Props = {
   track: TrackCardType;
+  rank: number;
 };
 
-const TrackCard: FC<Props> = ({ track }) => {
-  const artistName = track.artist_names.join(',');
+const TrackCard: FC<Props> = ({ track, rank }) => {
+  const artistName = track.artist_names.join(",");
   return (
     <>
       <div className={styles["card"]}>
+        <span className={styles["rank-number"]}>{rank}</span>
         <Image
           width={400}
           height={400}

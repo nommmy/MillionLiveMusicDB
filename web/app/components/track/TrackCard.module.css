@@ -3,6 +3,7 @@
   background-color: white;
   padding: 0.75rem;
   border-radius: 0.5rem;
+  position: relative;
   /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   box-shadow:0 1px 3px rgb(149 157 165 / 20%)
 }
@@ -10,6 +11,16 @@
 .card:hover{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   cursor: pointer;
+}
+
+.rank-number {
+  position: absolute;
+  top: -20px;
+  right: -5px;
+  font-size: 2.5rem;
+  z-index: 2;
+  font-weight: bold;
+  color: var(--main-color);
 }
 
 .card-img {
