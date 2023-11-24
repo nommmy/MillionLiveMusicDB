@@ -1,7 +1,7 @@
 .ranking-cards-container {
-  display: flex;
-  gap: 2vw;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2vw;
   justify-content: flex-start;
   margin-bottom: 1rem;
 }

@@ -2,6 +2,7 @@ import { supabase } from "@/utils/supabase";
 import commonStyles from "@/app/page.module.css";
 import styles from "./CharacterIcon.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function CharacterGrid() {
   const { data, error } = await supabase
@@ -20,17 +21,34 @@ export default async function CharacterGrid() {
       <h2 className={commonStyles["title-h2"]}>CHARACTERS</h2>
       <div className={styles["character-icon-grid"]}>
         {characters.map((character, index) => (
-          <Image
-            key={index}
-            width={60}
-            height={60}
-            alt={character.character_name}
-            src={character.image_favorite ?? character.image_uniform}
-            style={{
-              border: `3px solid ${character.color}`,
-              borderRadius: "10px",
-            }}
-          />
+          <Link key={index} href="">
+            <div className={styles["tooltip-top"]}>
+              <Image
+                width={60}
+                height={60}
+                alt={character.character_name}
+                src={character.image_favorite ?? character.image_uniform}
+                style={{
+                  border: `3px solid ${character.color}`,
+                  borderRadius: "10px",
+                }}
+              />
+              <span
+                style={{
+                  background: character.color,
+                }}
+              >
+                <span
+                  style={{
+                    color: character.color,
+                    filter: "invert(100%) grayscale(100%) contrast(100)",
+                  }}
+                >
+                  {character.character_name}
+                </span>
+              </span>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
