@@ -9,7 +9,12 @@ type Props = {
 };
 
 const TrackCard: FC<Props> = ({ track, rank }) => {
-  const artistName = track.artist_names.join(",");
+  const artistName = track.artist_names
+    .map((character) => {
+      const match = character.match(/^(.*?)\s*(?:\([^)]*\)|$)/);
+      return match ? match[1] : character;
+    })
+    .join(", ");
   return (
     <div className={styles["card"]}>
       <span className={styles["rank-number"]}>{rank}</span>

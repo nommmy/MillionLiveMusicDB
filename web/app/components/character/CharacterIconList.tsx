@@ -8,7 +8,6 @@ type Props = {
 };
 
 const CharacterIconList: FC<Props> = ({ artists }) => {
-
   return (
     <div className={styles["character-icon-list"]}>
       {artists.map((artist) => (

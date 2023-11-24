@@ -1,4 +1,4 @@
-import { AlbumCardType } from "./AlbumCardList";
+import { AlbumCardType } from "./AlbumCardGrid";
 import { FC } from "react";
 import Image from "next/image";
 import styles from "./Album.module.css";
@@ -18,7 +18,7 @@ const AlbumCard: FC<Props> = ({ album }) => {
         style={{
           width: "100%",
           height: "auto",
-          borderRadius: "4px"
+          borderRadius: "4px",
         }}
       />
     </div>

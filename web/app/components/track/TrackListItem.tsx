@@ -3,7 +3,7 @@ import { FC } from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import CharacterIconList from "../character-icon/CharacterIconList";
+import CharacterIconList from "../character/CharacterIconList";
 import styles from "../track/TrackCard.module.css";
 import { CharacterType } from "./TrackList";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
@@ -22,7 +22,7 @@ const TrackListItem: FC<Props> = async ({ track, characters, index = 1 }) => {
         .map((unit) => unit.unit_id)
         .includes(track.artist_ids[0])
   );
-  
+
   const artistName = track.artist_names
     .map((character) => {
       const match = character.match(/^(.*?)\s*(?:\([^)]*\)|$)/);
@@ -38,7 +38,15 @@ const TrackListItem: FC<Props> = async ({ track, characters, index = 1 }) => {
       <ListItemButton>
         <span className={styles["list-index"]}>{index}</span>
         <PlayCircleIcon />
-        <ListItemText primary={track.track_name} secondary={artistName} sx={{maxWidth:`calc(100% - ${35*artists.length+25}px - ${0.5*artists.length}rem)`}} />
+        <ListItemText
+          primary={track.track_name}
+          secondary={artistName}
+          sx={{
+            maxWidth: `calc(100% - ${35 * artists.length + 25}px - ${
+              0.5 * artists.length
+            }rem)`,
+          }}
+        />
       </ListItemButton>
     </ListItem>
   );

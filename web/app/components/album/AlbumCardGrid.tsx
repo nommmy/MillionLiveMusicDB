@@ -1,7 +1,8 @@
 import { supabase } from "@/utils/supabase";
 import AlbumCard from "./AlbumCard";
 import styles from "./Album.module.css";
-import commonStyles from "@/app/page.module.css"
+import commonStyles from "@/app/page.module.css";
+import List from "@mui/material/List";
 
 export type AlbumCardType = {
   album_id: string;
@@ -20,11 +21,19 @@ export default async function AlbumCardList() {
   return (
     <div className={commonStyles["main-contents-wrapper"]}>
       <h2 className={commonStyles["title-h2"]}>ALBUMS</h2>
-      <div className={styles["album-card-grid"]}>
-        {data.map((album) => (
-          <AlbumCard key={album.album_id} album={album} />
-        ))}
-      </div>
+      <List
+        sx={{
+          maxHeight: 500,
+          position: "relative",
+          overflow: "auto",
+        }}
+      >
+        <div className={styles["album-card-grid"]}>
+          {data.map((album) => (
+            <AlbumCard key={album.album_id} album={album} />
+          ))}
+        </div>
+      </List>
     </div>
   );
 }
