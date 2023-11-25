@@ -5,3 +5,51 @@
   justify-content: flex-start;
   margin-bottom: 1rem;
 }
+
+.card {
+  height:100%;
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  position: relative;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+  box-shadow:0 1px 3px rgb(149 157 165 / 20%)
+}
+
+.card:hover{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  cursor: pointer;
+}
+
+.rank-number {
+  position: absolute;
+  top: -20px;
+  right: -5px;
+  font-size: 2.5rem;
+  z-index: 2;
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.card-img {
+  border-radius: 0.35rem;
+}
+
+.card-name {
+  margin: 0.25rem 0;
+}
+
+.card-description {
+  margin: 0;
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+
+.list-index {
+  margin-right: 0.5rem;
+  width: 20px;
+}
+
+.list-index+svg{
+  margin-right: 0.6rem;
+}

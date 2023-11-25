@@ -1,10 +1,10 @@
 import { supabase } from "@/utils/supabase";
-import TrackCard from "../track/TrackCard";
+import RankingCard from "./RankingCard";
 import styles from "./Ranking.module.css";
-import TrackList from "../track/TrackList";
+import RankingList from "./RankingList";
 import commonStyles from "@/app/page.module.css";
 
-export type TrackCardType = {
+export type RankingCardType = {
   track_id: string;
   track_name: string;
   preview_url: string;
@@ -29,23 +29,23 @@ export default async function Ranking() {
     )
     .order("popularity", { ascending: false })
     .limit(200)
-    .returns<TrackCardType[]>();
+    .returns<RankingCardType[]>();
   // スケルトン的なダミーをかえす？
   if (error) return;
 
   const HOT_DISPLAY_NUMBER = 3;
-  const cards: TrackCardType[] = data.slice(0, HOT_DISPLAY_NUMBER);
-  const listItems: TrackCardType[] = data.slice(HOT_DISPLAY_NUMBER);
+  const cards: RankingCardType[] = data.slice(0, HOT_DISPLAY_NUMBER);
+  const listItems: RankingCardType[] = data.slice(HOT_DISPLAY_NUMBER);
 
   return (
     <div className={commonStyles["main-contents-wrapper"]}>
       <h2 className={commonStyles["title-h2"]}>HOT CHARTS</h2>
       <div className={styles["ranking-cards-container"]}>
         {cards.map((track, index) => (
-          <TrackCard key={track.track_id} track={track} rank={index + 1} />
+          <RankingCard key={track.track_id} track={track} rank={index + 1} />
         ))}
       </div>
-      <TrackList listItems={listItems} startIndex={HOT_DISPLAY_NUMBER} />
+      <RankingList listItems={listItems} startIndex={HOT_DISPLAY_NUMBER} />
     </div>
   );
 }

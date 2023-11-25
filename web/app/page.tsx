@@ -10,7 +10,7 @@ export default async function Home() {
     <main className={styles.main}>
       <Suspense fallback={<Skeleton animation="wave" />}>
         <Ranking />
-      </Suspense>{" "}
+      </Suspense>
       <Suspense fallback={<Skeleton animation="wave" />}>
         <CharacterGrid />
       </Suspense>

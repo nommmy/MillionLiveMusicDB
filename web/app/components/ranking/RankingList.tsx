@@ -1,18 +1,19 @@
 import { FC } from "react";
 import List from "@mui/material/List";
-import TrackListItem from "../track/TrackListItem";
-import { TrackCardType } from "@/app/components/ranking/Ranking";
+import RankingListItem from "./RankingListItem";
+import { RankingCardType } from "@/app/components/ranking/Ranking";
 import { supabase } from "@/utils/supabase";
 
 type Props = {
-  listItems: TrackCardType[];
+  listItems: RankingCardType[];
   startIndex: number;
 };
 
 type UnitsType = {
-  unit_id: string
-}
+  unit_id: string;
+};
 export type CharacterType = {
+  [key: string]: string | UnitsType[];
   artist_id: string;
   character_name: string;
   image_6th: string;
@@ -22,7 +23,7 @@ export type CharacterType = {
   mst_units: UnitsType[];
 };
 
-const TrackList: FC<Props> = async ({ listItems, startIndex }) => {
+const RankingList: FC<Props> = async ({ listItems, startIndex }) => {
   const { data, error } = await supabase
     .from("mst_characters")
     .select(
@@ -40,7 +41,7 @@ const TrackList: FC<Props> = async ({ listItems, startIndex }) => {
       }}
     >
       {listItems.map((track, index) => (
-        <TrackListItem
+        <RankingListItem
           key={track.track_id}
           track={track}
           characters={data}
@@ -50,4 +51,4 @@ const TrackList: FC<Props> = async ({ listItems, startIndex }) => {
     </List>
   );
 };
-export default TrackList;
+export default RankingList;

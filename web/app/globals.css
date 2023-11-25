@@ -23,4 +23,5 @@ a {
 :root {
   --basic-font-color: #4c4c4c;
   --main-color: #ffc30b;
+  --aside-width: 30%;
 }
