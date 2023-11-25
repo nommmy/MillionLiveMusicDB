@@ -7,9 +7,8 @@
 html,
 body {
   max-width: 100vw;
-  height: 100%;
   overflow-x: hidden;
-  color: #4c4c4c;
+  color: var(--basic-font-color);
 }
 
 body {
@@ -22,5 +21,7 @@ a {
 }
 
 :root {
+  --basic-font-color: #4c4c4c;
   --main-color: #ffc30b;
+  --aside-width: 30%;
 }

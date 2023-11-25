@@ -1,35 +1,60 @@
-.cards-container {
-  display: flex;
-  gap: 2vw;
-  flex-wrap: nowrap;
-  padding: 1vw;
-  justify-content: flex-start;
+.track-card-fixed {
+  --card-width: 60%;
+
+  width: var(--card-width);
+  z-index: 2;
+  position: fixed;
+  left: calc(
+    var(--aside-width) + ((100% - var(--aside-width)) / 2) -
+      (var(--card-width) / 2)
+  );
+  top: calc(150px + 60px);
 }
 
-.card {
-  flex: 1;
+.track-card {
+  width: 100%;
+  display: flex;
   background-color: white;
   padding: 0.75rem;
-  border-radius: 0.5rem;
-  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
-  box-shadow:0 1px 3px rgb(149 157 165 / 20%)
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
 }
 
-.card:hover{
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  cursor: pointer;
+.track-card-right-content {
+  padding: 1rem 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.card-img {
-  border-radius: 0.35rem;
+.track-names-container {
+  flex: 1;
 }
 
-.card-name {
-  margin: 0.25rem 0;
-}
-
-.card-description {
+.track-title {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 2rem;
+  font-weight: bold;
+  word-break: break-all;
+}
+
+.track-sub-title {
+  margin: 2px 0;
+  padding-left: 2px;
+  font-size: 0.8rem;
   opacity: 0.5;
+  word-break: break-all;
+}
+
+.function-icon-list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.track-artist-icons {
+  position: absolute;
+  top: -25px;
+  right: -10px;
 }
