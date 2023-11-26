@@ -20,6 +20,11 @@ a {
   text-decoration: none;
 }
 
+.css-187mznn-MuiSlider-root.Mui-disabled {
+  color: var(--main-color);
+  pointer-events: auto;
+}
+
 :root {
   --basic-font-color: #4c4c4c;
   --main-color: #ffc30b;

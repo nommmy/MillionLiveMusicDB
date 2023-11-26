@@ -1,4 +1,4 @@
-.header-img-container {
+.header-img-wrapper {
   position: relative;
   width: 100%;
   height: 300px;
@@ -14,3 +14,6 @@
   margin: 2vw 1vw;
 }
 
+.track-analytics-wrapper {
+  margin: 150px 2.5vw 1vw 2vw
+}

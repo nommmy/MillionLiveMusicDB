@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./TrackDetailPage.module.css";
 import commonStyles from "@/app/page.module.css";
 import TrackCard from "@/app/components/track/TrackCard";
+import TrackAnalytics from "@/app/components/track/TrackAnalytics";
 
 type TrackIdResponseType = {
   track_id: string;
@@ -11,25 +12,27 @@ type TrackIdResponseType = {
 type Props = {
   params: { trackId: string };
 };
-type TrackType = {
+
+type AlbumType = {
+  name: string;
+  album_image_url: string;
+};
+
+export type TrackType = {
+  [key: string]: string | string[] | number | AlbumType;
   track_id: string;
   track_name: string;
   preview_url: string;
   artist_names: string[];
   artist_ids: string[];
-  duration_ms: string;
-  acousticness: string;
-  danceability: string;
-  energy: string;
-  instrumentalness: string;
-  key: string;
-  liveness: string;
-  loudness: string;
-  mode: string;
-  speechiness: string;
-  tempo: string;
-  valence: string;
-  mst_albums: { name: string; album_image_url: string };
+  duration_ms: number;
+  acousticness: number;
+  danceability: number;
+  energy: number;
+  instrumentalness: number;
+  speechiness: number;
+  valence: number;
+  mst_albums: AlbumType;
 };
 
 async function fetchTrack(trackId: string) {
@@ -46,12 +49,7 @@ async function fetchTrack(trackId: string) {
         danceability,
         energy,
         instrumentalness,
-        key,
-        liveness,
-        loudness,
-        mode,
         speechiness,
-        tempo,
         valence,
         mst_albums (name, album_image_url)`
     )
@@ -70,7 +68,7 @@ export default async function TrackDetailPage({ params }: Props) {
 
   return (
     <main className={commonStyles.main}>
-      <div className={styles["header-img-container"]}>
+      <div className={styles["header-img-wrapper"]}>
         <Image
           fill
           priority={true}
@@ -87,6 +85,9 @@ export default async function TrackDetailPage({ params }: Props) {
           artistIdArray={track.artist_ids}
           artistNameArray={track.artist_names}
         />
+      </div>
+      <div className={styles["track-analytics-wrapper"]}>
+        <TrackAnalytics track={track} />
       </div>
     </main>
   );
