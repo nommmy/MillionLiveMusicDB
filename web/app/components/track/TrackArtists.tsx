@@ -2,23 +2,17 @@ import { supabase } from "@/utils/supabase";
 import { FC } from "react";
 import CharacterIconList from "../character/CharacterIconList";
 import styles from "./TrackCard.module.css";
+import type { CharacterType } from "../ranking/RankingList";
 
 type Props = {
-  artistIds: string[];
+  characters: CharacterType[];
 };
 
-const TrackArtists: FC<Props> = async ({ artistIds }) => {
-  const { data, error } = await supabase.rpc("get_track_artists", {
-    artist_ids: artistIds,
-  });
-
-  // スケルトン的なダミーをかえす？
-  if (error) return;
-
+const TrackArtists: FC<Props> = async ({ characters }) => {
   return (
     <div className={styles["track-artist-icons"]}>
       <CharacterIconList
-        artists={data}
+        artists={characters}
         imageColumn={"image_favorite"}
         size={50}
       />

@@ -5,6 +5,8 @@ import styles from "./TrackDetailPage.module.css";
 import commonStyles from "@/app/page.module.css";
 import TrackCard from "@/app/components/track/TrackCard";
 import TrackAnalytics from "@/app/components/track/TrackAnalytics";
+import TrackRelationList from "@/app/components/track/TrackRelationList";
+import type { CharacterType } from "@/app/components/ranking/RankingList";
 
 type TrackIdResponseType = {
   track_id: string;
@@ -66,6 +68,24 @@ export default async function TrackDetailPage({ params }: Props) {
   const track = await fetchTrack(params.trackId);
   if (!track) return notFound();
 
+  // trackに紐づくartistIdsでcharacter情報を取得
+  // artistIdsにユニットのIDが入っている場合があるためその場合キャラまで遡って検索
+  const { data, error } = await supabase
+    .rpc("get_track_artists", {
+      artist_ids: track.artist_ids,
+    })
+    .returns<CharacterType[]>();
+  // スケルトン的なダミーをかえす？
+  if (error) return;
+
+  // 歌唱メンバーのIDおよびUnitIdを取得
+  const characterIds = Array.from(
+    new Set([
+      ...data.map((character) => character.artist_id),
+      ...track.artist_ids,
+    ])
+  );
+
   return (
     <main className={commonStyles.main}>
       <div className={styles["header-img-wrapper"]}>
@@ -82,13 +102,17 @@ export default async function TrackDetailPage({ params }: Props) {
           name={track.track_name}
           imageUrl={track.mst_albums.album_image_url}
           albumName={track.mst_albums.name}
-          artistIdArray={track.artist_ids}
+          characters={data}
           artistNameArray={track.artist_names}
         />
       </div>
       <div className={styles["track-analytics-wrapper"]}>
         <TrackAnalytics track={track} />
       </div>
+      <TrackRelationList
+        characterIds={characterIds}
+        excludeTrackId={track.track_id}
+      />
     </main>
   );
 }
