@@ -72,7 +72,7 @@ const TrackSimilar: FC<Props> = async ({
     <>
       <TrackList
         title="類似楽曲"
-        description="楽曲分析に基づく類似楽曲"
+        description="音楽的分析に基づく類似楽曲"
         data={sortedSimilarTracks}
       />
     </>

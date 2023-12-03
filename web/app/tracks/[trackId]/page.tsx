@@ -7,6 +7,8 @@ import TrackCard from "@/app/components/track/TrackCard";
 import TrackAnalytics from "@/app/components/track/TrackAnalytics";
 import TrackRelation from "@/app/components/track/TrackRelation";
 import TrackSimilar from "@/app/components/track/TrackSimilar";
+import { Suspense } from "react";
+import Skeleton from "@mui/material/Skeleton";
 import type { CharacterType } from "@/app/components/ranking/RankingList";
 
 type Props = {
@@ -70,15 +72,22 @@ export default async function TrackDetailPage({ params }: Props) {
 
   // trackに紐づくartistIdsでcharacter情報を取得
   // artistIdsにユニットのIDが入っている場合があるためその場合キャラまで遡って検索
+  // 同キャラの表記ユレもartistIdが異なれば取得するためキャラ重複あり
   const { data, error } = await supabase
-    .rpc("get_track_artists", {
+    .rpc("get_artists_info", {
       artist_ids: track.artist_ids,
     })
     .returns<CharacterType[]>();
   // スケルトン的なダミーをかえす？
   if (error) return;
 
+  // キャラ名でUniqueなリストを取得
+  const characters = Array.from(
+    new Map(data.map((item) => [item.character_name, item])).values()
+  );
+
   // 歌唱メンバーのIDおよびUnitIdを取得
+  // 表記ユレで同キャラ異IDも含まれる
   const characterIds = Array.from(
     new Set([
       ...data.map((character) => character.artist_id),
@@ -97,34 +106,42 @@ export default async function TrackDetailPage({ params }: Props) {
           className={styles["header-img"]}
         />
       </div>
-      <div className={styles["track-info-wrapper"]}>
-        <TrackCard
-          name={track.track_name}
-          imageUrl={track.mst_albums.album_image_url}
-          albumName={track.mst_albums.name}
-          characters={data}
-          artistNameArray={track.artist_names}
-        />
-      </div>
-      <div className={styles["track-analytics-wrapper"]}>
-        <TrackAnalytics track={track} />
-      </div>
-      <div className={commonStyles["main-contents-wrapper"]}>
-        <TrackRelation
-          characterIds={characterIds}
-          excludeTrackId={track.track_id}
-        />
-      </div>
-      <div className={commonStyles["main-contents-wrapper"]}>
-        <TrackSimilar
-          excludeTrackId={track.track_id}
-          acousticness={track.acousticness}
-          danceability={track.danceability}
-          energy={track.energy}
-          valence={track.valence}
-          tempo={track.tempo}
-        />
-      </div>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <div className={styles["track-info-wrapper"]}>
+          <TrackCard
+            name={track.track_name}
+            imageUrl={track.mst_albums.album_image_url}
+            albumName={track.mst_albums.name}
+            characters={characters}
+            artistNameArray={track.artist_names}
+          />
+        </div>
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <div className={styles["track-analytics-wrapper"]}>
+          <TrackAnalytics track={track} />
+        </div>
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <div className={commonStyles["main-contents-wrapper"]}>
+          <TrackRelation
+            characterIds={characterIds}
+            excludeTrackId={track.track_id}
+          />
+        </div>
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <div className={commonStyles["main-contents-wrapper"]}>
+          <TrackSimilar
+            excludeTrackId={track.track_id}
+            acousticness={track.acousticness}
+            danceability={track.danceability}
+            energy={track.energy}
+            valence={track.valence}
+            tempo={track.tempo}
+          />
+        </div>
+      </Suspense>
     </main>
   );
 }

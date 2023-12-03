@@ -20,9 +20,9 @@ a {
   text-decoration: none;
 }
 
-.css-187mznn-MuiSlider-root.Mui-disabled {
-  color: var(--main-color);
-  pointer-events: auto;
+.Mui-disabled {
+  color: var(--main-color) !important;
+  pointer-events: auto !important;
 }
 
 :root {
