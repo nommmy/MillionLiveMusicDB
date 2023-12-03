@@ -12,6 +12,7 @@ export default async function CharacterGrid() {
   // スケルトン的なダミーをかえす？
   if (error) return;
 
+  // キャラ名でUniqueなリストを取得
   const characters = Array.from(
     new Map(data.map((item) => [item.character_name, item])).values()
   );

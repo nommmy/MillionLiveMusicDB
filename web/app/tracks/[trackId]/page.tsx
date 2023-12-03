@@ -4,32 +4,38 @@ import Image from "next/image";
 import styles from "./TrackDetailPage.module.css";
 import commonStyles from "@/app/page.module.css";
 import TrackCard from "@/app/components/track/TrackCard";
+import TrackAnalytics from "@/app/components/track/TrackAnalytics";
+import TrackRelation from "@/app/components/track/TrackRelation";
+import TrackSimilar from "@/app/components/track/TrackSimilar";
+import { Suspense } from "react";
+import Skeleton from "@mui/material/Skeleton";
+import type { CharacterType } from "@/app/components/ranking/RankingList";
 
-type TrackIdResponseType = {
-  track_id: string;
-};
 type Props = {
   params: { trackId: string };
 };
-type TrackType = {
+
+type AlbumType = {
+  name: string;
+  album_image_url: string;
+};
+
+export type TrackType = {
+  [key: string]: string | string[] | number | AlbumType;
   track_id: string;
   track_name: string;
   preview_url: string;
   artist_names: string[];
   artist_ids: string[];
-  duration_ms: string;
-  acousticness: string;
-  danceability: string;
-  energy: string;
-  instrumentalness: string;
-  key: string;
-  liveness: string;
-  loudness: string;
-  mode: string;
-  speechiness: string;
-  tempo: string;
-  valence: string;
-  mst_albums: { name: string; album_image_url: string };
+  duration_ms: number;
+  acousticness: number;
+  danceability: number;
+  energy: number;
+  instrumentalness: number;
+  speechiness: number;
+  valence: number;
+  tempo: number;
+  mst_albums: AlbumType;
 };
 
 async function fetchTrack(trackId: string) {
@@ -46,13 +52,9 @@ async function fetchTrack(trackId: string) {
         danceability,
         energy,
         instrumentalness,
-        key,
-        liveness,
-        loudness,
-        mode,
         speechiness,
-        tempo,
         valence,
+        tempo,
         mst_albums (name, album_image_url)`
     )
     .eq("track_id", trackId)
@@ -68,9 +70,34 @@ export default async function TrackDetailPage({ params }: Props) {
   const track = await fetchTrack(params.trackId);
   if (!track) return notFound();
 
+  // trackに紐づくartistIdsでcharacter情報を取得
+  // artistIdsにユニットのIDが入っている場合があるためその場合キャラまで遡って検索
+  // 同キャラの表記ユレもartistIdが異なれば取得するためキャラ重複あり
+  const { data, error } = await supabase
+    .rpc("get_artists_info", {
+      artist_ids: track.artist_ids,
+    })
+    .returns<CharacterType[]>();
+  // スケルトン的なダミーをかえす？
+  if (error) return;
+
+  // キャラ名でUniqueなリストを取得
+  const characters = Array.from(
+    new Map(data.map((item) => [item.character_name, item])).values()
+  );
+
+  // 歌唱メンバーのIDおよびUnitIdを取得
+  // 表記ユレで同キャラ異IDも含まれる
+  const characterIds = Array.from(
+    new Set([
+      ...data.map((character) => character.artist_id),
+      ...track.artist_ids,
+    ])
+  );
+
   return (
     <main className={commonStyles.main}>
-      <div className={styles["header-img-container"]}>
+      <div className={styles["header-img-wrapper"]}>
         <Image
           fill
           priority={true}
@@ -79,25 +106,49 @@ export default async function TrackDetailPage({ params }: Props) {
           className={styles["header-img"]}
         />
       </div>
-      <div className={styles["track-info-wrapper"]}>
-        <TrackCard
-          name={track.track_name}
-          imageUrl={track.mst_albums.album_image_url}
-          albumName={track.mst_albums.name}
-          artistIdArray={track.artist_ids}
-          artistNameArray={track.artist_names}
-        />
-      </div>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <div className={styles["track-info-wrapper"]}>
+          <TrackCard
+            name={track.track_name}
+            imageUrl={track.mst_albums.album_image_url}
+            albumName={track.mst_albums.name}
+            characters={characters}
+            artistNameArray={track.artist_names}
+          />
+        </div>
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <div className={styles["track-analytics-wrapper"]}>
+          <TrackAnalytics track={track} />
+        </div>
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <div className={commonStyles["main-contents-wrapper"]}>
+          <TrackRelation
+            characterIds={characterIds}
+            excludeTrackId={track.track_id}
+          />
+        </div>
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <div className={commonStyles["main-contents-wrapper"]}>
+          <TrackSimilar
+            excludeTrackId={track.track_id}
+            acousticness={track.acousticness}
+            danceability={track.danceability}
+            energy={track.energy}
+            valence={track.valence}
+            tempo={track.tempo}
+          />
+        </div>
+      </Suspense>
     </main>
   );
 }
-export async function generateStaticParams() {
-  const { data, error } = await supabase
-    .from("mst_tracks")
-    .select(`track_id`)
-    .returns<TrackIdResponseType[]>();
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+export async function generateStaticParams(): Promise<any[]> {
+  const { data, error } = await supabase.from("mst_tracks").select(`track_id`);
+
+  if (error) return [];
 
   return data;
 }

@@ -5,12 +5,13 @@ import TrackArtists from "./TrackArtists";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import type { CharacterType } from "../ranking/RankingList";
 
 type Props = {
   name: string;
   imageUrl: string;
   albumName: string;
-  artistIdArray: string[];
+  characters: CharacterType[];
   artistNameArray: string[];
 };
 
@@ -18,14 +19,14 @@ const TrackCard: FC<Props> = ({
   name,
   imageUrl,
   albumName,
-  artistIdArray,
+  characters,
   artistNameArray,
 }) => {
   const artistName = artistNameArray.join(", ");
   return (
-    <div className={styles["track-card-fixed"]}>
+    <div className={styles["track-card-relative"]}>
       <div className={styles["track-card"]}>
-        <TrackArtists artistIds={artistIdArray} />
+        <TrackArtists characters={characters} />
         <Image width={160} height={160} alt={name} src={imageUrl} />
         <div className={styles["track-card-right-content"]}>
           <div className={styles["track-names-container"]}>

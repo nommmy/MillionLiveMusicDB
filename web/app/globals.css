@@ -20,6 +20,11 @@ a {
   text-decoration: none;
 }
 
+.Mui-disabled {
+  color: var(--main-color) !important;
+  pointer-events: auto !important;
+}
+
 :root {
   --basic-font-color: #4c4c4c;
   --main-color: #ffc30b;

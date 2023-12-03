@@ -1,0 +1,11 @@
+.track-relation-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 5px;
+}
+
+.list-item-button > svg,
+.list-item-button > img {
+  margin-right: 0.8rem;
+}
