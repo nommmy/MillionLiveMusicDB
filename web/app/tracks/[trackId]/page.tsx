@@ -9,9 +9,6 @@ import TrackRelation from "@/app/components/track/TrackRelation";
 import TrackSimilar from "@/app/components/track/TrackSimilar";
 import type { CharacterType } from "@/app/components/ranking/RankingList";
 
-type TrackIdResponseType = {
-  track_id: string;
-};
 type Props = {
   params: { trackId: string };
 };
@@ -131,13 +128,10 @@ export default async function TrackDetailPage({ params }: Props) {
     </main>
   );
 }
-export async function generateStaticParams() {
-  const { data, error } = await supabase
-    .from("mst_tracks")
-    .select(`track_id`)
-    .returns<TrackIdResponseType[]>();
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+export async function generateStaticParams(): Promise<any[]> {
+  const { data, error } = await supabase.from("mst_tracks").select(`track_id`);
+
+  if (error) return [];
 
   return data;
 }
