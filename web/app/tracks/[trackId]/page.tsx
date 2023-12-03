@@ -5,7 +5,8 @@ import styles from "./TrackDetailPage.module.css";
 import commonStyles from "@/app/page.module.css";
 import TrackCard from "@/app/components/track/TrackCard";
 import TrackAnalytics from "@/app/components/track/TrackAnalytics";
-import TrackRelationList from "@/app/components/track/TrackRelationList";
+import TrackRelation from "@/app/components/track/TrackRelation";
+import TrackSimilar from "@/app/components/track/TrackSimilar";
 import type { CharacterType } from "@/app/components/ranking/RankingList";
 
 type TrackIdResponseType = {
@@ -34,6 +35,7 @@ export type TrackType = {
   instrumentalness: number;
   speechiness: number;
   valence: number;
+  tempo: number;
   mst_albums: AlbumType;
 };
 
@@ -53,6 +55,7 @@ async function fetchTrack(trackId: string) {
         instrumentalness,
         speechiness,
         valence,
+        tempo,
         mst_albums (name, album_image_url)`
     )
     .eq("track_id", trackId)
@@ -109,10 +112,22 @@ export default async function TrackDetailPage({ params }: Props) {
       <div className={styles["track-analytics-wrapper"]}>
         <TrackAnalytics track={track} />
       </div>
-      <TrackRelationList
-        characterIds={characterIds}
-        excludeTrackId={track.track_id}
-      />
+      <div className={commonStyles["main-contents-wrapper"]}>
+        <TrackRelation
+          characterIds={characterIds}
+          excludeTrackId={track.track_id}
+        />
+      </div>
+      <div className={commonStyles["main-contents-wrapper"]}>
+        <TrackSimilar
+          excludeTrackId={track.track_id}
+          acousticness={track.acousticness}
+          danceability={track.danceability}
+          energy={track.energy}
+          valence={track.valence}
+          tempo={track.tempo}
+        />
+      </div>
     </main>
   );
 }

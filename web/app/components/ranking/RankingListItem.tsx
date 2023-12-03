@@ -34,7 +34,7 @@ const RankingListItem: FC<Props> = async ({ track, characters, index = 1 }) => {
   const SIZE = 35;
 
   return (
-    <Link href="">
+    <Link href={`/tracks/${track.track_id}`}>
       <ListItem
         disablePadding
         secondaryAction={

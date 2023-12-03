@@ -24,7 +24,7 @@ const TrackCard: FC<Props> = ({
 }) => {
   const artistName = artistNameArray.join(", ");
   return (
-    <div className={styles["track-card-fixed"]}>
+    <div className={styles["track-card-relative"]}>
       <div className={styles["track-card"]}>
         <TrackArtists characters={characters} />
         <Image width={160} height={160} alt={name} src={imageUrl} />

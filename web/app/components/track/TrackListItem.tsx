@@ -8,13 +8,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import styles from "./TrackRelation.module.css";
+import styles from "./TrackList.module.css";
 
 type Props = {
   track: RankingCardType;
 };
 
-const TrackRelationListItem: FC<Props> = ({ track }) => {
+const TrackListItem: FC<Props> = ({ track }) => {
   const artistName = track.artist_names
     .map((character) => {
       const match = character.match(/^(.*?)\s*(?:\([^)]*\)|$)/);
@@ -22,7 +22,7 @@ const TrackRelationListItem: FC<Props> = ({ track }) => {
     })
     .join(", ");
   return (
-    <Link href="">
+    <Link href={`/tracks/${track.track_id}`}>
       <ListItem disablePadding secondaryAction={<FavoriteBorderIcon />}>
         <ListItemButton className={styles["list-item-button"]}>
           <PlayCircleIcon sx={{ fontSize: 30 }} />
@@ -39,4 +39,4 @@ const TrackRelationListItem: FC<Props> = ({ track }) => {
   );
 };
 
-export default TrackRelationListItem;
+export default TrackListItem;
