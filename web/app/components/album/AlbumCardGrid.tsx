@@ -10,7 +10,7 @@ export type AlbumCardType = {
   album_image_url: string;
 };
 
-export default async function AlbumCardList() {
+export default async function AlbumCardGrid() {
   const { data, error } = await supabase
     .from("mst_albums")
     .select(`album_id, name, album_image_url`)

@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 import { Suspense } from "react";
 import Ranking from "./components/ranking/Ranking";
 import Skeleton from "@mui/material/Skeleton";
-import AlbumCardList from "./components/album/AlbumCardGrid";
+import AlbumCardGrid from "./components/album/AlbumCardGrid";
 import CharacterGrid from "./components/character/CharacterGrid";
 
 export default async function Home() {
@@ -15,7 +15,7 @@ export default async function Home() {
         <CharacterGrid />
       </Suspense>
       <Suspense fallback={<Skeleton animation="wave" />}>
-        <AlbumCardList />
+        <AlbumCardGrid />
       </Suspense>
     </main>
   );
