@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { supabase } from "@/utils/supabase";
-import TrackList from "./TrackList";
-import type { RankingCardType } from "../ranking/Ranking";
+import TrackList from "@/app/components/UI/track/TrackList";
+import type { RankingCardType } from "@/app/_components/ranking/Ranking"; 
 import { sortSimilarityTop100, normalizeTempo } from "@/utils/calc_similarity";
 
 type Props = {
@@ -65,9 +65,9 @@ const TrackSimilar: FC<Props> = async ({
     danceability,
     energy,
     valence,
-    normalizedTempo
+    normalizedTempo,
   ]);
-  
+
   return (
     <>
       <TrackList
@@ -79,8 +79,3 @@ const TrackSimilar: FC<Props> = async ({
   );
 };
 export default TrackSimilar;
-
-
-
-
-

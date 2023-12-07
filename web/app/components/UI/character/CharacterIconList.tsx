@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CharacterType } from "../ranking/RankingList";
+import type { CharacterType } from "@/utils/supabase"; 
 import { FC } from "react";
 import styles from "./CharacterIcon.module.css";
 import Link from "next/link";

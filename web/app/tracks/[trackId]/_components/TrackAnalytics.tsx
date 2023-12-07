@@ -3,7 +3,6 @@ import Slider from "@mui/material/Slider";
 import styles from "./TrackAnalytics.module.css";
 import type { TrackType } from "@/app/tracks/[trackId]/page";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
-import toolTipStyles from "@/app/components/character/CharacterIcon.module.css";
 
 type Props = {
   track: TrackType;
@@ -35,7 +34,7 @@ const TrackAnalytics: FC<Props> = ({ track }) => {
         <div key={index} className={styles["track-analytics-container"]}>
           <div className={styles["audio-feature-label-container"]}>
             <p>{feature.charAt(0).toUpperCase() + feature.slice(1)}</p>
-            <div className={toolTipStyles["tooltip-top"]}>
+            <div className="tooltip-top">
               <HelpRoundedIcon />
               <span>{audioFeatures[feature]}</span>
             </div>

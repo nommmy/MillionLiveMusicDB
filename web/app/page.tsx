@@ -1,9 +1,9 @@
 import styles from "./page.module.css";
 import { Suspense } from "react";
-import Ranking from "./components/ranking/Ranking";
+import Ranking from "./_components/ranking/Ranking";
 import Skeleton from "@mui/material/Skeleton";
-import AlbumCardGrid from "./components/album/AlbumCardGrid";
-import CharacterGrid from "./components/character/CharacterGrid";
+import AlbumCardGrid from "./_components/album/AlbumCardGrid";
+import CharacterGrid from "./_components/characters/CharacterGrid";
 
 export default async function Home() {
   return (

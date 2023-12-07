@@ -1,8 +1,7 @@
-import { supabase } from "@/utils/supabase";
 import { FC } from "react";
-import CharacterIconList from "../character/CharacterIconList";
+import CharacterIconList from "@/app/components/UI/character/CharacterIconList";
 import styles from "./TrackCard.module.css";
-import type { CharacterType } from "../ranking/RankingList";
+import type { CharacterType } from "@/utils/supabase";
 
 type Props = {
   characters: CharacterType[];

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FC } from "react";
-import type { CharacterType } from "@/app/components/ranking/RankingList";
+import type { CharacterType } from "@/utils/supabase"; 
 import styles from "../AlbumDetail.module.css";
 import cardStyles from "@/app/components/track/TrackCard.module.css";
 

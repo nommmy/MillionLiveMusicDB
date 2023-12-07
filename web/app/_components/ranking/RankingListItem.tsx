@@ -1,11 +1,11 @@
-import { RankingCardType } from "@/app/components/ranking/Ranking";
+import { RankingCardType } from "@/app/_components/ranking/Ranking";
 import { FC } from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import CharacterIconList from "../character/CharacterIconList";
+import CharacterIconList from "../../components/UI/character/CharacterIconList";
 import styles from "./Ranking.module.css";
-import { CharacterType } from "./RankingList";
+import type { CharacterType } from "@/utils/supabase";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Link from "next/link";
 
@@ -30,7 +30,7 @@ const RankingListItem: FC<Props> = async ({ track, characters, index = 1 }) => {
       return match ? match[1] : character;
     })
     .join(", ");
-  
+
   const SIZE = 35;
 
   return (

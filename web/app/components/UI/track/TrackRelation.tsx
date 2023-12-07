@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { supabase } from "@/utils/supabase";
-import type { RankingCardType } from "../ranking/Ranking";
+import type { RankingCardType } from "@/app/_components/ranking/Ranking"; 
 import TrackList from "./TrackList";
 
 type Props = {

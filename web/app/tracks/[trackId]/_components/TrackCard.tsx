@@ -5,7 +5,7 @@ import TrackArtists from "./TrackArtists";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import type { CharacterType } from "../ranking/RankingList";
+import type { CharacterType } from "@/utils/supabase"; 
 
 type Props = {
   name: string;

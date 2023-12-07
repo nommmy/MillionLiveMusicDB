@@ -10,7 +10,7 @@ type Props = {
 
 const AlbumCard: FC<Props> = ({ album }) => {
   return (
-    <Link href="">
+    <Link href={`/albums/${album.album_id}`}>
       <div className={styles["album-card"]}>
         <Image
           width={100}

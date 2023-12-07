@@ -1,7 +1,6 @@
 import { supabase } from "@/utils/supabase";
 import AlbumCard from "./AlbumCard";
 import styles from "./Album.module.css";
-import commonStyles from "@/app/page.module.css";
 import List from "@mui/material/List";
 
 export type AlbumCardType = {
@@ -19,8 +18,8 @@ export default async function AlbumCardGrid() {
   if (error) return;
 
   return (
-    <div className={commonStyles["main-contents-wrapper"]}>
-      <h2 className={commonStyles["title-h2"]}>ALBUMS</h2>
+    <div className="main-contents-wrapper">
+      <h2 className="title-h2">ALBUMS</h2>
       <List
         sx={{
           maxHeight: 500,

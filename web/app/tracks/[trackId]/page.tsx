@@ -2,14 +2,13 @@ import { supabase } from "@/utils/supabase";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import styles from "./TrackDetailPage.module.css";
-import commonStyles from "@/app/page.module.css";
-import TrackCard from "@/app/components/track/TrackCard";
-import TrackAnalytics from "@/app/components/track/TrackAnalytics";
-import TrackRelation from "@/app/components/track/TrackRelation";
-import TrackSimilar from "@/app/components/track/TrackSimilar";
+import TrackCard from "@/app/tracks/[trackId]/_components/TrackCard";
+import TrackAnalytics from "@/app/tracks/[trackId]/_components/TrackAnalytics";
+import TrackRelation from "@/app/components/UI/track/TrackRelation";
+import TrackSimilar from "@/app/tracks/[trackId]/_components/TrackSimilar";
 import { Suspense } from "react";
 import Skeleton from "@mui/material/Skeleton";
-import type { CharacterType } from "@/app/components/ranking/RankingList";
+import type { CharacterType } from "@/utils/supabase";
 
 type Props = {
   params: { trackId: string };
@@ -96,7 +95,7 @@ export default async function TrackDetailPage({ params }: Props) {
   );
 
   return (
-    <main className={commonStyles.main}>
+    <main className="main">
       <div className={styles["header-img-wrapper"]}>
         <Image
           fill
@@ -123,7 +122,7 @@ export default async function TrackDetailPage({ params }: Props) {
         </div>
       </Suspense>
       <Suspense fallback={<Skeleton animation="wave" />}>
-        <div className={commonStyles["main-contents-wrapper"]}>
+        <div className="main-contents-wrapper">
           <TrackRelation
             characterIds={characterIds}
             excludeTrackIds={[track.track_id]}
@@ -131,7 +130,7 @@ export default async function TrackDetailPage({ params }: Props) {
         </div>
       </Suspense>
       <Suspense fallback={<Skeleton animation="wave" />}>
-        <div className={commonStyles["main-contents-wrapper"]}>
+        <div className="main-contents-wrapper">
           <TrackSimilar
             excludeTrackId={track.track_id}
             acousticness={track.acousticness}

@@ -2,9 +2,8 @@ import { supabase } from "@/utils/supabase";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Skeleton from "@mui/material/Skeleton";
-import type { CharacterType } from "@/app/components/ranking/RankingList";
+import type { CharacterType } from "@/utils/supabase";
 import { Database } from "@/database.types";
-import commonStyles from "@/app/page.module.css";
 import AlbumDetailHeader from "./_components/AlbumDetailHeader";
 import styles from "./AlbumDetail.module.css";
 import ColorThief from "colorthief";
@@ -73,7 +72,7 @@ export default async function AlbumDetailPage({ params }: Props) {
 
   return (
     <main
-      className={commonStyles.main}
+      className="main"
       style={{
         background: `linear-gradient(-20deg, rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.5) 0%, white 100%)`,
       }}

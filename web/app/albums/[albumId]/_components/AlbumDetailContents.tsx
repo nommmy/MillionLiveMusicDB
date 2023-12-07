@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { supabase } from "@/utils/supabase";
-import type { RankingCardType } from "@/app/components/ranking/Ranking";
-import TrackList from "@/app/components/track/TrackList";
+import type { RankingCardType } from "@/app/_components/ranking/Ranking";
+import TrackList from "@/app/components/UI/track/TrackList";
 import { Suspense } from "react";
 import Skeleton from "@mui/material/Skeleton";
-import TrackRelation from "@/app/components/track/TrackRelation";
+import TrackRelation from "@/app/components/UI/track/TrackRelation";
 import styles from "../AlbumDetail.module.css";
 
 type Props = {

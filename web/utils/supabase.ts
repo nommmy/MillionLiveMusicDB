@@ -14,6 +14,21 @@ export const supabase = createClient(
   supabaseKey as string
 );
 
+type UnitsType = {
+  unit_id: string;
+};
+
+export type CharacterType = {
+  [key: string]: string | UnitsType[];
+  artist_id: string;
+  character_name: string;
+  image_6th: string;
+  image_favorite: string;
+  image_uniform: string;
+  color: string;
+  mst_units: UnitsType[];
+};
+
 export const upsertSupabaseTables = async (
   allTracks: Track[],
   allArtists: Artist[],
