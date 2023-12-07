@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Million Live Music DB",
+  title: "MillionLive Music DB",
   description:
     "This is an app for beginners of MillionLive to get them interested in MillionLive through the goodness of MillionLive music.",
 };

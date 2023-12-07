@@ -6,7 +6,7 @@
 
 .album-header-wrapper {
   display: flex;
-  padding: 2rem 0.75rem;
+  padding: 2rem 2vw 10px;
 }
 
 .flex-1 {
@@ -14,7 +14,7 @@
 }
 
 .main-contents-wrapper {
-  padding: 2vw;
+  padding: 2vw 3vw;
 }
 
 .main-contents-wrapper:last-of-type {
@@ -28,4 +28,8 @@
   font-weight: bold;
   font-size: 8vw;
   line-height: 0.76;
+}
+
+.character-list-wrapper {
+  margin: 0 4vw 1.5rem 2vw;
 }

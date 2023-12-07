@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import Skeleton from "@mui/material/Skeleton";
 import type { CharacterType } from "@/utils/supabase";
 import { Database } from "@/database.types";
-import AlbumDetailHeader from "./_components/AlbumDetailHeader";
+import AlbumDetailHeader from "./_components/AlbumDetailHeader"; 
 import styles from "./AlbumDetail.module.css";
 import ColorThief from "colorthief";
 import AlbumDetailContents from "./_components/AlbumDetailContents";
