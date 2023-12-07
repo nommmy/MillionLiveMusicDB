@@ -8,6 +8,7 @@ import commonStyles from "@/app/page.module.css";
 import AlbumDetailHeader from "./_components/AlbumDetailHeader";
 import styles from "./AlbumDetail.module.css";
 import ColorThief from "colorthief";
+import AlbumDetailContents from "./_components/AlbumDetailContents";
 
 type AlbumType = Database["public"]["Tables"]["mst_albums"]["Row"];
 
@@ -59,32 +60,44 @@ export default async function AlbumDetailPage({ params }: Props) {
   // スケルトン的なダミーをかえす？
   if (error) return;
 
+  // CDメンバーのartistIdを取得
+  // 表記ユレで同キャラ異IDも含まれる
+  const characterIds = data.map((character) => character.artist_id);
   // キャラ名でUniqueなリストを取得
   const characters = Array.from(
     new Map(data.map((item) => [item.character_name, item])).values()
   );
 
+  // ジャケ写のドミナントカラーを取得
   const color = await getDominantColor(album.album_image_url);
 
   return (
     <main
       className={commonStyles.main}
       style={{
-        background: `linear-gradient(-20deg, rgb(${color[0]}, ${color[1]}, ${color[2]}) 0%, white 100%)`,
+        background: `linear-gradient(-20deg, rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.5) 0%, white 100%)`,
       }}
     >
       <div className={styles["album-detail-page-wrapper"]}>
+        <p
+          className={styles["album-logo"]}
+          style={{ color: `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.8)` }}
+        >
+          ALBUM
+        </p>
         <Suspense fallback={<Skeleton animation="wave" />}>
-          <div className="">
-            <AlbumDetailHeader
-              name={album.name}
-              imageUrl={album.album_image_url}
-              characters={characters}
-              artistNameArray={album.artist_names}
-              releaseDate={album.release_date}
-            />
-          </div>
+          <AlbumDetailHeader
+            name={album.name}
+            imageUrl={album.album_image_url}
+            characters={characters}
+            artistNameArray={album.artist_names}
+            releaseDate={album.release_date}
+          />
         </Suspense>
+        <AlbumDetailContents
+          characterIds={characterIds}
+          albumId={album.album_id}
+        />
       </div>
     </main>
   );

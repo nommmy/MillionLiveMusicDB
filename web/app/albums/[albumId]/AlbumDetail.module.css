@@ -1,18 +1,31 @@
-.album-detail-page-background {
-  background: linear-gradient(-20deg, #d558c8 0%, #24d292 100%);
-}
-
 .album-detail-page-wrapper {
-  margin: 4vw 3vw 0 0;
+  margin: 6vw 3vw 0 0;
   background: white;
   border-radius: 0 3vw 0 0;
 }
 
 .album-header-wrapper {
   display: flex;
-  padding: 0.75rem;
+  padding: 2rem 0.75rem;
 }
 
 .flex-1 {
   flex: 1;
+}
+
+.main-contents-wrapper {
+  padding: 2vw;
+}
+
+.main-contents-wrapper:last-of-type {
+  padding-bottom: 4vw;
+}
+
+.album-logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-weight: bold;
+  font-size: 8vw;
+  line-height: 0.76;
 }

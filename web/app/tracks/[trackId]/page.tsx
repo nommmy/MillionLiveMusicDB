@@ -126,7 +126,7 @@ export default async function TrackDetailPage({ params }: Props) {
         <div className={commonStyles["main-contents-wrapper"]}>
           <TrackRelation
             characterIds={characterIds}
-            excludeTrackId={track.track_id}
+            excludeTrackIds={[track.track_id]}
           />
         </div>
       </Suspense>
