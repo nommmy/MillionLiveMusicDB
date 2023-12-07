@@ -1,26 +1,12 @@
 import { FC } from "react";
 import List from "@mui/material/List";
 import RankingListItem from "./RankingListItem";
-import { RankingCardType } from "@/app/components/ranking/Ranking";
+import { RankingCardType } from "@/app/_components/ranking/Ranking";
 import { supabase } from "@/utils/supabase";
 
 type Props = {
   listItems: RankingCardType[];
   startIndex: number;
-};
-
-type UnitsType = {
-  unit_id: string;
-};
-export type CharacterType = {
-  [key: string]: string | UnitsType[];
-  artist_id: string;
-  character_name: string;
-  image_6th: string;
-  image_favorite: string;
-  image_uniform: string;
-  color: string;
-  mst_units: UnitsType[];
 };
 
 const RankingList: FC<Props> = async ({ listItems, startIndex }) => {

@@ -2,7 +2,6 @@ import { supabase } from "@/utils/supabase";
 import RankingCard from "./RankingCard";
 import styles from "./Ranking.module.css";
 import RankingList from "./RankingList";
-import commonStyles from "@/app/page.module.css";
 
 export type RankingCardType = {
   track_id: string;
@@ -38,8 +37,8 @@ export default async function Ranking() {
   const listItems: RankingCardType[] = data.slice(HOT_DISPLAY_NUMBER);
 
   return (
-    <div className={commonStyles["main-contents-wrapper"]}>
-      <h2 className={commonStyles["title-h2"]}>HOT CHARTS</h2>
+    <div className="main-contents-wrapper">
+      <h2 className="title-h2">HOT CHARTS</h2>
       <div className={styles["ranking-cards-container"]}>
         {cards.map((track, index) => (
           <RankingCard key={track.track_id} track={track} rank={index + 1} />

@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { supabase } from "@/utils/supabase";
-import type { RankingCardType } from "../ranking/Ranking";
+import type { RankingCardType } from "@/app/_components/ranking/Ranking"; 
 import TrackList from "./TrackList";
 
 type Props = {
   characterIds: string[];
-  excludeTrackId: string;
+  excludeTrackIds: string[];
 };
 
-const TrackRelation: FC<Props> = async ({ characterIds, excludeTrackId }) => {
+const TrackRelation: FC<Props> = async ({ characterIds, excludeTrackIds }) => {
   // 歌唱メンバーの他楽曲を取得
   const { data, error } = await supabase
     .from("mst_tracks")
@@ -21,7 +21,7 @@ const TrackRelation: FC<Props> = async ({ characterIds, excludeTrackId }) => {
         mst_albums (name, album_image_url)`
     )
     .overlaps("artist_ids", characterIds)
-    .neq("track_id", excludeTrackId)
+    .not("track_id", "in", `(${excludeTrackIds.join(",")})`)
     .order("popularity", { ascending: false })
     .returns<RankingCardType[]>();
   // スケルトン的なダミーをかえす？

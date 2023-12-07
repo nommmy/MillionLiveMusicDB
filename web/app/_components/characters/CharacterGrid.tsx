@@ -1,6 +1,5 @@
 import { supabase } from "@/utils/supabase";
-import commonStyles from "@/app/page.module.css";
-import styles from "./CharacterIcon.module.css";
+import styles from "./CharacterGrid.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,12 +17,12 @@ export default async function CharacterGrid() {
   );
 
   return (
-    <div className={commonStyles["main-contents-wrapper"]}>
-      <h2 className={commonStyles["title-h2"]}>CHARACTERS</h2>
+    <div className="main-contents-wrapper">
+      <h2 className="title-h2">CHARACTERS</h2>
       <div className={styles["character-icon-grid"]}>
         {characters.map((character, index) => (
           <Link key={index} href="">
-            <div className={styles["tooltip-top"]}>
+            <div className="tooltip-top">
               <Image
                 width={60}
                 height={60}

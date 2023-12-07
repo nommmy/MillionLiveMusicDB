@@ -1,5 +1,5 @@
 import { FC } from "react";
-import type { RankingCardType } from "../ranking/Ranking";
+import type { RankingCardType } from "@/app/_components/ranking/Ranking"; 
 import Image from "next/image";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Link from "next/link";

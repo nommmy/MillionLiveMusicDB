@@ -2,9 +2,8 @@ import { FC } from "react";
 import List from "@mui/material/List";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 import TrackListItem from "./TrackListItem";
-import toolTipStyles from "@/app/components/character/CharacterIcon.module.css";
 import styles from "./TrackList.module.css";
-import type { RankingCardType } from "../ranking/Ranking";
+import type { RankingCardType } from "@/app/_components/ranking/Ranking"; 
 
 type Props = {
   title: string;
@@ -17,7 +16,7 @@ const TrackList: FC<Props> = ({ title, description, data }) => {
     <>
       <div className={styles["track-relation-header"]}>
         <h2>{title}</h2>
-        <div className={toolTipStyles["tooltip-top"]}>
+        <div className="tooltip-top">
           <HelpRoundedIcon sx={{ marginTop: "4px", fontSize: 28 }} />
           <span>{description}</span>
         </div>
