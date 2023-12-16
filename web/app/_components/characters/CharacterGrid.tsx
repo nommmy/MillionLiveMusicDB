@@ -6,7 +6,7 @@ import Link from "next/link";
 export default async function CharacterGrid() {
   const { data, error } = await supabase
     .from("mst_characters")
-    .select(`character_name, image_6th, image_favorite, image_uniform, color`)
+    .select(`character_name, image_favorite, image_uniform, color`)
     .order("character_name", { ascending: true });
   // スケルトン的なダミーをかえす？
   if (error) return;
