@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { supabase } from "@/utils/supabase";
-import type { RankingCardType } from "@/app/_components/ranking/Ranking";
+import type { TrackItemType } from "@/utils/supabase";
 import TrackList from "@/app/components/UI/track/TrackList";
 import { Suspense } from "react";
 import Skeleton from "@mui/material/Skeleton";
@@ -27,7 +27,7 @@ const AlbumDetailContents: FC<Props> = async ({ characterIds, albumId }) => {
 
     .eq("album_id", albumId)
     .order("track_number", { ascending: true })
-    .returns<RankingCardType[]>();
+    .returns<TrackItemType[]>();
   // スケルトン的なダミーをかえす？
   if (error) return;
 

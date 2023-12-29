@@ -3,10 +3,7 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../CharacterDetailPage.module.css";
-import useEmblaCarousel, {
-  EmblaOptionsType,
-  EmblaCarouselType,
-} from "embla-carousel-react";
+import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
 import { DotButton, useDotButton } from "./SliderDotButton";
 import Autoplay from "embla-carousel-autoplay";
 

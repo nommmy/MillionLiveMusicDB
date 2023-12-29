@@ -1,4 +1,4 @@
-import { RankingCardType } from "@/app/_components/ranking/Ranking";
+import type { TrackItemType } from "@/utils/supabase";
 import { FC } from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -10,7 +10,7 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Link from "next/link";
 
 type Props = {
-  track: RankingCardType;
+  track: TrackItemType;
   characters: CharacterType[];
   index: number;
 };

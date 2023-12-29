@@ -23,7 +23,9 @@
   word-break: break-all;
 }
 
-.profile-wrapper {
+.profile-wrapper,
+.comics-wrapper,
+.tracks-wrapper {
   margin: 4vw;
 }
 
@@ -152,3 +154,13 @@
 .embla__dot--selected:after {
   background: linear-gradient(45deg, #ffc30b, #ff990b);
 }
+
+/* Comic */
+.comic-imgs-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2vw 0;
+}
+

@@ -2,18 +2,7 @@ import { supabase } from "@/utils/supabase";
 import RankingCard from "./RankingCard";
 import styles from "./Ranking.module.css";
 import RankingList from "./RankingList";
-
-export type RankingCardType = {
-  track_id: string;
-  track_name: string;
-  preview_url: string;
-  artist_names: string[];
-  artist_ids: string[];
-  mst_albums: {
-    name: string;
-    album_image_url: string;
-  };
-};
+import type { TrackItemType } from "@/utils/supabase";
 
 export default async function Ranking() {
   const { data, error } = await supabase
@@ -28,13 +17,13 @@ export default async function Ranking() {
     )
     .order("popularity", { ascending: false })
     .limit(200)
-    .returns<RankingCardType[]>();
+    .returns<TrackItemType[]>();
   // スケルトン的なダミーをかえす？
   if (error) return;
 
   const HOT_DISPLAY_NUMBER = 3;
-  const cards: RankingCardType[] = data.slice(0, HOT_DISPLAY_NUMBER);
-  const listItems: RankingCardType[] = data.slice(HOT_DISPLAY_NUMBER);
+  const cards: TrackItemType[] = data.slice(0, HOT_DISPLAY_NUMBER);
+  const listItems: TrackItemType[] = data.slice(HOT_DISPLAY_NUMBER);
 
   return (
     <div className="main-contents-wrapper">

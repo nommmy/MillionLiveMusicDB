@@ -1,11 +1,11 @@
 import { FC } from "react";
 import List from "@mui/material/List";
 import RankingListItem from "./RankingListItem";
-import { RankingCardType } from "@/app/_components/ranking/Ranking";
+import type { TrackItemType } from "@/utils/supabase";
 import { supabase } from "@/utils/supabase";
 
 type Props = {
-  listItems: RankingCardType[];
+  listItems: TrackItemType[];
   startIndex: number;
 };
 

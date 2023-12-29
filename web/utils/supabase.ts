@@ -30,6 +30,18 @@ export type CharacterType = {
   mst_units: UnitsType[];
 };
 
+export type TrackItemType = {
+  track_id: string;
+  track_name: string;
+  preview_url: string;
+  artist_names: string[];
+  artist_ids: string[];
+  mst_albums: {
+    name: string;
+    album_image_url: string;
+  };
+};
+
 export const upsertSupabaseTables = async (
   allTracks: Track[],
   allArtists: Artist[],

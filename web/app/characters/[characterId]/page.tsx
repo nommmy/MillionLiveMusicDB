@@ -5,6 +5,10 @@ import CharacterProfile from "./_components/CharacterProfile";
 import CharacterDetailHeader from "./_components/CharacterDetailHeader";
 import ImageSlider from "./_components/ImageSlider";
 import CharacterShortIntroduction from "./_components/CharacterShortIntroduction";
+import ComicGallery from "./_components/ComicGallery";
+import CharacterSongs from "./_components/CharacterSongs";
+import { Suspense } from "react";
+import Skeleton from "@mui/material/Skeleton";
 
 type CharacterType = Database["public"]["Tables"]["mst_characters"]["Row"];
 type Props = {
@@ -51,10 +55,24 @@ export default async function CharacterDetailPage({ params }: Props) {
 
   return (
     <main className="main">
-      <CharacterDetailHeader character={character} />
-      <CharacterShortIntroduction character={character} />
-      <ImageSlider imgs={character.hero_images} />
-      <CharacterProfile character={character} />
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <CharacterDetailHeader character={character} />
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <CharacterShortIntroduction character={character} />
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <ImageSlider imgs={character.hero_images} />
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <CharacterProfile character={character} />
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <CharacterSongs artistId={character.artist_id} />
+      </Suspense>
+      <Suspense fallback={<Skeleton animation="wave" />}>
+        <ComicGallery imgs={character.four_panel_comic_images} />
+      </Suspense>
     </main>
   );
 }

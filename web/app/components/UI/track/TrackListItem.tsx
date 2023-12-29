@@ -1,5 +1,5 @@
 import { FC } from "react";
-import type { RankingCardType } from "@/app/_components/ranking/Ranking"; 
+import type { TrackItemType } from "@/utils/supabase";
 import Image from "next/image";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import styles from "./TrackList.module.css";
 
 type Props = {
-  track: RankingCardType;
+  track: TrackItemType;
 };
 
 const TrackListItem: FC<Props> = ({ track }) => {

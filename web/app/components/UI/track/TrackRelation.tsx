@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { supabase } from "@/utils/supabase";
-import type { RankingCardType } from "@/app/_components/ranking/Ranking"; 
+import type { TrackItemType } from "@/utils/supabase";
 import TrackList from "./TrackList";
 
 type Props = {
@@ -23,7 +23,7 @@ const TrackRelation: FC<Props> = async ({ characterIds, excludeTrackIds }) => {
     .overlaps("artist_ids", characterIds)
     .not("track_id", "in", `(${excludeTrackIds.join(",")})`)
     .order("popularity", { ascending: false })
-    .returns<RankingCardType[]>();
+    .returns<TrackItemType[]>();
   // スケルトン的なダミーをかえす？
   if (error) return;
 

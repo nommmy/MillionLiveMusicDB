@@ -3,12 +3,12 @@ import List from "@mui/material/List";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 import TrackListItem from "./TrackListItem";
 import styles from "./TrackList.module.css";
-import type { RankingCardType } from "@/app/_components/ranking/Ranking"; 
+import type { TrackItemType } from "@/utils/supabase";
 
 type Props = {
   title: string;
   description: string;
-  data: RankingCardType[];
+  data: TrackItemType[];
 };
 
 const TrackList: FC<Props> = ({ title, description, data }) => {
