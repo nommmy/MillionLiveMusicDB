@@ -1,16 +1,3 @@
-/* .track-card-fixed {
-  --card-width: 60%;
-
-  width: var(--card-width);
-  z-index: 2;
-  position: fixed;
-  left: calc(
-    var(--aside-width) + ((100% - var(--aside-width)) / 2) -
-      (var(--card-width) / 2)
-  );
-  top: calc(150px + 60px);
-} */
-
 .track-card-relative {
   position: relative;
 }

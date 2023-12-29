@@ -1,0 +1,154 @@
+.character-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+  padding: 0 6vw;
+  position: absolute;
+  top: 130px;
+  width: calc(100% - var(--aside-width));
+}
+
+.character-name-container {
+  flex: 1;
+}
+
+.character-name {
+  font-size: 2.2rem;
+  margin-top: 20px;
+}
+
+.cv-name {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  word-break: break-all;
+}
+
+.profile-wrapper {
+  margin: 4vw;
+}
+
+.profile-description {
+  padding: 1.5rem;
+  vertical-align: middle;
+  margin: 110px 3vw 10px;
+  font-weight: bold;
+}
+
+.profile-description-decoration {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+  border-radius: 50%;
+  background: white;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+.profile-items-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vw;
+  margin: 2vw 4vw;
+}
+
+.profile-item-label {
+  position: relative;
+  color: #6c6c6c;
+  text-shadow: 0 0 2px white;
+  font-size: 0.9rem;
+}
+
+.profile-label-decoration {
+  position: absolute;
+  opacity: 0.6;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 50%;
+  /* border: dashed 1px white; */
+  left: -10px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.profile-item {
+  padding-left: 5px;
+}
+
+/* Carousel */
+.embla {
+  --slide-spacing: 1rem;
+  --slide-size: 80%;
+  padding: 1.6rem;
+  position: relative;
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+  position: relative;
+}
+
+.embla__slide__img {
+  display: block;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+.embla__dot {
+  -webkit-appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.embla__dots {
+  z-index: 1;
+  bottom: 1.6rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.embla__dot {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
+}
+
+.embla__dot:after {
+  background: rgb(249, 249, 249);
+  border-radius: 0.2rem;
+  width: 100%;
+  height: 0.3rem;
+  content: "";
+}
+
+.embla__dot--selected:after {
+  background: linear-gradient(45deg, #ffc30b, #ff990b);
+}

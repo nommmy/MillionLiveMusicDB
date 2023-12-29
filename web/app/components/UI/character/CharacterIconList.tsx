@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { CharacterType } from "@/utils/supabase"; 
+import type { CharacterType } from "@/utils/supabase";
 import { FC } from "react";
 import styles from "./CharacterIcon.module.css";
 import Link from "next/link";
@@ -14,7 +14,7 @@ const CharacterIconList: FC<Props> = ({ artists, imageColumn, size }) => {
   return (
     <div className={styles["character-icon-list"]}>
       {artists.map((artist) => (
-        <Link key={artist.artist_id} href="">
+        <Link key={artist.artist_id} href={`/characters/${artist.artist_id}`}>
           <Image
             width={size}
             height={size}

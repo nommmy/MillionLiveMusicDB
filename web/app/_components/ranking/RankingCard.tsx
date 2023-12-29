@@ -17,7 +17,7 @@ const RankingCard: FC<Props> = ({ track, rank }) => {
     })
     .join(", ");
   return (
-    <Link href="">
+    <Link href={`/tracks/${track.track_id}`}>
       <div className={styles["card"]}>
         <span className={styles["rank-number"]}>{rank}</span>
         <Image

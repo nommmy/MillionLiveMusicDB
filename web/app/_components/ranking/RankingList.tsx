@@ -13,7 +13,7 @@ const RankingList: FC<Props> = async ({ listItems, startIndex }) => {
   const { data, error } = await supabase
     .from("mst_characters")
     .select(
-      `artist_id, character_name, image_6th, image_favorite, image_uniform, color, mst_units (unit_id)`
+      `artist_id, character_name, image_6th, image_favorite, image_uniform, color, unique_flg, mst_units (unit_id)`
     );
   // スケルトン的なダミーをかえす？
   if (error) return;

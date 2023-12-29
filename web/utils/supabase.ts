@@ -19,13 +19,14 @@ type UnitsType = {
 };
 
 export type CharacterType = {
-  [key: string]: string | UnitsType[];
+  [key: string]: string | boolean | UnitsType[];
   artist_id: string;
   character_name: string;
   image_6th: string;
   image_favorite: string;
   image_uniform: string;
   color: string;
+  unique_flg: boolean;
   mst_units: UnitsType[];
 };
 

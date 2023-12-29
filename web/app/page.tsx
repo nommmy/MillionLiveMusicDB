@@ -1,4 +1,3 @@
-import styles from "./page.module.css";
 import { Suspense } from "react";
 import Ranking from "./_components/ranking/Ranking";
 import Skeleton from "@mui/material/Skeleton";
@@ -7,7 +6,7 @@ import CharacterGrid from "./_components/characters/CharacterGrid";
 
 export default async function Home() {
   return (
-    <main className={styles.main}>
+    <main className="main">
       <Suspense fallback={<Skeleton animation="wave" />}>
         <Ranking />
       </Suspense>

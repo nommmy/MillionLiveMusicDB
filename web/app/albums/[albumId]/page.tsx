@@ -62,10 +62,9 @@ export default async function AlbumDetailPage({ params }: Props) {
   // CDメンバーのartistIdを取得
   // 表記ユレで同キャラ異IDも含まれる
   const characterIds = data.map((character) => character.artist_id);
+
   // キャラ名でUniqueなリストを取得
-  const characters = Array.from(
-    new Map(data.map((item) => [item.character_name, item])).values()
-  );
+  const characters = data.filter((character) => character.unique_flg);
 
   // ジャケ写のドミナントカラーを取得
   const color = await getDominantColor(album.album_image_url);

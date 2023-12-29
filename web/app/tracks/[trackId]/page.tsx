@@ -81,9 +81,7 @@ export default async function TrackDetailPage({ params }: Props) {
   if (error) return;
 
   // キャラ名でUniqueなリストを取得
-  const characters = Array.from(
-    new Map(data.map((item) => [item.character_name, item])).values()
-  );
+  const characters = data.filter(character => character.unique_flg);
 
   // 歌唱メンバーのIDおよびUnitIdを取得
   // 表記ユレで同キャラ異IDも含まれる
