@@ -12,7 +12,7 @@ import AlbumDetailContents from "./_components/AlbumDetailContents";
 type AlbumType = Database["public"]["Tables"]["mst_albums"]["Row"];
 
 type Props = {
-  params: { albumId: string };
+  params: { album_id: string };
 };
 
 const getDominantColor = async (imgPath: string) => {
@@ -24,7 +24,7 @@ const getDominantColor = async (imgPath: string) => {
   }
 };
 
-async function fetchAlbum(albumId: string) {
+async function fetchAlbum(album_id: string) {
   const { data, error } = await supabase
     .from("mst_albums")
     .select(
@@ -35,7 +35,7 @@ async function fetchAlbum(albumId: string) {
         artist_ids,
         artist_names`
     )
-    .eq("album_id", albumId)
+    .eq("album_id", album_id)
     .returns<AlbumType[]>()
     .single();
   // スケルトン的なダミーをかえす？
@@ -45,7 +45,7 @@ async function fetchAlbum(albumId: string) {
 }
 
 export default async function AlbumDetailPage({ params }: Props) {
-  const album = await fetchAlbum(params.albumId);
+  const album = await fetchAlbum(params.album_id);
   if (!album) return notFound();
 
   // trackに紐づくartistIdsでcharacter情報を取得

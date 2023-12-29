@@ -42,6 +42,7 @@ const ImageSlider: FC<Props> = ({ imgs }) => {
                 alt="image"
                 width={1282}
                 height={722}
+                priority={true}
               />
             </div>
           ))}

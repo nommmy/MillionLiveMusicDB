@@ -12,10 +12,10 @@ import Skeleton from "@mui/material/Skeleton";
 
 type CharacterType = Database["public"]["Tables"]["mst_characters"]["Row"];
 type Props = {
-  params: { characterId: string };
+  params: { artist_id: string };
 };
 
-async function fetchCharacter(characterId: string) {
+async function fetchCharacter(artist_id: string) {
   const { data, error } = await supabase
     .from("mst_characters")
     .select(
@@ -40,7 +40,7 @@ async function fetchCharacter(characterId: string) {
         type,
         weight`
     )
-    .eq("artist_id", characterId)
+    .eq("artist_id", artist_id)
     .returns<CharacterType[]>()
     .single();
   // スケルトン的なダミーをかえす？
@@ -50,7 +50,7 @@ async function fetchCharacter(characterId: string) {
 }
 
 export default async function CharacterDetailPage({ params }: Props) {
-  const character = await fetchCharacter(params.characterId);
+  const character = await fetchCharacter(params.artist_id);
   if (!character) return notFound();
 
   return (

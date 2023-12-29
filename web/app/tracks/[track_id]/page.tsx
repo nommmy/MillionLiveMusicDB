@@ -2,16 +2,16 @@ import { supabase } from "@/utils/supabase";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import styles from "./TrackDetailPage.module.css";
-import TrackCard from "@/app/tracks/[trackId]/_components/TrackCard";
-import TrackAnalytics from "@/app/tracks/[trackId]/_components/TrackAnalytics";
+import TrackCard from "@/app/tracks/[track_id]/_components/TrackCard";
+import TrackAnalytics from "@/app/tracks/[track_id]/_components/TrackAnalytics";
 import TrackRelation from "@/app/components/UI/track/TrackRelation";
-import TrackSimilar from "@/app/tracks/[trackId]/_components/TrackSimilar";
+import TrackSimilar from "@/app/tracks/[track_id]/_components/TrackSimilar";
 import { Suspense } from "react";
 import Skeleton from "@mui/material/Skeleton";
 import type { CharacterType } from "@/utils/supabase";
 
 type Props = {
-  params: { trackId: string };
+  params: { track_id: string };
 };
 
 type AlbumType = {
@@ -37,7 +37,7 @@ export type TrackType = {
   mst_albums: AlbumType;
 };
 
-async function fetchTrack(trackId: string) {
+async function fetchTrack(track_id: string) {
   const { data, error } = await supabase
     .from("mst_tracks")
     .select(
@@ -56,7 +56,7 @@ async function fetchTrack(trackId: string) {
         tempo,
         mst_albums (name, album_image_url)`
     )
-    .eq("track_id", trackId)
+    .eq("track_id", track_id)
     .returns<TrackType[]>()
     .single();
   // スケルトン的なダミーをかえす？
@@ -66,7 +66,7 @@ async function fetchTrack(trackId: string) {
 }
 
 export default async function TrackDetailPage({ params }: Props) {
-  const track = await fetchTrack(params.trackId);
+  const track = await fetchTrack(params.track_id);
   if (!track) return notFound();
 
   // trackに紐づくartistIdsでcharacter情報を取得
@@ -81,7 +81,7 @@ export default async function TrackDetailPage({ params }: Props) {
   if (error) return;
 
   // キャラ名でUniqueなリストを取得
-  const uniqueCharacters = data.filter(character => character.unique_flg);
+  const uniqueCharacters = data.filter((character) => character.unique_flg);
 
   // 歌唱メンバーのIDおよびUnitIdを取得
   // 表記ユレで同キャラ異IDも含まれる

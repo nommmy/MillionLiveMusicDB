@@ -1,4 +1,4 @@
-import { TrackType } from "@/app/tracks/[trackId]/_components/TrackSimilar";
+import { TrackType } from "@/app/tracks/[track_id]/_components/TrackSimilar";
 
 export const normalizeTempo = (
   otherTracks: TrackType[],
