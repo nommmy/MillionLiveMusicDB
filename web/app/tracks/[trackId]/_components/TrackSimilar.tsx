@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { supabase } from "@/utils/supabase";
 import TrackList from "@/app/components/UI/track/TrackList";
-import type { RankingCardType } from "@/app/_components/ranking/Ranking"; 
+import type { TrackItemType } from "@/utils/supabase";
 import { sortSimilarityTop100, normalizeTempo } from "@/utils/calc_similarity";
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
   tempo: number;
 };
 
-export type TrackType = RankingCardType & {
+export type TrackType = TrackItemType & {
   acousticness: number;
   danceability: number;
   energy: number;

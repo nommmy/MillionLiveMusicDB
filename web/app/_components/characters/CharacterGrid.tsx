@@ -6,22 +6,18 @@ import Link from "next/link";
 export default async function CharacterGrid() {
   const { data, error } = await supabase
     .from("mst_characters")
-    .select(`character_name, image_favorite, image_uniform, color`)
+    .select(`artist_id, character_name, image_favorite, image_uniform, color`)
+    .eq("unique_flg", true)
     .order("character_name", { ascending: true });
   // スケルトン的なダミーをかえす？
   if (error) return;
-
-  // キャラ名でUniqueなリストを取得
-  const characters = Array.from(
-    new Map(data.map((item) => [item.character_name, item])).values()
-  );
 
   return (
     <div className="main-contents-wrapper">
       <h2 className="title-h2">CHARACTERS</h2>
       <div className={styles["character-icon-grid"]}>
-        {characters.map((character, index) => (
-          <Link key={index} href="">
+        {data.map((character, index) => (
+          <Link key={index} href={`/characters/${character.artist_id}`}>
             <div className="tooltip-top">
               <Image
                 width={60}

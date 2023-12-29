@@ -109,34 +109,85 @@ export interface Database {
       }
       mst_characters: {
         Row: {
+          age: string
           artist_id: string
+          birth_day: string
+          blood: string
           character_name: string
           character_voice: string
           color: string
+          description: string
+          four_panel_comic_images: string[]
+          from: string
+          height: string
+          hero_icon: string
+          hero_images: string[]
+          hobby: string
           image_6th: string | null
           image_deformed: string | null
           image_favorite: string | null
           image_uniform: string | null
+          like: string
+          sign: string
+          special: string
+          three_size: string
+          type: string
+          unique_flg: boolean
+          weight: string
         }
         Insert: {
+          age: string
           artist_id: string
+          birth_day: string
+          blood: string
           character_name: string
           character_voice: string
           color: string
+          description: string
+          four_panel_comic_images: string[]
+          from: string
+          height: string
+          hero_icon: string
+          hero_images: string[]
+          hobby: string
           image_6th?: string | null
           image_deformed?: string | null
           image_favorite?: string | null
           image_uniform?: string | null
+          like: string
+          sign: string
+          special: string
+          three_size: string
+          type: string
+          unique_flg: boolean
+          weight: string
         }
         Update: {
+          age?: string
           artist_id?: string
+          birth_day?: string
+          blood?: string
           character_name?: string
           character_voice?: string
           color?: string
+          description?: string
+          four_panel_comic_images?: string[]
+          from?: string
+          height?: string
+          hero_icon?: string
+          hero_images?: string[]
+          hobby?: string
           image_6th?: string | null
           image_deformed?: string | null
           image_favorite?: string | null
           image_uniform?: string | null
+          like?: string
+          sign?: string
+          special?: string
+          three_size?: string
+          type?: string
+          unique_flg?: boolean
+          weight?: string
         }
         Relationships: [
           {
@@ -284,7 +335,46 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_artists_info: {
+        Args: {
+          artist_ids: string[]
+        }
+        Returns: {
+          artist_id: string
+          character_name: string
+          image_6th: string
+          image_favorite: string
+          image_uniform: string
+          color: string
+        }[]
+      }
+      get_track_artists: {
+        Args: {
+          artist_ids: string[]
+        }
+        Returns: {
+          artist_id: string
+          character_name: string
+          image_6th: string
+          image_favorite: string
+          image_uniform: string
+          color: string
+        }[]
+      }
+      gettrackartists: {
+        Args: {
+          artist_ids: string[]
+        }
+        Returns: {
+          artist_id: string
+          character_name: string
+          image_6th: string
+          image_favorite: string
+          image_uniform: string
+          color: string
+          unit_id: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
@@ -473,3 +563,83 @@ export interface Database {
     }
   }
 }
+
+export type Tables<
+  PublicTableNameOrOptions extends
+    | keyof (Database["public"]["Tables"] & Database["public"]["Views"])
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+        Database[PublicTableNameOrOptions["schema"]]["Views"])
+    : never = never
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : PublicTableNameOrOptions extends keyof (Database["public"]["Tables"] &
+      Database["public"]["Views"])
+  ? (Database["public"]["Tables"] &
+      Database["public"]["Views"])[PublicTableNameOrOptions] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : never
+
+export type TablesInsert<
+  PublicTableNameOrOptions extends
+    | keyof Database["public"]["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
+  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : never
+
+export type TablesUpdate<
+  PublicTableNameOrOptions extends
+    | keyof Database["public"]["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
+  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : never
+
+export type Enums<
+  PublicEnumNameOrOptions extends
+    | keyof Database["public"]["Enums"]
+    | { schema: keyof Database },
+  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+    : never = never
+> = PublicEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
+  ? Database["public"]["Enums"][PublicEnumNameOrOptions]
+  : never

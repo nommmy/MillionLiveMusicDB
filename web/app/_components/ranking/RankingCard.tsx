@@ -1,11 +1,11 @@
 import Image from "next/image";
 import styles from "./Ranking.module.css";
-import { RankingCardType } from "@/app/_components/ranking/Ranking";
+import type { TrackItemType } from "@/utils/supabase";
 import { FC } from "react";
 import Link from "next/link";
 
 type Props = {
-  track: RankingCardType;
+  track: TrackItemType;
   rank: number;
 };
 
@@ -17,7 +17,7 @@ const RankingCard: FC<Props> = ({ track, rank }) => {
     })
     .join(", ");
   return (
-    <Link href="">
+    <Link href={`/tracks/${track.track_id}`}>
       <div className={styles["card"]}>
         <span className={styles["rank-number"]}>{rank}</span>
         <Image

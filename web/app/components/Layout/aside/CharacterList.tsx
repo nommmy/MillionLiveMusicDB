@@ -6,15 +6,11 @@ import Link from "next/link";
 const CharacterList = async () => {
   const { data, error } = await supabase
     .from("mst_characters")
-    .select(`character_name, image_6th, image_uniform, color`)
+    .select(`artist_id, character_name, image_6th, image_uniform, color`)
+    .eq("unique_flg", true)
     .order("character_name", { ascending: true });
   // スケルトン的なダミーをかえす？
   if (error) return;
-
-  // キャラ名でUniqueなリストを取得
-  const characters = Array.from(
-    new Map(data.map((item) => [item.character_name, item])).values()
-  );
 
   return (
     <div>
@@ -25,12 +21,9 @@ const CharacterList = async () => {
           overflow: "auto",
         }}
       >
-        {characters.map((character) => (
+        {data.map((character) => (
           <Link
-            href={`/characters/${character.character_name.replaceAll(
-              /\s+/g,
-              ""
-            )}`}
+            href={`/characters/${character.artist_id}`}
             key={character.character_name}
           >
             <AsideListItem
