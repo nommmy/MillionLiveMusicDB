@@ -8,11 +8,12 @@ type Props = {
   artists: CharacterType[];
   imageColumn: string;
   size: number;
+  innerLink?: string;
 };
 
-const CharacterIconList: FC<Props> = ({ artists, imageColumn, size }) => {
+const CharacterIconList: FC<Props> = ({ artists, imageColumn, size, innerLink="" }) => {
   return (
-    <div className={styles["character-icon-list"]}>
+    <div className={`${styles["character-icon-list"]} ${styles[innerLink]}`}>
       {artists.map((artist) => (
         <Link key={artist.artist_id} href={`/characters/${artist.artist_id}`}>
           <Image

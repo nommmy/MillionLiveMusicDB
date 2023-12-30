@@ -14,8 +14,8 @@ const AsideListItem: FC<Props> = ({ name, img }) => {
       <ListItem disablePadding>
         <ListItemButton>
           <Image
-            width={50}
-            height={50}
+            width={45}
+            height={45}
             alt={name}
             src={img}
             className="margin-right-little"

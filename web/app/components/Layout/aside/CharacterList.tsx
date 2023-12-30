@@ -14,7 +14,7 @@ const CharacterList = async () => {
 
   return (
     <div>
-      <h3 className="title-h3 margin-left-little">Characters</h3>
+      <h4 className="title-h4 margin-left-little">Characters</h4>
       <List
         sx={{
           maxHeight: 500,

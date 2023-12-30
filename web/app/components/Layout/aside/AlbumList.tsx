@@ -13,7 +13,7 @@ const AlbumList = async () => {
 
   return (
     <div>
-      <h3 className="title-h3 margin-left-little">Albums</h3>
+      <h4 className="title-h4 margin-left-little">Albums</h4>
       <List
         sx={{
           maxHeight: 500,

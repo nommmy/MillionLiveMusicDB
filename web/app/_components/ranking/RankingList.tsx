@@ -1,23 +1,14 @@
 import { FC } from "react";
 import List from "@mui/material/List";
 import RankingListItem from "./RankingListItem";
-import type { TrackItemType } from "@/utils/supabase";
-import { supabase } from "@/utils/supabase";
+import type { RankingTrackType } from "./Ranking";
 
 type Props = {
-  listItems: TrackItemType[];
+  listItems: RankingTrackType[];
   startIndex: number;
 };
 
 const RankingList: FC<Props> = async ({ listItems, startIndex }) => {
-  const { data, error } = await supabase
-    .from("mst_characters")
-    .select(
-      `artist_id, character_name, image_6th, image_favorite, image_uniform, color, unique_flg, mst_units (unit_id)`
-    );
-  // スケルトン的なダミーをかえす？
-  if (error) return;
-
   return (
     <List
       sx={{
@@ -30,7 +21,6 @@ const RankingList: FC<Props> = async ({ listItems, startIndex }) => {
         <RankingListItem
           key={track.track_id}
           track={track}
-          characters={data}
           index={startIndex + index + 1}
         />
       ))}

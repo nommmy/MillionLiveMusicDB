@@ -1,6 +1,16 @@
 .character-icon-list {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.inner-link {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.inner-link a {
+  pointer-events: all;
 }

@@ -2,28 +2,32 @@ import { supabase } from "@/utils/supabase";
 import RankingCard from "./RankingCard";
 import styles from "./Ranking.module.css";
 import RankingList from "./RankingList";
-import type { TrackItemType } from "@/utils/supabase";
+import type { CharacterType } from "@/utils/supabase";
+
+export type RankingTrackType = {
+  track_id: string;
+  track_name: string;
+  preview_url: string;
+  artist_names: string[];
+  artist_ids: string[];
+  album_name: string;
+  album_image_url: string;
+  artists: CharacterType[] | null;
+}
 
 export default async function Ranking() {
   const { data, error } = await supabase
-    .from("mst_tracks")
-    .select(
-      `track_id, 
-        track_name, 
-        preview_url,
-        artist_names,
-        artist_ids,
-        mst_albums (name, album_image_url)`
-    )
-    .order("popularity", { ascending: false })
-    .limit(200)
-    .returns<TrackItemType[]>();
+    .rpc("get_hot_tracks", {
+      limits: 200,
+    })
+    .returns<RankingTrackType[]>();
+
   // スケルトン的なダミーをかえす？
   if (error) return;
 
   const HOT_DISPLAY_NUMBER = 3;
-  const cards: TrackItemType[] = data.slice(0, HOT_DISPLAY_NUMBER);
-  const listItems: TrackItemType[] = data.slice(HOT_DISPLAY_NUMBER);
+  const cards: RankingTrackType[] = data.slice(0, HOT_DISPLAY_NUMBER);
+  const listItems: RankingTrackType[] = data.slice(HOT_DISPLAY_NUMBER);
 
   return (
     <div className="main-contents-wrapper">
