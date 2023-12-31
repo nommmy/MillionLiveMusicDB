@@ -7,6 +7,8 @@
 :root {
   --basic-font-color: #4c4c4c;
   --main-color: #ffc30b;
+  --main-color-lighten: #ffd146;
+  --main-color-darken: #ffba00;
   --aside-width: 25%;
 }
 
@@ -102,4 +104,8 @@ a {
 .tooltip-top:hover > span {
   visibility: visible;
   opacity: 1;
+}
+
+.MuiSvgIcon-root[data-testid="PlayCircleIcon"]:hover{
+  color: rgb(50, 50, 50);
 }

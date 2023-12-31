@@ -32,7 +32,7 @@ const RankingListItem: FC<Props> = async ({ track, index = 1 }) => {
           className={styles["stretched-link"]}
         >
           <span className={styles["list-index"]}>{index}</span>
-          <PlayCircleIcon />
+          <PlayCircleIcon sx={{ fontSize: 30 }} />
           <ListItemText primary={track.track_name} secondary={artistName} />
         </Link>
         {track.artists && (
@@ -41,6 +41,7 @@ const RankingListItem: FC<Props> = async ({ track, index = 1 }) => {
             imageColumn={"image_6th"}
             size={SIZE}
             innerLink="inner-link"
+            maxLength={7}
           />
         )}
       </ListItemButton>

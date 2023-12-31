@@ -14,3 +14,7 @@
 .inner-link a {
   pointer-events: all;
 }
+
+.avator-group {
+  align-items: center;
+}

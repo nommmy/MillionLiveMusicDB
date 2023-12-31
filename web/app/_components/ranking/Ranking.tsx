@@ -22,8 +22,7 @@ export default async function Ranking() {
     })
     .returns<RankingTrackType[]>();
 
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   const HOT_DISPLAY_NUMBER = 3;
   const cards: RankingTrackType[] = data.slice(0, HOT_DISPLAY_NUMBER);
