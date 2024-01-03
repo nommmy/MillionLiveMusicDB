@@ -8,8 +8,7 @@ const AlbumList = async () => {
     .from("mst_albums")
     .select(`album_id, name, album_image_url`)
     .order("release_date", { ascending: true });
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   return (
     <div>

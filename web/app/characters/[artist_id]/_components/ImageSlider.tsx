@@ -12,7 +12,10 @@ type Props = {
 };
 
 const ImageSlider: FC<Props> = ({ imgs }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "start" },
+    [Autoplay()]
+  );
 
   const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
     const { autoplay } = emblaApi.plugins();
@@ -25,12 +28,7 @@ const ImageSlider: FC<Props> = ({ imgs }) => {
     onButtonClick
   );
 
-  const [isShow, setIsShow] = useState(false);
-  useEffect(() => {
-    setIsShow(true);
-  }, []);
-  //スケルトン的なダミーをかえす？
-  return isShow ? (
+  return (
     <div className={styles["embla"]}>
       <div className={styles["embla__viewport"]} ref={emblaRef}>
         <div className={styles["embla__container"]}>
@@ -61,8 +59,6 @@ const ImageSlider: FC<Props> = ({ imgs }) => {
         ))}
       </div>
     </div>
-  ) : (
-    <></>
   );
 };
 

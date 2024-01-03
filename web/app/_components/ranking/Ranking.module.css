@@ -21,6 +21,12 @@
   cursor: pointer;
 }
 
+.card-skeleton {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
 .rank-number {
   position: absolute;
   top: -20px;

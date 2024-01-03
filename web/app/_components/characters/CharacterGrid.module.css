@@ -3,3 +3,9 @@
   grid-gap: 0.5vw;
   grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
 }
+
+.character-icon-skeleton {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+}

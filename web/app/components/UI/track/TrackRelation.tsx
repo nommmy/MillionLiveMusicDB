@@ -24,8 +24,7 @@ const TrackRelation: FC<Props> = async ({ characterIds, excludeTrackIds }) => {
     .not("track_id", "in", `(${excludeTrackIds.join(",")})`)
     .order("popularity", { ascending: false })
     .returns<TrackItemType[]>();
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   return (
     <>

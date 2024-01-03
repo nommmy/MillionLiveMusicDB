@@ -8,7 +8,7 @@ import CharacterShortIntroduction from "./_components/CharacterShortIntroduction
 import ComicGallery from "./_components/ComicGallery";
 import CharacterSongs from "./_components/CharacterSongs";
 import { Suspense } from "react";
-import Skeleton from "@mui/material/Skeleton";
+import ListSkeleton from "@/app/components/UI/skeleton/ListSkeleton";
 
 type CharacterType = Database["public"]["Tables"]["mst_characters"]["Row"];
 type Props = {
@@ -43,7 +43,6 @@ async function fetchCharacter(artist_id: string) {
     .eq("artist_id", artist_id)
     .returns<CharacterType[]>()
     .single();
-  // スケルトン的なダミーをかえす？
   if (error) return;
 
   return data;
@@ -55,24 +54,16 @@ export default async function CharacterDetailPage({ params }: Props) {
 
   return (
     <main className="main">
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <CharacterDetailHeader character={character} />
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <CharacterShortIntroduction character={character} />
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <ImageSlider imgs={character.hero_images} />
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <CharacterProfile character={character} />
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
+      <CharacterDetailHeader character={character} />
+      <CharacterShortIntroduction character={character} />
+      <ImageSlider imgs={character.hero_images} />
+      <CharacterProfile character={character} />
+      <Suspense
+        fallback={<ListSkeleton titleClass="normal-h2-skeleton" height={350} />}
+      >
         <CharacterSongs artistId={character.artist_id} />
       </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <ComicGallery imgs={character.four_panel_comic_images} />
-      </Suspense>
+      <ComicGallery imgs={character.four_panel_comic_images} />
     </main>
   );
 }

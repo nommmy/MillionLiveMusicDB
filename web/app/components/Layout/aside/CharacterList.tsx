@@ -9,8 +9,7 @@ const CharacterList = async () => {
     .select(`artist_id, character_name, image_6th, image_uniform, color`)
     .eq("unique_flg", true)
     .order("character_name", { ascending: true });
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   return (
     <div>

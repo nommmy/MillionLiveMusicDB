@@ -14,8 +14,8 @@ const CharacterSongs: FC<Props> = async ({ artistId }) => {
       artist_ids: [artistId],
     })
     .returns<CharacterType[]>();
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
+  
   const characterIds = data.map((character) => character.artist_id);
 
   return (

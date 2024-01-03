@@ -7,7 +7,7 @@ import TrackAnalytics from "@/app/tracks/[track_id]/_components/TrackAnalytics";
 import TrackRelation from "@/app/components/UI/track/TrackRelation";
 import TrackSimilar from "@/app/tracks/[track_id]/_components/TrackSimilar";
 import { Suspense } from "react";
-import Skeleton from "@mui/material/Skeleton";
+import ListSkeleton from "@/app/components/UI/skeleton/ListSkeleton";
 import type { CharacterType } from "@/utils/supabase";
 
 type Props = {
@@ -59,7 +59,6 @@ async function fetchTrack(track_id: string) {
     .eq("track_id", track_id)
     .returns<TrackType[]>()
     .single();
-  // スケルトン的なダミーをかえす？
   if (error) return;
 
   return data;
@@ -77,8 +76,7 @@ export default async function TrackDetailPage({ params }: Props) {
       artist_ids: track.artist_ids,
     })
     .returns<CharacterType[]>();
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   // キャラ名でUniqueなリストを取得
   const uniqueCharacters = data.filter((character) => character.unique_flg);
@@ -103,23 +101,21 @@ export default async function TrackDetailPage({ params }: Props) {
           className={styles["header-img"]}
         />
       </div>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <div className={styles["track-info-wrapper"]}>
-          <TrackCard
-            name={track.track_name}
-            imageUrl={track.mst_albums.album_image_url}
-            albumName={track.mst_albums.name}
-            characters={uniqueCharacters}
-            artistNameArray={track.artist_names}
-          />
-        </div>
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <div className={styles["track-analytics-wrapper"]}>
-          <TrackAnalytics track={track} />
-        </div>
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
+      <div className={styles["track-info-wrapper"]}>
+        <TrackCard
+          name={track.track_name}
+          imageUrl={track.mst_albums.album_image_url}
+          albumName={track.mst_albums.name}
+          characters={uniqueCharacters}
+          artistNameArray={track.artist_names}
+        />
+      </div>
+      <div className={styles["track-analytics-wrapper"]}>
+        <TrackAnalytics track={track} />
+      </div>
+      <Suspense
+        fallback={<ListSkeleton titleClass="normal-h2-skeleton" height={350} />}
+      >
         <div className="main-contents-wrapper">
           <TrackRelation
             characterIds={characterIds}
@@ -127,7 +123,9 @@ export default async function TrackDetailPage({ params }: Props) {
           />
         </div>
       </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
+      <Suspense
+        fallback={<ListSkeleton titleClass="normal-h2-skeleton" height={350} />}
+      >
         <div className="main-contents-wrapper">
           <TrackSimilar
             excludeTrackId={track.track_id}
