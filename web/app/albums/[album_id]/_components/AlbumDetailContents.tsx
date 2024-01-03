@@ -3,9 +3,8 @@ import { supabase } from "@/utils/supabase";
 import type { TrackItemType } from "@/utils/supabase";
 import TrackList from "@/app/components/UI/track/TrackList";
 import { Suspense } from "react";
-import Skeleton from "@mui/material/Skeleton";
+import ListSkeleton from "@/app/components/UI/skeleton/ListSkeleton";
 import TrackRelation from "@/app/components/UI/track/TrackRelation";
-import styles from "../AlbumDetail.module.css";
 
 type Props = {
   characterIds: string[];
@@ -24,20 +23,20 @@ const AlbumDetailContents: FC<Props> = async ({ characterIds, albumId }) => {
         artist_ids,
         mst_albums (name, album_image_url)`
     )
-
     .eq("album_id", albumId)
     .order("track_number", { ascending: true })
     .returns<TrackItemType[]>();
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   // Album収録曲は関連楽曲から省く
   const excludeTrackIds = data.map((track) => track.track_id);
 
   return (
     <>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <div className={styles["main-contents-wrapper"]}>
+      <Suspense
+        fallback={<ListSkeleton titleClass="normal-h2-skeleton" height={350} />}
+      >
+        <div className="main-contents-wrapper">
           {!!data.length && (
             <TrackList
               title="CD収録曲"
@@ -47,8 +46,10 @@ const AlbumDetailContents: FC<Props> = async ({ characterIds, albumId }) => {
           )}
         </div>
       </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <div className={styles["main-contents-wrapper"]}>
+      <Suspense
+        fallback={<ListSkeleton titleClass="normal-h2-skeleton" height={350} />}
+      >
+        <div className="main-contents-wrapper">
           <TrackRelation
             characterIds={characterIds}
             excludeTrackIds={excludeTrackIds}

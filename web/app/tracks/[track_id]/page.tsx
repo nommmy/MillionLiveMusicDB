@@ -2,16 +2,16 @@ import { supabase } from "@/utils/supabase";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import styles from "./TrackDetailPage.module.css";
-import TrackCard from "@/app/tracks/[trackId]/_components/TrackCard";
-import TrackAnalytics from "@/app/tracks/[trackId]/_components/TrackAnalytics";
+import TrackCard from "@/app/tracks/[track_id]/_components/TrackCard";
+import TrackAnalytics from "@/app/tracks/[track_id]/_components/TrackAnalytics";
 import TrackRelation from "@/app/components/UI/track/TrackRelation";
-import TrackSimilar from "@/app/tracks/[trackId]/_components/TrackSimilar";
+import TrackSimilar from "@/app/tracks/[track_id]/_components/TrackSimilar";
 import { Suspense } from "react";
-import Skeleton from "@mui/material/Skeleton";
+import ListSkeleton from "@/app/components/UI/skeleton/ListSkeleton";
 import type { CharacterType } from "@/utils/supabase";
 
 type Props = {
-  params: { trackId: string };
+  params: { track_id: string };
 };
 
 type AlbumType = {
@@ -37,7 +37,7 @@ export type TrackType = {
   mst_albums: AlbumType;
 };
 
-async function fetchTrack(trackId: string) {
+async function fetchTrack(track_id: string) {
   const { data, error } = await supabase
     .from("mst_tracks")
     .select(
@@ -56,17 +56,16 @@ async function fetchTrack(trackId: string) {
         tempo,
         mst_albums (name, album_image_url)`
     )
-    .eq("track_id", trackId)
+    .eq("track_id", track_id)
     .returns<TrackType[]>()
     .single();
-  // スケルトン的なダミーをかえす？
   if (error) return;
 
   return data;
 }
 
 export default async function TrackDetailPage({ params }: Props) {
-  const track = await fetchTrack(params.trackId);
+  const track = await fetchTrack(params.track_id);
   if (!track) return notFound();
 
   // trackに紐づくartistIdsでcharacter情報を取得
@@ -77,11 +76,10 @@ export default async function TrackDetailPage({ params }: Props) {
       artist_ids: track.artist_ids,
     })
     .returns<CharacterType[]>();
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   // キャラ名でUniqueなリストを取得
-  const uniqueCharacters = data.filter(character => character.unique_flg);
+  const uniqueCharacters = data.filter((character) => character.unique_flg);
 
   // 歌唱メンバーのIDおよびUnitIdを取得
   // 表記ユレで同キャラ異IDも含まれる
@@ -103,23 +101,21 @@ export default async function TrackDetailPage({ params }: Props) {
           className={styles["header-img"]}
         />
       </div>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <div className={styles["track-info-wrapper"]}>
-          <TrackCard
-            name={track.track_name}
-            imageUrl={track.mst_albums.album_image_url}
-            albumName={track.mst_albums.name}
-            characters={uniqueCharacters}
-            artistNameArray={track.artist_names}
-          />
-        </div>
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <div className={styles["track-analytics-wrapper"]}>
-          <TrackAnalytics track={track} />
-        </div>
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
+      <div className={styles["track-info-wrapper"]}>
+        <TrackCard
+          name={track.track_name}
+          imageUrl={track.mst_albums.album_image_url}
+          albumName={track.mst_albums.name}
+          characters={uniqueCharacters}
+          artistNameArray={track.artist_names}
+        />
+      </div>
+      <div className={styles["track-analytics-wrapper"]}>
+        <TrackAnalytics track={track} />
+      </div>
+      <Suspense
+        fallback={<ListSkeleton titleClass="normal-h2-skeleton" height={350} />}
+      >
         <div className="main-contents-wrapper">
           <TrackRelation
             characterIds={characterIds}
@@ -127,7 +123,9 @@ export default async function TrackDetailPage({ params }: Props) {
           />
         </div>
       </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
+      <Suspense
+        fallback={<ListSkeleton titleClass="normal-h2-skeleton" height={350} />}
+      >
         <div className="main-contents-wrapper">
           <TrackSimilar
             excludeTrackId={track.track_id}

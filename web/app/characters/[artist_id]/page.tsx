@@ -8,14 +8,14 @@ import CharacterShortIntroduction from "./_components/CharacterShortIntroduction
 import ComicGallery from "./_components/ComicGallery";
 import CharacterSongs from "./_components/CharacterSongs";
 import { Suspense } from "react";
-import Skeleton from "@mui/material/Skeleton";
+import ListSkeleton from "@/app/components/UI/skeleton/ListSkeleton";
 
 type CharacterType = Database["public"]["Tables"]["mst_characters"]["Row"];
 type Props = {
-  params: { characterId: string };
+  params: { artist_id: string };
 };
 
-async function fetchCharacter(characterId: string) {
+async function fetchCharacter(artist_id: string) {
   const { data, error } = await supabase
     .from("mst_characters")
     .select(
@@ -40,39 +40,30 @@ async function fetchCharacter(characterId: string) {
         type,
         weight`
     )
-    .eq("artist_id", characterId)
+    .eq("artist_id", artist_id)
     .returns<CharacterType[]>()
     .single();
-  // スケルトン的なダミーをかえす？
   if (error) return;
 
   return data;
 }
 
 export default async function CharacterDetailPage({ params }: Props) {
-  const character = await fetchCharacter(params.characterId);
+  const character = await fetchCharacter(params.artist_id);
   if (!character) return notFound();
 
   return (
     <main className="main">
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <CharacterDetailHeader character={character} />
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <CharacterShortIntroduction character={character} />
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <ImageSlider imgs={character.hero_images} />
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <CharacterProfile character={character} />
-      </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
+      <CharacterDetailHeader character={character} />
+      <CharacterShortIntroduction character={character} />
+      <ImageSlider imgs={character.hero_images} />
+      <CharacterProfile character={character} />
+      <Suspense
+        fallback={<ListSkeleton titleClass="normal-h2-skeleton" height={350} />}
+      >
         <CharacterSongs artistId={character.artist_id} />
       </Suspense>
-      <Suspense fallback={<Skeleton animation="wave" />}>
-        <ComicGallery imgs={character.four_panel_comic_images} />
-      </Suspense>
+      <ComicGallery imgs={character.four_panel_comic_images} />
     </main>
   );
 }

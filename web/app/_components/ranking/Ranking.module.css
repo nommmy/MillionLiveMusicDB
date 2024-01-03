@@ -21,18 +21,36 @@
   cursor: pointer;
 }
 
+.card-skeleton {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
 .rank-number {
   position: absolute;
   top: -20px;
-  right: -5px;
-  font-size: 2.5rem;
+  right: -20px;
   z-index: 2;
-  font-weight: bold;
-  color: var(--main-color);
 }
 
 .card-img {
   border-radius: 0.35rem;
+}
+
+.play-icon {
+  position: relative;
+  left: 0;
+  top: -20px;
+  margin-top: -35px;
+  font-size: 50px;
+  border-radius: 50%;
+  background-color: white;
+  color: var(--main-color);
+}
+
+.play-icon:hover {
+  color: var(--main-color-darken) !important;
 }
 
 .card-name {
@@ -52,4 +70,27 @@
 
 .list-index+svg{
   margin-right: 0.6rem;
+  z-index: 2;
+}
+
+.nested-links {
+  position: relative;
+  pointer-events: all;
+  display: flex;
+}
+
+.stretched-link {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: '';
 }

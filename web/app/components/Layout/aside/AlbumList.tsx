@@ -8,12 +8,11 @@ const AlbumList = async () => {
     .from("mst_albums")
     .select(`album_id, name, album_image_url`)
     .order("release_date", { ascending: true });
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   return (
     <div>
-      <h3 className="title-h3 margin-left-little">Albums</h3>
+      <h4 className="title-h4 margin-left-little">Albums</h4>
       <List
         sx={{
           maxHeight: 500,

@@ -9,8 +9,7 @@ export default async function CharacterGrid() {
     .select(`artist_id, character_name, image_favorite, image_uniform, color`)
     .eq("unique_flg", true)
     .order("character_name", { ascending: true });
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   return (
     <div className="main-contents-wrapper">

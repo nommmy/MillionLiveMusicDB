@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Slider from "@mui/material/Slider";
 import styles from "./TrackAnalytics.module.css";
-import type { TrackType } from "@/app/tracks/[trackId]/page";
+import type { TrackType } from "@/app/tracks/[track_id]/page";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 
 type Props = {

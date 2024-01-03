@@ -7,6 +7,8 @@
 :root {
   --basic-font-color: #4c4c4c;
   --main-color: #ffc30b;
+  --main-color-lighten: #ffd146;
+  --main-color-darken: #ffba00;
   --aside-width: 25%;
 }
 
@@ -40,9 +42,19 @@ a {
   margin-bottom: 1rem;
 }
 
+.normal-h2-skeleton {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
 .title-h3 {
   font-size: 1.8rem;
   margin-bottom: 0.8rem;
+}
+
+.title-h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .margin-left-little {
@@ -97,4 +109,103 @@ a {
 .tooltip-top:hover > span {
   visibility: visible;
   opacity: 1;
+}
+
+.MuiSvgIcon-root[data-testid="PlayCircleIcon"]:hover {
+  color: rgb(50, 50, 50);
+}
+
+@keyframes animation-c7515d {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.skeleton {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.11);
+  -webkit-animation: animation-c7515d 2s ease-in-out 0.5s infinite;
+  height: 1.2em;
+  animation: animation-c7515d 2s ease-in-out 0.5s infinite;
+}
+
+.skeleton-text {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.11);
+  height: auto;
+  transform-origin: 0 55%;
+  /* -webkit-transform: scale(1, 0.6);
+  -moz-transform: scale(1, 0.6);
+  -ms-transform: scale(1, 0.6);
+  transform: scale(1, 0.6); */
+  border-radius: 4px/6.7px;
+  -webkit-animation: animation-c7515d 2s ease-in-out 0.5s infinite;
+  animation: animation-c7515d 2s ease-in-out 0.5s infinite;
+}
+
+.skeleton-text:empty::before {
+  content: "\00a0";
+}
+
+.list-skeleton-300 {
+  width: 100%;
+  height: 300px;
+}
+
+.list-skeleton-350 {
+  width: 100%;
+  height: 350px;
+}
+
+.list-skeleton-500 {
+  width: 100%;
+  height: 500px;
+}
+
+/* Spinner */
+.half-circle-spinner,
+.half-circle-spinner * {
+  box-sizing: border-box;
+}
+
+.half-circle-spinner {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  position: relative;
+  margin: 35vw auto
+}
+
+.half-circle-spinner .circle {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: calc(60px / 10) solid transparent;
+}
+
+.half-circle-spinner .circle.circle-1 {
+  border-top-color: var(--main-color);
+  animation: half-circle-spinner-animation 1s infinite;
+}
+
+.half-circle-spinner .circle.circle-2 {
+  border-bottom-color: var(--main-color);
+  animation: half-circle-spinner-animation 1s infinite alternate;
+}
+
+@keyframes half-circle-spinner-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

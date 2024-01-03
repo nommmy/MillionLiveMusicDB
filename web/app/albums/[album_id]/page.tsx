@@ -1,10 +1,8 @@
 import { supabase } from "@/utils/supabase";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
-import Skeleton from "@mui/material/Skeleton";
 import type { CharacterType } from "@/utils/supabase";
 import { Database } from "@/database.types";
-import AlbumDetailHeader from "./_components/AlbumDetailHeader"; 
+import AlbumDetailHeader from "./_components/AlbumDetailHeader";
 import styles from "./AlbumDetail.module.css";
 import ColorThief from "colorthief";
 import AlbumDetailContents from "./_components/AlbumDetailContents";
@@ -12,7 +10,7 @@ import AlbumDetailContents from "./_components/AlbumDetailContents";
 type AlbumType = Database["public"]["Tables"]["mst_albums"]["Row"];
 
 type Props = {
-  params: { albumId: string };
+  params: { album_id: string };
 };
 
 const getDominantColor = async (imgPath: string) => {
@@ -24,7 +22,7 @@ const getDominantColor = async (imgPath: string) => {
   }
 };
 
-async function fetchAlbum(albumId: string) {
+async function fetchAlbum(album_id: string) {
   const { data, error } = await supabase
     .from("mst_albums")
     .select(
@@ -35,17 +33,16 @@ async function fetchAlbum(albumId: string) {
         artist_ids,
         artist_names`
     )
-    .eq("album_id", albumId)
+    .eq("album_id", album_id)
     .returns<AlbumType[]>()
     .single();
-  // スケルトン的なダミーをかえす？
   if (error) return;
 
   return data;
 }
 
 export default async function AlbumDetailPage({ params }: Props) {
-  const album = await fetchAlbum(params.albumId);
+  const album = await fetchAlbum(params.album_id);
   if (!album) return notFound();
 
   // trackに紐づくartistIdsでcharacter情報を取得
@@ -56,8 +53,7 @@ export default async function AlbumDetailPage({ params }: Props) {
       artist_ids: album.artist_ids,
     })
     .returns<CharacterType[]>();
-  // スケルトン的なダミーをかえす？
-  if (error) return;
+  if (error) return <></>;
 
   // CDメンバーのartistIdを取得
   // 表記ユレで同キャラ異IDも含まれる
@@ -83,15 +79,13 @@ export default async function AlbumDetailPage({ params }: Props) {
         >
           ALBUM
         </p>
-        <Suspense fallback={<Skeleton animation="wave" />}>
-          <AlbumDetailHeader
-            name={album.name}
-            imageUrl={album.album_image_url}
-            characters={characters}
-            artistNameArray={album.artist_names}
-            releaseDate={album.release_date}
-          />
-        </Suspense>
+        <AlbumDetailHeader
+          name={album.name}
+          imageUrl={album.album_image_url}
+          characters={characters}
+          artistNameArray={album.artist_names}
+          releaseDate={album.release_date}
+        />
         <AlbumDetailContents
           characterIds={characterIds}
           albumId={album.album_id}
