@@ -68,11 +68,6 @@
   width: 20px;
 }
 
-.list-index+svg{
-  margin-right: 0.6rem;
-  z-index: 2;
-}
-
 .nested-links {
   position: relative;
   pointer-events: all;

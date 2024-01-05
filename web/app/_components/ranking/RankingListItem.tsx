@@ -5,9 +5,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import CharacterIconList from "../../components/UI/character/CharacterIconList";
 import styles from "./Ranking.module.css";
-import type { CharacterType } from "@/utils/supabase";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Link from "next/link";
+import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
 
 type Props = {
   track: RankingTrackType;
@@ -32,7 +31,12 @@ const RankingListItem: FC<Props> = async ({ track, index = 1 }) => {
           className={styles["stretched-link"]}
         >
           <span className={styles["list-index"]}>{index}</span>
-          <PlayCircleIcon sx={{ fontSize: 30 }} />
+          <PlayTrackButton
+            title={track.track_name}
+            src={track.preview_url}
+            artistName={artistName}
+            albumImage={track.album_image_url}
+          />
           <ListItemText primary={track.track_name} secondary={artistName} />
         </Link>
         {track.artists && (

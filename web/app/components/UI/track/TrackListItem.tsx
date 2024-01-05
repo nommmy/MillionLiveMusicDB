@@ -1,7 +1,6 @@
 import { FC } from "react";
 import type { TrackItemType } from "@/utils/supabase";
 import Image from "next/image";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Link from "next/link";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -9,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import styles from "./TrackList.module.css";
+import PlayTrackButton from "../icon-button/PlayTrackButton";
 
 type Props = {
   track: TrackItemType;
@@ -21,11 +21,12 @@ const TrackListItem: FC<Props> = ({ track }) => {
       return match ? match[1] : character;
     })
     .join(", ");
+
   return (
     <Link href={`/tracks/${track.track_id}`}>
       <ListItem disablePadding secondaryAction={<FavoriteBorderIcon />}>
         <ListItemButton className={styles["list-item-button"]}>
-          <PlayCircleIcon sx={{ fontSize: 30 }} />
+          <PlayTrackButton title={track.track_name} src={track.preview_url} artistName={artistName} albumImage={track.mst_albums.album_image_url} />
           <Image
             width={50}
             height={50}
