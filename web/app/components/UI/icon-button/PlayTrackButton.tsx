@@ -39,8 +39,14 @@ const PlayTrackButton = ({title, src, artistName, albumImage, additionalClassNam
   };
 
   return (
-    <IconButton onClick={handleClick} className="control-track-button">
-      <PlayCircleIcon sx={{ fontSize: 30 }} className={`${additionalClassName}`} />
+    <IconButton
+      onClick={handleClick}
+      className="control-track-button"
+      disableRipple={true}>
+      <PlayCircleIcon
+        sx={{ fontSize: 30 }}
+        className={`${additionalClassName}`}
+      />
     </IconButton>
   );
 };
