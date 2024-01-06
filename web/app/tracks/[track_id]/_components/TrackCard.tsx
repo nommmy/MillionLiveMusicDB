@@ -2,10 +2,10 @@ import styles from "./TrackCard.module.css";
 import Image from "next/image";
 import { FC } from "react";
 import TrackArtists from "./TrackArtists";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import type { CharacterType } from "@/utils/supabase"; 
+import type { CharacterType } from "@/utils/supabase";
 
 type Props = {
   name: string;
@@ -13,6 +13,7 @@ type Props = {
   albumName: string;
   characters: CharacterType[];
   artistNameArray: string[];
+  previewUrl: string;
 };
 
 const TrackCard: FC<Props> = ({
@@ -21,6 +22,7 @@ const TrackCard: FC<Props> = ({
   albumName,
   characters,
   artistNameArray,
+  previewUrl,
 }) => {
   const artistName = artistNameArray.join(", ");
   return (
@@ -41,7 +43,13 @@ const TrackCard: FC<Props> = ({
             <p className={styles["track-sub-title"]}>{albumName}</p>
           </div>
           <div className={styles["function-icon-list"]}>
-            <PlayCircleIcon fontSize="large" />
+            <PlayTrackButton
+              title={name}
+              src={previewUrl}
+              artistName={artistName}
+              albumImage={imageUrl}
+              additionalClassName="track-card-play-button"
+            />
             <FavoriteBorderIcon fontSize="large" />
           </div>
         </div>

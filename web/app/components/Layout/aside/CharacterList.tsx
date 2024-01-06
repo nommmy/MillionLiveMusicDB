@@ -12,27 +12,24 @@ const CharacterList = async () => {
   if (error) return <></>;
 
   return (
-    <div>
-      <h4 className="title-h4 margin-left-little">Characters</h4>
-      <List
-        sx={{
-          maxHeight: 500,
-          overflow: "auto",
-        }}
-      >
-        {data.map((character) => (
-          <Link
-            href={`/characters/${character.artist_id}`}
-            key={character.character_name}
-          >
-            <AsideListItem
-              name={character.character_name}
-              img={character.image_6th ?? character.image_uniform}
-            />
-          </Link>
-        ))}
-      </List>
-    </div>
+    <List
+      sx={{
+        maxHeight: 500,
+        overflow: "auto",
+      }}
+    >
+      {data.map((character) => (
+        <Link
+          href={`/characters/${character.artist_id}`}
+          key={character.character_name}
+        >
+          <AsideListItem
+            name={character.character_name}
+            img={character.image_6th ?? character.image_uniform}
+          />
+        </Link>
+      ))}
+    </List>
   );
 };
 

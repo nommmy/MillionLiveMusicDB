@@ -1,10 +1,21 @@
-import { Suspense } from "react";
 import styles from "./Aside.module.css";
-import CharacterList from "./CharacterList";
-import AlbumList from "./AlbumList";
 import Image from "next/image";
 import Link from "next/link";
-import ListSkeleton from "../../UI/skeleton/ListSkeleton";
+import Skeleton from "@/app/components/UI/skeleton/Skeleton";
+import dynamic from "next/dynamic";
+
+const CharacterListWithDynamicImport = dynamic(
+  () => import("./CharacterList"),
+  {
+    loading: () => <Skeleton additionalClass="list-skeleton-500" />,
+    ssr: true,
+  }
+);
+
+const AlbumListWithDynamicImport = dynamic(() => import("./AlbumList"), {
+  loading: () => <Skeleton additionalClass="list-skeleton-500" />,
+  ssr: true,
+});
 
 export default async function Aside() {
   return (
@@ -21,12 +32,22 @@ export default async function Aside() {
           <p className={styles["aside-title"]}>MILLIONLIVE MUSIC DB</p>
         </div>
       </Link>
-      <Suspense fallback={<ListSkeleton titleClass="title-h4" height={500} />}>
-        <CharacterList />
-      </Suspense>
-      <Suspense fallback={<ListSkeleton titleClass="title-h4" height={500} />}>
-        <AlbumList />
-      </Suspense>
+      <details>
+        <summary>
+          <h4 className="title-h4 summary-inner">
+            Characters<span className="summary-icon"></span>
+          </h4>
+        </summary>
+        <CharacterListWithDynamicImport />
+      </details>
+      <details>
+        <summary>
+          <h4 className="title-h4 summary-inner">
+            Albums<span className="summary-icon"></span>
+          </h4>
+        </summary>
+        <AlbumListWithDynamicImport />
+      </details>
     </div>
   );
 }

@@ -11,21 +11,18 @@ const AlbumList = async () => {
   if (error) return <></>;
 
   return (
-    <div>
-      <h4 className="title-h4 margin-left-little">Albums</h4>
-      <List
-        sx={{
-          maxHeight: 500,
-          overflow: "auto",
-        }}
-      >
-        {data.map((album) => (
-          <Link href={`/albums/${album.album_id}`} key={album.album_id}>
-            <AsideListItem name={album.name} img={album.album_image_url} />
-          </Link>
-        ))}
-      </List>
-    </div>
+    <List
+      sx={{
+        maxHeight: 500,
+        overflow: "auto",
+      }}
+    >
+      {data.map((album) => (
+        <Link href={`/albums/${album.album_id}`} key={album.album_id}>
+          <AsideListItem name={album.name} img={album.album_image_url} />
+        </Link>
+      ))}
+    </List>
   );
 };
 
