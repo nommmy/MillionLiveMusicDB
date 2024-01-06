@@ -3,7 +3,7 @@ import styles from "./Ranking.module.css";
 import type { RankingTrackType } from "./Ranking";
 import { FC } from "react";
 import Link from "next/link";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
 
 type Props = {
   track: RankingTrackType;
@@ -42,7 +42,7 @@ const RankingCard: FC<Props> = ({ track, rank }) => {
             height: "auto",
           }}
         />
-        <PlayCircleIcon className={styles["play-icon"]} />
+        <PlayTrackButton title={track.track_name} src={track.preview_url} artistName={artistName} albumImage={track.album_image_url} additionalClassName="ranking-track-button" />
         <p className={styles["card-name"]}>{track.track_name}</p>
         <p className={styles["card-description"]}>{artistName}</p>
       </div>

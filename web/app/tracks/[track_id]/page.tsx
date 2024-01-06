@@ -108,6 +108,7 @@ export default async function TrackDetailPage({ params }: Props) {
           albumName={track.mst_albums.name}
           characters={uniqueCharacters}
           artistNameArray={track.artist_names}
+          previewUrl={track.preview_url}
         />
       </div>
       <div className={styles["track-analytics-wrapper"]}>

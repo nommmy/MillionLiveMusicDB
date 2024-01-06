@@ -11,6 +11,7 @@
   --main-color-darken: #ffba00;
   --aside-width: 25%;
 
+  --footer-height: 80px;
   --footer-bg-color: #121212;
   --fg-color: #fff;
   --is-active-fg-color: var(--main-color);
@@ -29,6 +30,7 @@ body {
 
 body {
   display: flex;
+  min-height: 100vh;
 }
 
 a {
@@ -43,6 +45,7 @@ a {
 
 .main {
   flex: 1;
+  margin-bottom:var(--footer-height);
 }
 
 .title-h2 {
@@ -61,7 +64,7 @@ a {
 }
 
 .title-h4 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
@@ -302,11 +305,31 @@ details[open] summary ~ * {
 }
 
 /* track control button */
-.control-track-button{
-  margin-right: 0.6rem;
+.control-track-button {
+  margin-right: 0.8rem;
   z-index: 2;
   background-color: transparent !important;
   color: currentColor;
+  padding: 0;
+}
+
+.ranking-track-button {
+  position: relative;
+  left: -2px;
+  top: -20px;
+  margin-top: -35px;
+  font-size: 50px;
+  border-radius: 50%;
+  background-color: white;
+  color: var(--main-color);
+}
+
+.ranking-track-button:hover {
+  color: var(--main-color-darken) !important;
+}
+
+.track-card-play-button {
+  font-size: 2.1875rem;
 }
 
 /* Footer */
@@ -334,7 +357,7 @@ footer {
   -ms-flex-direction: row;
   flex-direction: row;
   justify-content: space-between;
-  height: 80px;
+  height: var(--footer-height);
 }
 
 /* Left side */

@@ -1,15 +1,11 @@
 "use client";
 
-import { FC, useRef, useEffect, useState } from "react";
-import VolumeInput from "./VolumeInput";
+import { FC, useRef, useEffect, useState, useCallback } from "react";
 import AudioProgressBar from "./AudioProgressBar";
-import IconButton from "@mui/material/IconButton";
-import Image from "next/image";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import PauseCircleIcon from "@mui/icons-material/PauseCircle";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import { useSetAudioRef } from "../../Provider/Providers";
+import TrackInfo from "./TrackInfo";
+import VolumeController from "./VolumeController";
+import PlayControlButton from "./PlayControlButton";
 
 type Props = {
   currentSong?: {
@@ -40,14 +36,14 @@ const AudioPlayer: FC<Props> = ({
   const setAudioRef = useSetAudioRef();
   useEffect(() => {
     setAudioRef(audioRef);
-  }, []);
+  }, [setAudioRef]);
 
   const [duration, setDuration] = useState(0);
   const [isReady, setIsReady] = useState(false);
 
   // play/pause
   const [isPlaying, setIsPlaying] = useState(false);
-  const togglePlayPause = () => {
+  const togglePlayPause = useCallback(() => {
     if (isPlaying) {
       audioRef.current?.pause();
       setIsPlaying(false);
@@ -55,25 +51,25 @@ const AudioPlayer: FC<Props> = ({
       audioRef.current?.play();
       setIsPlaying(true);
     }
-  };
+  },[isPlaying]);
 
   // volume
   const [volume, setVolume] = useState(0.2); // set to 0.2, max is 1.0
-  const handleVolumeChange = (volumeValue: number) => {
+  const handleVolumeChange = useCallback((volumeValue: number) => {
     if (!audioRef.current) return;
     audioRef.current.volume = volumeValue;
     setVolume(volumeValue);
-  };
+  },[setVolume]);
 
   // mute
-  const handleMuteUnmute = () => {
+  const handleMuteUnmute = useCallback(() => {
     if (!audioRef.current) return;
     if (audioRef.current.volume !== 0) {
       audioRef.current.volume = 0;
     } else {
       audioRef.current.volume = 1;
     }
-  };
+  },[]);
 
   // progress
   const [currrentProgress, setCurrrentProgress] = useState(0);
@@ -132,37 +128,11 @@ const AudioPlayer: FC<Props> = ({
             onLoadedData={() => setIsPlaying(false)}
             src={currentSong.src}
           />
-          <div className="song-info-container">
-            <Image
-              width={56}
-              height={56}
-              src={currentSong?.albumImage}
-              alt={`${currentSong?.title} album image`}
-            />
-            <div className="song-title-container">
-              <p className="song-title">
-                {currentSong?.title ?? "Select a song"}
-              </p>
-              <p className="sub-text">
-                {currentSong?.artistName ?? "Singer Name"}
-              </p>
-            </div>
-          </div>
+
+          <TrackInfo currentSong={currentSong} />
+
           <div className="player-control-container">
-            <IconButton
-              disabled={!isReady}
-              onClick={togglePlayPause}
-              aria-label={isPlaying ? "Pause" : "Play"}
-              className="control-icon-button"
-            >
-              {!isReady && currentSong ? (
-                <PlayCircleIcon className="control-icon disabled-icon" />
-              ) : isPlaying ? (
-                <PauseCircleIcon className="control-icon" />
-              ) : (
-                <PlayCircleIcon className="control-icon" />
-              )}
-            </IconButton>
+            <PlayControlButton isReady={isReady} isPlaying={isPlaying} togglePlayPause={togglePlayPause} currentSong={currentSong} />
             <div className="playback-bar-container">
               <span className="sub-text progress-time-elapsed">
                 {elapsedDisplay}
@@ -183,20 +153,7 @@ const AudioPlayer: FC<Props> = ({
             </div>
           </div>
 
-          <div className="volume-control-container">
-            <IconButton
-              onClick={handleMuteUnmute}
-              aria-label={volume === 0 ? "unmute" : "mute"}
-              className="control-icon-button"
-            >
-              {volume === 0 ? (
-                <VolumeOffIcon className="control-icon volume-icon" />
-              ) : (
-                <VolumeUpIcon className="control-icon volume-icon" />
-              )}
-            </IconButton>
-            <VolumeInput volume={volume} onVolumeChange={handleVolumeChange} />
-          </div>
+          <VolumeController volume={volume} handleMuteUnmute={handleMuteUnmute} handleVolumeChange={handleVolumeChange} />
         </>
       )}
     </div>

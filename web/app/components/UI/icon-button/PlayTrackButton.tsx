@@ -14,9 +14,10 @@ type Props = {
   src: string;
   artistName: string;
   albumImage: string;
+  additionalClassName?: string;
 };
 
-const PlayTrackButton = (props: Props) => {
+const PlayTrackButton = ({title, src, artistName, albumImage, additionalClassName=""}: Props) => {
   const setCurrentSong = useSetCurrentSong();
   const currentSong = useGetCurrentSong();
   const audioRef = useGetAudioRef();
@@ -28,18 +29,18 @@ const PlayTrackButton = (props: Props) => {
       audioRef.current?.play();
       isClicked.current = false;
     }
-  }, [currentSong]);
+  }, [currentSong, audioRef]);
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    setCurrentSong(props);
+    setCurrentSong({ title, src, artistName, albumImage });
     isClicked.current = true;
   };
 
   return (
     <IconButton onClick={handleClick} className="control-track-button">
-      <PlayCircleIcon sx={{ fontSize: 30 }} />
+      <PlayCircleIcon sx={{ fontSize: 30 }} className={`${additionalClassName}`} />
     </IconButton>
   );
 };
