@@ -8,7 +8,8 @@
   --basic-font-color: #4c4c4c;
   --main-color: #ffc30b;
   --main-color-lighten: #ffd146;
-  --main-color-darken: #ffba00;
+  /* --main-color-darken: #ffba00; */
+  --main-color-darken: #f0b400;
   --aside-width: 25%;
 
   --footer-height: 80px;
@@ -273,7 +274,7 @@ summary::-webkit-details-marker {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 0 2vw;
 }
 
 /* --------アイコンを作ります-------- */

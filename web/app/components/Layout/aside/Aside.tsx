@@ -34,6 +34,13 @@ export default async function Aside() {
         </div>
       </Link>
       <TrackSearch />
+      <div className={styles["search-link-container"]}>
+        <Link href="/search/tracks_by_character">
+          キャラクターから楽曲を探す
+        </Link>
+        <Link href="/search/tracks_by_feature">音楽特徴から楽曲を探す</Link>
+      </div>
+      <div className={styles["margin-block"]} />
       <details>
         <summary>
           <h4 className="title-h4 summary-inner">
