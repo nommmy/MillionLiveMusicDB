@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Skeleton from "@/app/components/UI/skeleton/Skeleton";
 import dynamic from "next/dynamic";
+import TrackSearch from "./TrackSearch";
 
 const CharacterListWithDynamicImport = dynamic(
   () => import("./CharacterList"),
@@ -32,6 +33,7 @@ export default async function Aside() {
           <p className={styles["aside-title"]}>MILLIONLIVE MUSIC DB</p>
         </div>
       </Link>
+      <TrackSearch />
       <details>
         <summary>
           <h4 className="title-h4 summary-inner">
