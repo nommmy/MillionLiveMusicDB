@@ -8,7 +8,8 @@
   --basic-font-color: #4c4c4c;
   --main-color: #ffc30b;
   --main-color-lighten: #ffd146;
-  --main-color-darken: #ffba00;
+  /* --main-color-darken: #ffba00; */
+  --main-color-darken: #f0b400;
   --aside-width: 25%;
 
   --footer-height: 80px;
@@ -189,20 +190,36 @@ a {
   margin: 35vw auto;
 }
 
+.small-circle-spinner {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.small-circle-spinner .circle,
 .half-circle-spinner .circle {
   content: "";
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 100%;
+}
+.half-circle-spinner .circle {
   border: calc(60px / 10) solid transparent;
 }
 
+.small-circle-spinner .circle {
+  border: calc(20px / 10) solid transparent;
+}
+
+.small-circle-spinner .circle.circle-1,
 .half-circle-spinner .circle.circle-1 {
   border-top-color: var(--main-color);
   animation: half-circle-spinner-animation 1s infinite;
 }
 
+.small-circle-spinner .circle.circle-2,
 .half-circle-spinner .circle.circle-2 {
   border-bottom-color: var(--main-color);
   animation: half-circle-spinner-animation 1s infinite alternate;
@@ -215,6 +232,29 @@ a {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Aside Search Input */
+.MuiAutocomplete-root {
+  background: white;
+  margin: 0 1.5vw;
+  border-radius: 2rem;
+}
+
+.MuiInputBase-root {
+  border-radius: 2rem;
+}
+
+.MuiFormLabel-colorPrimary.Mui-focused {
+  color: var(--main-color);
+}
+
+.MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--main-color);
+}
+
+.MuiInputLabel-outlined {
+  color:#b3b3b3;
 }
 
 /* Aside Accordion */
@@ -234,7 +274,7 @@ summary::-webkit-details-marker {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 0 2vw;
 }
 
 /* --------アイコンを作ります-------- */

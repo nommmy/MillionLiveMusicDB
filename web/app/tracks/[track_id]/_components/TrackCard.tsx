@@ -3,8 +3,6 @@ import Image from "next/image";
 import { FC } from "react";
 import TrackArtists from "./TrackArtists";
 import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import type { CharacterType } from "@/utils/supabase";
 
 type Props = {
@@ -50,7 +48,6 @@ const TrackCard: FC<Props> = ({
               albumImage={imageUrl}
               additionalClassName="track-card-play-button"
             />
-            <FavoriteBorderIcon fontSize="large" />
           </div>
         </div>
       </div>

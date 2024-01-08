@@ -5,8 +5,6 @@ import Link from "next/link";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import styles from "./TrackList.module.css";
 import PlayTrackButton from "../icon-button/PlayTrackButton";
 
@@ -24,7 +22,7 @@ const TrackListItem: FC<Props> = ({ track }) => {
 
   return (
     <Link href={`/tracks/${track.track_id}`}>
-      <ListItem disablePadding secondaryAction={<FavoriteBorderIcon />}>
+      <ListItem disablePadding>
         <ListItemButton className={styles["list-item-button"]}>
           <PlayTrackButton title={track.track_name} src={track.preview_url} artistName={artistName} albumImage={track.mst_albums.album_image_url} />
           <Image
