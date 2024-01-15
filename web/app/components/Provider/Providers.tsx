@@ -2,6 +2,7 @@
 
 import { atom, Provider, useAtomValue, useSetAtom } from "jotai";
 import { ReactNode, MutableRefObject} from "react";
+import { splitAtom } from "jotai/utils";
 
 type SongType = {
   title: string;
@@ -43,3 +44,7 @@ export const useSetAudioRef = () => {
 export default function Providers({ children }: { children: ReactNode }) {
   return <Provider>{children}</Provider>;
 }
+
+const NUMBER_OF_CHARACTER = 54;
+export const characterIdAtom = atom(new Array(NUMBER_OF_CHARACTER).fill(""));
+export const characterIdAtomsInAtom = splitAtom(characterIdAtom);

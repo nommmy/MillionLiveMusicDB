@@ -1,0 +1,25 @@
+.character-icon-grid {
+  display: grid;
+  grid-gap: 0.5vw;
+  grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+  margin: 1rem 3.5vw;
+}
+
+.character-icon-skeleton {
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+}
+
+.track-list-container {
+  margin: 1rem 2vw 4vw;
+}
+
+.search-by-character-title {
+  margin: 3rem 2rem 1.2rem;
+}
+
+.choose-character-title {
+  color: #6c6c6c;
+  margin: 1.5vw;
+}

@@ -176,6 +176,10 @@ a {
   height: 500px;
 }
 
+.skeleton-margin {
+  margin: 1rem 2vw 4vw;
+}
+
 /* Spinner */
 .half-circle-spinner,
 .half-circle-spinner * {
