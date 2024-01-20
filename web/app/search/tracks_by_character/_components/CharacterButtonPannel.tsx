@@ -1,9 +1,9 @@
 import { supabase } from "@/utils/supabase";
 import styles from "../SearchTracksByCharacterPage.module.css";
-import CharacterButton from "./CharacterButton";
+import CharacterButtonWrapper from "./CharacterButtonWrapper";
 import type { CharacterType } from "@/utils/supabase";
 
-const CharacterButtonGrid = async () => {
+const CharacterButtonPannel = async () => {
   const { data, error } = await supabase
     .from("mst_characters")
     .select(`artist_id, character_name, image_favorite, image_uniform, color`)
@@ -14,9 +14,9 @@ const CharacterButtonGrid = async () => {
 
   return (
     <div className={styles["character-icon-grid"]}>
-      <CharacterButton characters={data} />
+      <CharacterButtonWrapper characters={data} />
     </div>
   );
 };
 
-export default CharacterButtonGrid;
+export default CharacterButtonPannel;

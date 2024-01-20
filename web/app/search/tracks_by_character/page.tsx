@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import CharacterButtonGrid from "./_components/CharacterButtonGrid";
+import CharacterButtonPannel from "./_components/CharacterButtonPannel";
 import TrackListByCharacter from "./_components/TrackListByCharacter";
 import CharacterButtonGridSkeleton from "./_components/CharacterButtonGridSkeleton";
 import Skeleton from "@/app/components/UI/skeleton/Skeleton";
@@ -12,7 +12,7 @@ export default function SearchTracksByCharacterPage() {
         キャラクターから楽曲を探す
       </h2>
       <Suspense fallback={<CharacterButtonGridSkeleton />}>
-        <CharacterButtonGrid />
+        <CharacterButtonPannel />
       </Suspense>
       <Suspense
         fallback={

@@ -15,10 +15,10 @@ const CharacterIcon: FC<Props> = ({ artist, imageColumn, size }) => (
       width={size}
       height={size}
       alt={artist.character_name}
+      className="character-icon"
       src={(artist[imageColumn] as string) ?? artist.image_uniform}
       style={{
-        border: `3px solid ${artist.color}`,
-        borderRadius: "10px",
+        border: `3px solid ${artist.color}`
       }}
     />
   </Link>

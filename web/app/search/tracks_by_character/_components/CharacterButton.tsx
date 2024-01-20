@@ -1,42 +1,36 @@
 "use client";
 
+import { PrimitiveAtom, useAtom } from "jotai";
+import Image from "next/image";
 import type { CharacterType } from "@/utils/supabase";
-import { characterIdAtomsInAtom } from "@/app/components/Provider/Providers";
-import { useAtomValue} from "jotai";
-import CharacterIcon from "./CharacterIcon";
 
 type Props = {
-  characters: CharacterType[];
+  character: CharacterType;
+  characterIdAtom: PrimitiveAtom<string>;
 };
 
-const CharacterButton = ({ characters }: Props) => {
-  const characterIds = useAtomValue(characterIdAtomsInAtom);
+const CharacterButton = ({ character, characterIdAtom }: Props) => {
+  const [characterId, setCharacterId] = useAtom(characterIdAtom);
+
+  const handleClick = () => {
+    characterId == ""
+      ? setCharacterId(character.artist_id)
+      : setCharacterId("");
+  };
 
   return (
-    <>
-      {characters.map((character, index) => (
-        <div className="tooltip-top" key={index}>
-          <CharacterIcon
-            character={character}
-            characterIdAtom={characterIds[index]}
-          />
-          <span
-            style={{
-              background: character.color,
-            }}
-          >
-            <span
-              style={{
-                color: character.color,
-                filter: "invert(100%) grayscale(100%) contrast(100)",
-              }}
-            >
-              {character.character_name}
-            </span>
-          </span>
-        </div>
-      ))}
-    </>
+    <Image
+      width={65}
+      height={65}
+      alt={character.character_name}
+      className="character-icon"
+      src={character.image_favorite ?? character.image_uniform}
+      style={{
+        border: `3px solid ${character.color}`,
+        opacity: characterId == "" ? 1 : 0.5,
+      }}
+      onClick={() => handleClick()}
+    />
   );
 };
 

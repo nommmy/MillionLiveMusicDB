@@ -46,7 +46,7 @@ a {
 
 .main {
   flex: 1;
-  margin-bottom:var(--footer-height);
+  margin-bottom: var(--footer-height);
 }
 
 .title-h2 {
@@ -75,6 +75,13 @@ a {
 
 .main-contents-wrapper {
   margin: 4vw 2vw 4vw 3vw;
+}
+
+.character-icon {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .tooltip-top {
@@ -258,7 +265,7 @@ a {
 }
 
 .MuiInputLabel-outlined {
-  color:#b3b3b3;
+  color: #b3b3b3;
 }
 
 /* Aside Accordion */
