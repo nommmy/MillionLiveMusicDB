@@ -13,7 +13,7 @@
   --aside-width: 25%;
 
   --footer-height: 80px;
-  --footer-bg-color: #121212;
+  --footer-bar-color: #4c4c4c;
   --fg-color: #fff;
   --is-active-fg-color: var(--main-color);
   --progress-width: 0;
@@ -42,6 +42,15 @@ a {
 .Mui-disabled {
   color: var(--main-color) !important;
   pointer-events: auto !important;
+}
+
+.not-found-wrapper {
+  flex: 1;
+  color: #9c9c9c;
+  margin: auto;
+  text-align: center;
+  font-size: 5vw;
+  opacity: 0.5;
 }
 
 .main {
@@ -266,6 +275,23 @@ a {
 
 .MuiInputLabel-outlined {
   color: #b3b3b3;
+  font-size: 0.9rem;
+}
+
+.MuiInputLabel-outlined:not(.MuiFormLabel-filled).MuiInputLabel-outlined:not(
+    .Mui-focused
+  ) {
+  top: -3px;
+  padding-left: 5px;
+}
+
+.MuiOutlinedInput-root .MuiAutocomplete-input {
+  padding: 7.5px 4px 7.5px 12px !important;
+}
+
+.MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 5px 9px;
+  font-size: 0.9rem;
 }
 
 /* Aside Accordion */
@@ -389,7 +415,7 @@ footer {
   width: 100%;
   bottom: 0;
   left: 0;
-  background: var(--footer-bg-color);
+  background: var(--main-color);
   height: auto;
   z-index: 999;
 }
@@ -436,7 +462,7 @@ footer {
   margin-block: 0px;
   font-size: 0.6875rem;
   font-weight: 400;
-  color: #b3b3b3;
+  color: #6c6c6c;
 }
 
 /* Center side */
@@ -504,7 +530,7 @@ footer {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-  accent-color: var(--main-color);
+  accent-color: var(--footer-bar-color);
   cursor: pointer;
   position: relative;
   top: -2px;
@@ -519,7 +545,7 @@ footer {
   content: "";
   transform: scaleX(var(--progress-width));
   z-index: 3;
-  background-color: var(--main-color);
+  background-color: var(--footer-bar-color);
   transform-origin: left;
   position: absolute;
   top: 0px;
@@ -557,6 +583,7 @@ footer {
   vertical-align: middle;
   -webkit-appearance: none;
   appearance: none;
+  accent-color: var(--footer-bar-color);
 }
 
 .input-range::-webkit-slider-runnable-track {
@@ -571,7 +598,7 @@ footer {
 .input-range::-webkit-slider-thumb {
   border: none;
   border-radius: 50%;
-  background: var(--main-color);
+  background: var(--footer-bar-color);
   margin-top: -6px;
 }
 
