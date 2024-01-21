@@ -1,5 +1,5 @@
 import { supabase } from "@/utils/supabase";
-import styles from "../SearchTracksByCharacterPage.module.css";
+import styles from "@/app/search/SearchPage.module.css";
 import CharacterButtonWrapper from "./CharacterButtonWrapper";
 import type { CharacterType } from "@/utils/supabase";
 

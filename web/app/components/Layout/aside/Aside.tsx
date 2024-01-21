@@ -5,7 +5,7 @@ import Skeleton from "@/app/components/UI/skeleton/Skeleton";
 import dynamic from "next/dynamic";
 import TrackSearch from "./TrackSearch";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
-import MusicNoteIcon from "@mui/icons-material/MusicNote";
+import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 
 const CharacterListWithDynamicImport = dynamic(
   () => import("./CharacterList"),
@@ -51,8 +51,8 @@ export default async function Aside() {
           href="/search/tracks_by_feature"
           className={styles["search-link"]}
         >
-          <MusicNoteIcon />
-          音楽特徴から楽曲を探す
+          <GraphicEqIcon />
+          曲調から楽曲を探す
         </Link>
       </div>
       <div className={styles["margin-block"]} />

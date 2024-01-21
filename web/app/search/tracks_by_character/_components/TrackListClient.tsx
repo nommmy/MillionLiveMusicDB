@@ -4,8 +4,10 @@ import type { RankingTrackType } from "@/app/_components/ranking/Ranking";
 import { characterIdAtom } from "@/app/components/Provider/Providers";
 import { useAtomValue } from "jotai";
 import List from "@mui/material/List";
-import TrackListItemClient from "./TrackListItemClient";
-import styles from "../SearchTracksByCharacterPage.module.css"
+import TrackListItemClient from "../../_components/TrackListItemClient";
+import styles from "@/app/search/SearchPage.module.css";
+import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
+
 type Props = {
   tracks: RankingTrackType[];
 };
@@ -24,17 +26,28 @@ const TrackListClient = ({ tracks }: Props) => {
       {filteredList.length === 0 ? (
         <h3 className={styles["choose-character-title"]}>Choose Character!</h3>
       ) : (
-        <List
-          sx={{
-            maxHeight: 500,
-            position: "relative",
-            overflow: "auto",
-          }}
-        >
-          {filteredList.map((track, index) => (
-            <TrackListItemClient key={index} track={track} />
-          ))}
-        </List>
+        <>
+          <p className={styles["number-of-tracks-label"]}>
+            <LibraryMusicIcon />
+            {filteredList.length}曲
+          </p>
+          <List
+            sx={{
+              maxHeight: 500,
+              position: "relative",
+              overflow: "auto",
+            }}
+          >
+            {filteredList.map((track, index) => (
+              <TrackListItemClient
+                key={index}
+                track={track}
+                albumImageUrl={track.album_image_url}
+                albumName={track.album_name}
+              />
+            ))}
+          </List>
+        </>
       )}
     </>
   );

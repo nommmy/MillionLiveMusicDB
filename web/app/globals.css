@@ -39,6 +39,10 @@ a {
   text-decoration: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .Mui-disabled {
   color: var(--main-color) !important;
   pointer-events: auto !important;
@@ -189,6 +193,10 @@ a {
 
 .list-skeleton-500 {
   width: 100%;
+  height: 500px;
+}
+
+.list-skeleton-500-without-width {
   height: 500px;
 }
 

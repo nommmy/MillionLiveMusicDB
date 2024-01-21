@@ -30,16 +30,38 @@ export type CharacterType = {
   mst_units: UnitsType[];
 };
 
+type AlbumType = {
+  name: string;
+  album_image_url: string;
+};
+
 export type TrackItemType = {
   track_id: string;
   track_name: string;
   preview_url: string;
   artist_names: string[];
   artist_ids: string[];
-  mst_albums: {
-    name: string;
-    album_image_url: string;
-  };
+  mst_albums: AlbumType;
+};
+
+export type TrackFeaturesType = {
+  [key: string]: string | string[] | number | AlbumType;
+  track_id: string;
+  track_name: string;
+  preview_url: string;
+  artist_names: string[];
+  artist_ids: string[];
+  duration_ms: number;
+  acousticness: number;
+  danceability: number;
+  energy: number;
+  instrumentalness: number;
+  speechiness: number;
+  key: number;
+  loudness: number;
+  valence: number;
+  tempo: number;
+  mst_albums: AlbumType;
 };
 
 export const upsertSupabaseTables = async (

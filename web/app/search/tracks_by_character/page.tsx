@@ -3,7 +3,7 @@ import CharacterButtonPannel from "./_components/CharacterButtonPannel";
 import TrackListByCharacter from "./_components/TrackListByCharacter";
 import CharacterButtonGridSkeleton from "./_components/CharacterButtonGridSkeleton";
 import Skeleton from "@/app/components/UI/skeleton/Skeleton";
-import styles from "./SearchTracksByCharacterPage.module.css";
+import styles from "@/app/search/SearchPage.module.css";
 
 export default function SearchTracksByCharacterPage() {
   return (
@@ -16,7 +16,7 @@ export default function SearchTracksByCharacterPage() {
       </Suspense>
       <Suspense
         fallback={
-          <Skeleton additionalClass="list-skeleton-500 skeleton-margin" />
+          <Skeleton additionalClass="list-skeleton-500-without-width skeleton-margin" />
         }
       >
         <TrackListByCharacter />

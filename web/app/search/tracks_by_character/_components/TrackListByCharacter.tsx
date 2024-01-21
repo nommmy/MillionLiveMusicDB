@@ -1,6 +1,6 @@
 import { supabase } from "@/utils/supabase";
 import TrackListClient from "./TrackListClient";
-import styles from "../SearchTracksByCharacterPage.module.css";
+import styles from "@/app/search/SearchPage.module.css";
 
 const TrackListByCharacter = async () => {
   const { data, error } = await supabase.rpc("get_hot_tracks", {

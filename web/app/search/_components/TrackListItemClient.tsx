@@ -1,6 +1,7 @@
 "use client";
 
 import type { RankingTrackType } from "@/app/_components/ranking/Ranking";
+import type { TrackFeaturesType } from "@/utils/supabase";
 import Image from "next/image";
 import Link from "next/link";
 import ListItem from "@mui/material/ListItem";
@@ -10,10 +11,12 @@ import styles from "@/app/components/UI/track/TrackList.module.css";
 import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
 
 type Props = {
-  track: RankingTrackType;
+  track: RankingTrackType | TrackFeaturesType;
+  albumImageUrl: string;
+  albumName: string;
 };
 
-const TrackListItemClient = ({ track }:Props) => {
+const TrackListItemClient = ({ track, albumImageUrl, albumName }: Props) => {
   const artistName = track.artist_names
     .map((character) => {
       const match = character.match(/^(.*?)\s*(?:\([^)]*\)|$)/);
@@ -29,13 +32,13 @@ const TrackListItemClient = ({ track }:Props) => {
             title={track.track_name}
             src={track.preview_url}
             artistName={artistName}
-            albumImage={track.album_image_url}
+            albumImage={albumImageUrl}
           />
           <Image
             width={50}
             height={50}
-            alt={track.album_name}
-            src={track.album_image_url}
+            alt={albumName}
+            src={albumImageUrl}
           />
           <ListItemText primary={track.track_name} secondary={artistName} />
         </ListItemButton>
