@@ -317,14 +317,13 @@ button:hover {
 
 .MuiSpeedDialAction-fab {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);;
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
   background-color: transparent;
 }
 
 .MuiSpeedDialAction-fab:hover {
   background-color: transparent;
 }
-
 
 /* Aside Accordion */
 summary {
@@ -438,7 +437,7 @@ details[open] summary ~ * {
 }
 
 .track-card-play-button {
-  font-size: 2.1875rem;
+  font-size: 49px;
 }
 
 /* Footer */

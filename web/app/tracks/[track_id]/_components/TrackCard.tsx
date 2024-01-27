@@ -4,6 +4,7 @@ import { FC } from "react";
 import TrackArtists from "./TrackArtists";
 import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
 import type { CharacterType } from "@/utils/supabase";
+import SubscribeSpeedDial from "@/app/components/UI/track/SubscribeSpeedDial";
 
 type Props = {
   name: string;
@@ -48,6 +49,7 @@ const TrackCard: FC<Props> = ({
               albumImage={imageUrl}
               additionalClassName="track-card-play-button"
             />
+            <SubscribeSpeedDial trackName={name} direction="right" />
           </div>
         </div>
       </div>
