@@ -9,6 +9,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import styles from "@/app/components/UI/track/TrackList.module.css";
 import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
+import SubscribeSpeedDial from "@/app/components/UI/track/SubscribeSpeedDial";
 
 type Props = {
   track: RankingTrackType | TrackFeaturesType;
@@ -25,25 +26,24 @@ const TrackListItemClient = ({ track, albumImageUrl, albumName }: Props) => {
     .join(", ");
 
   return (
-    <Link href={`/tracks/${track.track_id}`}>
-      <ListItem disablePadding>
-        <ListItemButton className={styles["list-item-button"]}>
+    <ListItem disablePadding>
+      <ListItemButton className={styles["nested-links"]}>
+        <Link
+          href={`/tracks/${track.track_id}`}
+          className={styles["stretched-link"]}
+        >
           <PlayTrackButton
             title={track.track_name}
             src={track.preview_url}
             artistName={artistName}
             albumImage={albumImageUrl}
           />
-          <Image
-            width={50}
-            height={50}
-            alt={albumName}
-            src={albumImageUrl}
-          />
+          <Image width={50} height={50} alt={albumName} src={albumImageUrl} />
           <ListItemText primary={track.track_name} secondary={artistName} />
-        </ListItemButton>
-      </ListItem>
-    </Link>
+        </Link>
+        <SubscribeSpeedDial trackName={track.track_name} />
+      </ListItemButton>
+    </ListItem>
   );
 };
 
