@@ -1,26 +1,15 @@
+"use client";
+
 import styles from "./Aside.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import Skeleton from "@/app/components/UI/skeleton/Skeleton";
-import dynamic from "next/dynamic";
 import TrackSearch from "./TrackSearch";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
+import CharacterListAccordion from "./Accordions/CharacterListAccordion";
+import AlbumListAccordion from "./Accordions/AlbumListAccordion";
 
-const CharacterListWithDynamicImport = dynamic(
-  () => import("./CharacterList"),
-  {
-    loading: () => <Skeleton additionalClass="list-skeleton-500" />,
-    ssr: true,
-  }
-);
-
-const AlbumListWithDynamicImport = dynamic(() => import("./AlbumList"), {
-  loading: () => <Skeleton additionalClass="list-skeleton-500" />,
-  ssr: true,
-});
-
-export default async function Aside() {
+export default function Aside() {
   return (
     <div className={styles["aside-wrapper"]}>
       <Link href="/">
@@ -35,10 +24,13 @@ export default async function Aside() {
           <p className={styles["aside-title"]}>MILLIONLIVE MUSIC DB</p>
         </div>
       </Link>
+      {/* 検索 */}
       <TrackSearch />
+      {/* サイト概要 */}
       <p className={styles["intro-message"]}>
         MILLIONLIVEのキャラクターと楽曲を知るための非公式ファンサイトです
       </p>
+      {/* ページ内リンク */}
       <div className={styles["search-link-container"]}>
         <Link
           href="/search/tracks_by_character"
@@ -55,23 +47,11 @@ export default async function Aside() {
           曲調から楽曲を探す
         </Link>
       </div>
+      {/* 境界線 */}
       <div className={styles["margin-block"]} />
-      <details>
-        <summary>
-          <h4 className="title-h4 summary-inner">
-            Characters<span className="summary-icon"></span>
-          </h4>
-        </summary>
-        <CharacterListWithDynamicImport />
-      </details>
-      <details>
-        <summary>
-          <h4 className="title-h4 summary-inner">
-            Albums<span className="summary-icon"></span>
-          </h4>
-        </summary>
-        <AlbumListWithDynamicImport />
-      </details>
+      {/* Accordion */}
+      <CharacterListAccordion />
+      <AlbumListAccordion />
     </div>
   );
 }

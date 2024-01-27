@@ -223,6 +223,7 @@ button:hover {
   height: 20px;
   border-radius: 100%;
   position: relative;
+  margin: 0 auto;
 }
 
 .small-circle-spinner .circle,
