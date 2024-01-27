@@ -1,0 +1,73 @@
+.character-icon-grid {
+  display: grid;
+  grid-gap: 0.5vw;
+  grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+  margin: 1rem 3.5vw;
+}
+
+.character-icon-skeleton {
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+}
+
+.track-list-container {
+  margin: 1rem 2vw 4vw;
+}
+
+.search-title-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 3rem 2rem 1.2rem;
+}
+
+.search-by-character-title {
+  margin: 3rem 2rem 1.2rem;
+}
+
+.choose-character-title {
+  color: #9c9c9c;
+  margin: 8vw 0;
+  text-align: center;
+  font-size: 5vw;
+  opacity: 0.5;
+}
+
+.feature-button-grid {
+  display: grid;
+  grid-gap: 1vw;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin: 1rem 3.5vw 2rem;
+}
+
+.number-of-tracks-label {
+  margin: 1rem 1.1rem;
+  color: #6c6c6c;
+  display: flex;
+  gap: 10px;
+}
+
+.feature-button {
+  width: 150px;
+  height: 65px;
+  background: white;
+  color: #6c6c6c;
+  box-shadow: 4px 4px var(--main-color);
+  border: 0.1px solid #9c9c9c;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.feature-button:not(.selected-feature-button):hover {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: 0 0 0 var(--main-color);
+}
+
+.selected-feature-button {
+  background: var(--main-color);
+  color: white;
+  border: none;
+  box-shadow: 0 0 0 var(--main-color);
+  transform: translateX(2px) translateY(2px);
+}

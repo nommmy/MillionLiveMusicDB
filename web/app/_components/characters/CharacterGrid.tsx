@@ -22,10 +22,10 @@ export default async function CharacterGrid() {
                 width={60}
                 height={60}
                 alt={character.character_name}
+                className="character-icon"
                 src={character.image_favorite ?? character.image_uniform}
                 style={{
                   border: `3px solid ${character.color}`,
-                  borderRadius: "10px",
                 }}
               />
               <span

@@ -1,19 +1,23 @@
-import { FC } from "react";
-import type { TrackItemType } from "@/utils/supabase";
+"use client";
+
+import type { RankingTrackType } from "@/app/_components/ranking/Ranking";
+import type { TrackFeaturesType } from "@/utils/supabase";
 import Image from "next/image";
 import Link from "next/link";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import styles from "./TrackList.module.css";
-import PlayTrackButton from "../icon-button/PlayTrackButton";
-import SubscribeSpeedDial from "./SubscribeSpeedDial";
+import styles from "@/app/components/UI/track/TrackList.module.css";
+import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
+import SubscribeSpeedDial from "@/app/components/UI/track/SubscribeSpeedDial";
 
 type Props = {
-  track: TrackItemType;
+  track: RankingTrackType | TrackFeaturesType;
+  albumImageUrl: string;
+  albumName: string;
 };
 
-const TrackListItem: FC<Props> = ({ track }) => {
+const TrackListItemClient = ({ track, albumImageUrl, albumName }: Props) => {
   const artistName = track.artist_names
     .map((character) => {
       const match = character.match(/^(.*?)\s*(?:\([^)]*\)|$)/);
@@ -23,9 +27,7 @@ const TrackListItem: FC<Props> = ({ track }) => {
 
   return (
     <ListItem disablePadding>
-      <ListItemButton
-        className={styles["nested-links"]}
-      >
+      <ListItemButton className={styles["nested-links"]}>
         <Link
           href={`/tracks/${track.track_id}`}
           className={styles["stretched-link"]}
@@ -34,14 +36,9 @@ const TrackListItem: FC<Props> = ({ track }) => {
             title={track.track_name}
             src={track.preview_url}
             artistName={artistName}
-            albumImage={track.mst_albums.album_image_url}
+            albumImage={albumImageUrl}
           />
-          <Image
-            width={50}
-            height={50}
-            alt={track.mst_albums.name}
-            src={track.mst_albums.album_image_url}
-          />
+          <Image width={50} height={50} alt={albumName} src={albumImageUrl} />
           <ListItemText primary={track.track_name} secondary={artistName} />
         </Link>
         <SubscribeSpeedDial trackName={track.track_name} />
@@ -50,4 +47,4 @@ const TrackListItem: FC<Props> = ({ track }) => {
   );
 };
 
-export default TrackListItem;
+export default TrackListItemClient;
