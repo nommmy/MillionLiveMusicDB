@@ -6,9 +6,10 @@ import Image from "next/image";
 
 type Props = {
   trackName: string;
+  direction: "up" | "down" | "left" | "right";
 };
 
-export default function SubscribeSpeedDial({ trackName }: Props) {
+export default function SubscribeSpeedDial({ trackName, direction }: Props) {
   const actions = [
     {
       icon: (
@@ -103,20 +104,18 @@ export default function SubscribeSpeedDial({ trackName }: Props) {
   ];
 
   return (
-    <div className={styles["inner-link"]}>
-      <SpeedDial
-        ariaLabel="Subscribe Icons"
-        direction="left"
-        icon={<QueueMusicIcon />}
-      >
-        {actions.map((action) => (
-          <SpeedDialAction
-            key={action.name}
-            icon={action.icon}
-            tooltipTitle={action.name}
-          />
-        ))}
-      </SpeedDial>
-    </div>
+    <SpeedDial
+      ariaLabel="Subscribe Icons"
+      direction={direction}
+      icon={<QueueMusicIcon />}
+    >
+      {actions.map((action) => (
+        <SpeedDialAction
+          key={action.name}
+          icon={action.icon}
+          tooltipTitle={action.name}
+        />
+      ))}
+    </SpeedDial>
   );
 }

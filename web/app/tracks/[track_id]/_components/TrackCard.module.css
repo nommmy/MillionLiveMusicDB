@@ -44,7 +44,11 @@
 .function-icon-list {
   display: flex;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 0.5rem;
+}
+
+.function-icon-list button[aria-label="Subscribe Icons"] {
+  box-shadow: none;
 }
 
 .track-artist-icons {

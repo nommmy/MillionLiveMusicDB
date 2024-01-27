@@ -41,7 +41,9 @@ const TrackListItemClient = ({ track, albumImageUrl, albumName }: Props) => {
           <Image width={50} height={50} alt={albumName} src={albumImageUrl} />
           <ListItemText primary={track.track_name} secondary={artistName} />
         </Link>
-        <SubscribeSpeedDial trackName={track.track_name} />
+        <div className={styles["inner-link"]}>
+          <SubscribeSpeedDial trackName={track.track_name} direction="left" />
+        </div>
       </ListItemButton>
     </ListItem>
   );
