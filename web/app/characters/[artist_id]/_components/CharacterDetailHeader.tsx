@@ -42,7 +42,7 @@ const CharacterDetailHeader: FC<Props> = ({ character }) => {
           </h2>
           <p className={styles["cv-name"]}>cv. {character.character_voice}</p>
         </div>
-        <Image width={80} height={80} alt="type" src={typeImgPath} />
+        <Image width={80} height={80} alt="type" className={styles["type-image"]} src={typeImgPath} />
       </div>
     </>
   );

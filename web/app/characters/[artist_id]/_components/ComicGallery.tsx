@@ -18,13 +18,7 @@ const ComicGallery: FC<Props> = ({ imgs }) => {
             alt="comic"
             width={512}
             height={1611}
-            style={{
-              width: "100%",
-              height: "auto",
-              maxWidth: "280px",
-              minWidth: "220px",
-              flex: 1,
-            }}
+            className={styles["comic-img"]}
           />
         ))}
       </div>
