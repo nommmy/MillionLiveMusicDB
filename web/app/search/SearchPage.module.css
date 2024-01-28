@@ -11,6 +11,22 @@
   border-radius: 10px;
 }
 
+@media screen and (max-width: 686px) {
+  .character-icon-grid {
+    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+  }
+
+  .character-icon-grid img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .character-icon-skeleton {
+    width: 45px;
+    height: 45px;
+  }
+}
+
 .track-list-container {
   margin: 1rem 2vw 4vw;
 }

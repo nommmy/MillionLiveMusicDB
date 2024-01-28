@@ -9,3 +9,19 @@
   height: 60px;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 686px) {
+  .character-icon-grid {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
+
+  .character-icon-grid img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .character-icon-skeleton {
+    width: 50px;
+    height: 50px;
+  }
+}

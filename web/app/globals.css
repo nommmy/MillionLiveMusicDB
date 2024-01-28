@@ -96,6 +96,12 @@ button:hover {
   margin: 4vw 2vw 4vw 3vw;
 }
 
+@media screen and (max-width: 686px) {
+  .main-contents-wrapper {
+    margin: calc(4vw + 2rem) calc(1rem + 1vw) calc(3vw + 1rem);
+  }
+}
+
 .character-icon {
   border-radius: 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -150,7 +156,7 @@ button:hover {
 }
 
 @media screen and (max-width: 686px) {
-  .MuiSvgIcon-root[data-testid="PlayCircleIcon"]:hover {
+  .simple-track-list-item .MuiSvgIcon-root[data-testid="PlayCircleIcon"]:hover {
     color: rgba(255, 255, 255, 1);
   }
 }
@@ -272,6 +278,16 @@ button:hover {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.help-round-icon {
+  margin-top: 4px;
+  font-size: 28px;
+}
+@media screen and (max-width: 686px) {
+  .help-round-icon {
+    font-size: 24px;
   }
 }
 
@@ -441,15 +457,6 @@ details[open] summary ~ * {
   padding: 0;
 }
 
-@media screen and (max-width: 686px) {
-  .control-track-button {
-    position: absolute;
-    margin: 0;
-    left: 18px;
-    color: rgba(255, 255, 255, 0.8);
-  }
-}
-
 .ranking-track-button {
   position: relative;
   left: -2px;
@@ -466,7 +473,25 @@ details[open] summary ~ * {
 }
 
 .track-card-play-button {
-  font-size: 49px;
+  font-size: 35px;
+}
+
+@media screen and (max-width: 686px) {
+  .simple-track-list-item .control-track-button {
+    position: absolute;
+    margin: 0;
+    left: 18px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .ranking-list-item .icon-list-wrapper {
+    display: none;
+  }
+
+  .ranking-track-button {
+    top: -2vw;
+    font-size: 7vw;
+  }
 }
 
 /* Footer */
@@ -636,6 +661,21 @@ footer {
 .volume-bar {
   flex: 1;
   max-width: 120px;
+}
+
+@media screen and (max-width: 686px) {
+  .playback-bar-container {
+    justify-content: center;
+  }
+
+  .player-control-container {
+    width: 100px;
+  }
+
+  .song-info-container {
+    width: auto;
+    flex: 1;
+  }
 }
 
 .input-range {

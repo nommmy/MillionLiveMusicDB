@@ -1,8 +1,6 @@
-import Image from "next/image";
 import type { CharacterType } from "@/utils/supabase";
 import { FC } from "react";
 import styles from "./CharacterIcon.module.css";
-import Link from "next/link";
 import AvatarGroup from "@mui/material/AvatarGroup";
 import CharacterIcon from "./CharacterIcon";
 
@@ -22,7 +20,7 @@ const CharacterIconList: FC<Props> = ({
   maxLength,
 }) => {
   return (
-    <div className={`${styles["character-icon-list"]} ${styles[innerLink]}`}>
+    <div className={`${styles["character-icon-list"]} ${styles[innerLink]} icon-list-wrapper`}>
       {maxLength && artists.length >= maxLength ? (
         <AvatarGroup
           max={maxLength}

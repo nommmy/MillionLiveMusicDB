@@ -20,11 +20,9 @@ type featureType = {
 const TrackAnalytics: FC<Props> = ({ track }) => {
   const audioFeatures: featureType = {
     acousticness: "アコースティック感・バラード感",
-    danceability:
-      "テンポ、リズムの安定性、ビートの強さ、全体的な規則性に基づく踊りやすさ",
+    danceability: "規則性に基づく踊りやすさ",
     energy: "激しさ・ラウドさ",
-    speechiness:
-      "ボーカルが話している感じの強さ。一般的な楽曲は0.33未満。値が大きいほどラップっぽい感じ",
+    speechiness: "ボーカルが話している感じの強さ",
     valence: "ポジティブさ（幸せ、陽気、多幸感）",
   };
 

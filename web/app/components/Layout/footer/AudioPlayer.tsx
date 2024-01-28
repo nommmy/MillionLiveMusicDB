@@ -6,6 +6,7 @@ import { useSetAudioRef } from "../../Provider/Providers";
 import TrackInfo from "./TrackInfo";
 import VolumeController from "./VolumeController";
 import PlayControlButton from "./PlayControlButton";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 type Props = {
   currentSong?: {
@@ -104,6 +105,8 @@ const AudioPlayer: FC<Props> = ({
   const durationDisplay = formatDurationDisplay(duration);
   const elapsedDisplay = formatDurationDisplay(currrentProgress);
 
+  const matches = useMediaQuery("(min-width:687px)");
+
   return (
     <div className="audio-player-wrapper">
       {currentSong && (
@@ -132,28 +135,44 @@ const AudioPlayer: FC<Props> = ({
           <TrackInfo currentSong={currentSong} />
 
           <div className="player-control-container">
-            <PlayControlButton isReady={isReady} isPlaying={isPlaying} togglePlayPause={togglePlayPause} currentSong={currentSong} />
+            <PlayControlButton
+              isReady={isReady}
+              isPlaying={isPlaying}
+              togglePlayPause={togglePlayPause}
+              currentSong={currentSong}
+            />
             <div className="playback-bar-container">
               <span className="sub-text progress-time-elapsed">
                 {elapsedDisplay}
               </span>
-              <AudioProgressBar
-                duration={duration}
-                currentProgress={currrentProgress}
-                buffered={buffered}
-                onChange={(e) => {
-                  if (!audioRef.current) return;
-                  audioRef.current.currentTime = e.currentTarget.valueAsNumber;
-                  setCurrrentProgress(e.currentTarget.valueAsNumber);
-                }}
-              />
+              {matches ? (
+                <AudioProgressBar
+                  duration={duration}
+                  currentProgress={currrentProgress}
+                  buffered={buffered}
+                  onChange={(e) => {
+                    if (!audioRef.current) return;
+                    audioRef.current.currentTime =
+                      e.currentTarget.valueAsNumber;
+                    setCurrrentProgress(e.currentTarget.valueAsNumber);
+                  }}
+                />
+              ) : (
+                <span className="sub-text">/</span>
+              )}
               <span className="sub-text progress-time-duration">
                 {durationDisplay}
               </span>
             </div>
           </div>
 
-          <VolumeController volume={volume} handleMuteUnmute={handleMuteUnmute} handleVolumeChange={handleVolumeChange} />
+          {matches && (
+            <VolumeController
+            volume={volume}
+            handleMuteUnmute={handleMuteUnmute}
+            handleVolumeChange={handleVolumeChange}
+            />
+          )}
         </>
       )}
     </div>

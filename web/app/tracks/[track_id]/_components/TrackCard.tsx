@@ -23,7 +23,13 @@ const TrackCard: FC<Props> = ({
   artistNameArray,
   previewUrl,
 }) => {
-  const artistName = artistNameArray.join(", ");
+  const artistName = artistNameArray
+    .map((character) => {
+      const match = character.match(/^(.*?)\s*(?:\([^)]*\)|$)/);
+      return match ? match[1] : character;
+    })
+    .join(", ");
+  
   return (
     <div className={styles["track-card-relative"]}>
       <div className={styles["track-card"]}>

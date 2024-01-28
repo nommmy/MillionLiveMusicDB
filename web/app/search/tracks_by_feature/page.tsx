@@ -9,11 +9,9 @@ export default async function SearchTracksByFeaturePage() {
   return (
     <main className="main">
       <div className={styles["search-title-header"]}>
-        <h2>
-          曲調から楽曲を探す
-        </h2>
+        <h2>曲調から楽曲を探す</h2>
         <div className="tooltip-top">
-          <HelpRoundedIcon sx={{ marginTop: "4px", fontSize: 28 }} />
+          <HelpRoundedIcon className="help-round-icon" />
           <span>Spotifyの分析データに基づく分類</span>
         </div>
       </div>
