@@ -28,7 +28,7 @@
 
 .choose-character-title {
   color: #9c9c9c;
-  margin: 8vw 0;
+  margin: calc(8vw + 5rem) 0;
   text-align: center;
   font-size: 5vw;
   opacity: 0.5;
@@ -36,7 +36,7 @@
 
 .feature-button-grid {
   display: grid;
-  grid-gap: 1vw;
+  grid-gap: 0.8rem;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   margin: 1rem 3.5vw 2rem;
 }
@@ -70,4 +70,14 @@
   border: none;
   box-shadow: 0 0 0 var(--main-color);
   transform: translateX(2px) translateY(2px);
+}
+
+@media screen and (max-width: 686px) {
+  .feature-button-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .feature-button {
+    width: 100px;
+    height: 45px;
+  }
 }

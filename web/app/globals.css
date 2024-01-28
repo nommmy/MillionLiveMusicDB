@@ -29,6 +29,12 @@ body {
   color: var(--basic-font-color);
 }
 
+@media screen and (max-width: 686px) {
+  html {
+    font-size: 12px;
+  }
+}
+
 body {
   display: flex;
   min-height: 100vh;
@@ -112,7 +118,7 @@ button:hover {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  top: -40px;
+  top: -2rem;
   left: 50%;
   transform: translateX(-50%);
   padding: 0.5em 1em;
