@@ -29,18 +29,21 @@ const TrackCard: FC<Props> = ({
       return match ? match[1] : character;
     })
     .join(", ");
-  
+
   return (
     <div className={styles["track-card-relative"]}>
       <div className={styles["track-card"]}>
-        <TrackArtists characters={characters} />
-        <Image
-          width={160}
-          height={160}
-          alt={name}
-          src={imageUrl}
-          priority={true}
-        />
+        <div className={styles["track-card-header"]}>
+          <Image
+            width={160}
+            height={160}
+            alt={name}
+            src={imageUrl}
+            className={styles["track-album-img"]}
+            priority={true}
+          />
+          <TrackArtists characters={characters} />
+        </div>
         <div className={styles["track-card-right-content"]}>
           <div className={styles["track-names-container"]}>
             <p className={styles["track-title"]}>{name}</p>

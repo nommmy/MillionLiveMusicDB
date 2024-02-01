@@ -6,6 +6,8 @@ import AlbumDetailHeader from "./_components/AlbumDetailHeader";
 import styles from "./AlbumDetail.module.css";
 import ColorThief from "colorthief";
 import AlbumDetailContents from "./_components/AlbumDetailContents";
+import { Metadata } from "next";
+import { siteName, openGraphMeta, twitterMeta } from "@/utils/shared-metadata";
 
 type AlbumType = Database["public"]["Tables"]["mst_albums"]["Row"];
 
@@ -101,4 +103,26 @@ export async function generateStaticParams(): Promise<any[]> {
   if (error) return [];
 
   return data;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const album = await fetchAlbum(params.album_id);
+
+  return {
+    title: album?.name,
+    openGraph: {
+      ...openGraphMeta,
+      title: `${album?.name} | ${siteName}`,
+      images: album
+        ? [album.album_image_url]
+        : [
+            "https://aupeferaibudquqmgdne.supabase.co/storage/v1/object/public/MillionLiveImageBucket/logo_large.webp",
+          ],
+    },
+    twitter: {
+      ...twitterMeta,
+      title: `${album?.name} | ${siteName}`,
+      card: "summary_large_image",
+    },
+  };
 }

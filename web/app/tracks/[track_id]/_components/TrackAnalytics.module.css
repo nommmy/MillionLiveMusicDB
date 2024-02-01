@@ -14,3 +14,9 @@
   word-break: break-all;
   margin-right: 1rem;
 }
+
+@media screen and (max-width: 686px) {
+  .track-analytics-container {
+    height: 30px;
+  }
+}

@@ -337,6 +337,17 @@ button:hover {
     padding-left: 8px;
     padding-right: 8px;
   }
+
+  .MuiSpeedDialAction-fab {
+    width: 30px;
+    height: 30px;
+    min-height: 30px;
+    margin: 4px;
+  }
+
+  .MuiSpeedDial-root .MuiSpeedDial-actions{
+    padding-left: 38px;
+  }
 }
 
 .MuiSpeedDial-fab {

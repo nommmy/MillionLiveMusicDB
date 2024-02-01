@@ -4,13 +4,27 @@ import Aside from "./components/Layout/aside/Aside";
 import Footer from "./components/Layout/footer/Footer";
 import "./globals.css";
 import Providers from "./components/Provider/Providers";
+import {
+  siteName,
+  description,
+  openGraphMeta,
+  twitterMeta,
+} from "@/utils/shared-metadata";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "MillionLive Music DB",
-  description:
-    "This is an app for beginners of MillionLive to get them interested in MillionLive through the goodness of MillionLive music.",
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description: description,
+  openGraph: {
+    ...openGraphMeta,
+  },
+  twitter: {
+    ...twitterMeta,
+  },
 };
 
 export default function RootLayout({

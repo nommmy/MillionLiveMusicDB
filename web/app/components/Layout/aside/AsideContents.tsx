@@ -52,6 +52,16 @@ const AsideContents = () => {
       {/* Accordion */}
       <CharacterListAccordion />
       <AlbumListAccordion />
+      <span className={styles["twitter-account"]}>
+        Twitter:
+        <a
+          href="https://twitter.com/millionlive2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          りんごよーぐると
+        </a>
+      </span>
     </>
   );
 };

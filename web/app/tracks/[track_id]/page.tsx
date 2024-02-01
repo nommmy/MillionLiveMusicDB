@@ -9,6 +9,8 @@ import TrackSimilar from "@/app/tracks/[track_id]/_components/TrackSimilar";
 import { Suspense } from "react";
 import ListSkeleton from "@/app/components/UI/skeleton/ListSkeleton";
 import type { CharacterType } from "@/utils/supabase";
+import { Metadata } from "next";
+import { siteName, openGraphMeta, twitterMeta } from "@/utils/shared-metadata";
 
 type Props = {
   params: { track_id: string };
@@ -147,4 +149,26 @@ export async function generateStaticParams(): Promise<any[]> {
   if (error) return [];
 
   return data;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const track = await fetchTrack(params.track_id);
+
+  return {
+    title: track?.track_name,
+    openGraph: {
+      ...openGraphMeta,
+      title: `${track?.track_name} | ${siteName}`,
+      images: track
+        ? [track.mst_albums.album_image_url]
+        : [
+            "https://aupeferaibudquqmgdne.supabase.co/storage/v1/object/public/MillionLiveImageBucket/logo_large.webp",
+          ],
+    },
+    twitter: {
+      ...twitterMeta,
+      title: `${track?.track_name} | ${siteName}`,
+      card: "summary_large_image",
+    },
+  };
 }

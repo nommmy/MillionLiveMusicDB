@@ -15,5 +15,17 @@
 }
 
 .track-analytics-wrapper {
-  margin: 140px 3.5vw 1vw 3.5vw
+  margin: 140px 3.5vw 1vw 3.5vw;
+}
+
+@media screen and (max-width: 1025px) {
+  .track-analytics-wrapper {
+    margin-top: 240px;
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .track-analytics-wrapper {
+    margin-top: 180px;
+  }
 }

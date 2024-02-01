@@ -9,6 +9,8 @@ import ComicGallery from "./_components/ComicGallery";
 import CharacterSongs from "./_components/CharacterSongs";
 import { Suspense } from "react";
 import ListSkeleton from "@/app/components/UI/skeleton/ListSkeleton";
+import { Metadata } from "next";
+import { siteName, openGraphMeta, twitterMeta } from "@/utils/shared-metadata";
 
 type CharacterType = Database["public"]["Tables"]["mst_characters"]["Row"];
 type Props = {
@@ -77,4 +79,26 @@ export async function generateStaticParams(): Promise<any[]> {
   if (error) return [];
 
   return data;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const character = await fetchCharacter(params.artist_id);
+
+  return {
+    title: character?.character_name,
+    openGraph: {
+      ...openGraphMeta,
+      title: `${character?.character_name} | ${siteName}`,
+      images: character
+        ? [...character.hero_images]
+        : [
+            "https://aupeferaibudquqmgdne.supabase.co/storage/v1/object/public/MillionLiveImageBucket/logo_large.webp",
+          ],
+    },
+    twitter: {
+      ...twitterMeta,
+      title: `${character?.character_name} | ${siteName}`,
+      card: "summary_large_image",
+    },
+  };
 }

@@ -18,3 +18,10 @@
 .avator-group {
   align-items: center;
 }
+
+@media screen and (max-width: 1025px) {
+  .avator-group {
+    flex-wrap: wrap-reverse;
+    justify-content: flex-end;
+  }
+}

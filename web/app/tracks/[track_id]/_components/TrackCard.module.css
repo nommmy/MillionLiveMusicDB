@@ -56,3 +56,38 @@
   top: -25px;
   right: -10px;
 }
+
+@media screen and (max-width: 1025px) {
+  .track-card {
+    display: block;
+  }
+
+  .track-card-header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem 2rem 0;
+    gap: 1rem;
+  }
+
+  .track-artist-icons {
+    position: static;
+    margin-top: auto;
+  }
+
+  .track-artist-icons > div {
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .track-album-img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 686px) {
+  .track-artist-icons img {
+    width: 45px;
+    height: 45px;
+  }
+}

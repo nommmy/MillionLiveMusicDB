@@ -14,6 +14,7 @@ const TrackArtists: FC<Props> = async ({ characters }) => {
         artists={characters}
         imageColumn={"image_favorite"}
         size={50}
+        maxLength={11}
       />
     </div>
   );

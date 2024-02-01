@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Skeleton from "@/app/components/UI/skeleton/Skeleton";
 import styles from "@/app/search/SearchPage.module.css";
 import FeatureButtonPannel from "./_components/FeatureButtonPanel";
 import TrackListByFeature from "./_components/TrackListByFeature";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
+
+export const metadata: Metadata = {
+  title: "曲調から楽曲を探す",
+};
 
 export default async function SearchTracksByFeaturePage() {
   return (
