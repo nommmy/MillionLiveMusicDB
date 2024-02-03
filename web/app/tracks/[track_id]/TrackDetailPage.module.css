@@ -1,0 +1,31 @@
+.header-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.header-img {
+  object-fit: cover;
+  object-position: 50% 30%;
+  opacity: 0.5;
+}
+
+.track-info-wrapper {
+  margin: 2vw 1vw;
+}
+
+.track-analytics-wrapper {
+  margin: 140px 3.5vw 1vw 3.5vw;
+}
+
+@media screen and (max-width: 1025px) {
+  .track-analytics-wrapper {
+    margin-top: 240px;
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .track-analytics-wrapper {
+    margin-top: 180px;
+  }
+}

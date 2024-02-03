@@ -10,6 +10,12 @@ const nextConfig = {
         port: "",
         pathname: "/image/**",
       },
+      {
+        protocol: "https",
+        hostname: "aupeferaibudquqmgdne.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/MillionLiveImageBucket/**",
+      },
     ],
   },
 };

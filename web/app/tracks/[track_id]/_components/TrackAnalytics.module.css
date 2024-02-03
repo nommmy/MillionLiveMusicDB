@@ -1,0 +1,22 @@
+.track-analytics-container {
+  display: flex;
+  align-items: center;
+}
+
+.audio-feature-slider {
+  flex: 1;
+}
+
+.audio-feature-label-container {
+  display: flex;
+  justify-content: space-between;
+  width: 9rem;
+  word-break: break-all;
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 686px) {
+  .track-analytics-container {
+    height: 30px;
+  }
+}

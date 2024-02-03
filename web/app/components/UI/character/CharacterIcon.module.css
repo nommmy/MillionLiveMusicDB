@@ -1,0 +1,27 @@
+.character-icon-list {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.inner-link {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.inner-link a {
+  pointer-events: all;
+}
+
+.avator-group {
+  align-items: center;
+}
+
+@media screen and (max-width: 1025px) {
+  .avator-group {
+    flex-wrap: wrap-reverse;
+    justify-content: flex-end;
+  }
+}

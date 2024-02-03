@@ -1,0 +1,93 @@
+.track-card-relative {
+  position: relative;
+}
+
+.track-card {
+  width: 90%;
+  display: flex;
+  background-color: white;
+  padding: 0.75rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: absolute;
+  top: -2vw;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.track-card-right-content {
+  padding: 1rem 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.track-names-container {
+  flex: 1;
+}
+
+.track-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  word-break: break-all;
+}
+
+.track-sub-title {
+  margin: 2px 0;
+  padding-left: 2px;
+  font-size: 0.8rem;
+  opacity: 0.5;
+  word-break: break-all;
+}
+
+.function-icon-list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.function-icon-list button[aria-label="Subscribe Icons"] {
+  box-shadow: none;
+}
+
+.track-artist-icons {
+  position: absolute;
+  top: -25px;
+  right: -10px;
+}
+
+@media screen and (max-width: 1025px) {
+  .track-card {
+    display: block;
+  }
+
+  .track-card-header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem 2rem 0;
+    gap: 1rem;
+  }
+
+  .track-artist-icons {
+    position: static;
+    margin-top: auto;
+  }
+
+  .track-artist-icons > div {
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .track-album-img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 686px) {
+  .track-artist-icons img {
+    width: 45px;
+    height: 45px;
+  }
+}

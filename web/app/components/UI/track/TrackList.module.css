@@ -1,0 +1,78 @@
+.track-relation-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 5px;
+}
+
+.nested-links {
+  position: relative;
+  pointer-events: all;
+  display: flex;
+}
+
+.stretched-link {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+}
+
+.stretched-link > svg,
+.stretched-link > img {
+  margin-right: 0.8rem;
+}
+
+.inner-link {
+  position: absolute;
+  right: 10px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.inner-link a {
+  pointer-events: all;
+}
+
+.subscribe-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.line-music-icon {
+  background: white;
+  border-radius: 50%;
+  line-height: 40px;
+  padding-top: 3px;
+}
+
+@media screen and (max-width: 686px) {
+  .subscribe-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .subscribe-icon:not(.line-music-icon) img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .line-music-icon {
+    line-height: 30px;
+  }
+
+  .line-music-icon img {
+    width: 25.5px;
+    height: 15px;
+  }
+}

@@ -14,6 +14,56 @@ export const supabase = createClient(
   supabaseKey as string
 );
 
+type UnitsType = {
+  unit_id: string;
+};
+
+export type CharacterType = {
+  [key: string]: string | boolean | UnitsType[];
+  artist_id: string;
+  character_name: string;
+  image_6th: string;
+  image_favorite: string;
+  image_uniform: string;
+  color: string;
+  unique_flg: boolean;
+  mst_units: UnitsType[];
+};
+
+type AlbumType = {
+  name: string;
+  album_image_url: string;
+};
+
+export type TrackItemType = {
+  track_id: string;
+  track_name: string;
+  preview_url: string;
+  artist_names: string[];
+  artist_ids: string[];
+  mst_albums: AlbumType;
+};
+
+export type TrackFeaturesType = {
+  [key: string]: string | string[] | number | AlbumType;
+  track_id: string;
+  track_name: string;
+  preview_url: string;
+  artist_names: string[];
+  artist_ids: string[];
+  duration_ms: number;
+  acousticness: number;
+  danceability: number;
+  energy: number;
+  instrumentalness: number;
+  speechiness: number;
+  key: number;
+  loudness: number;
+  valence: number;
+  tempo: number;
+  mst_albums: AlbumType;
+};
+
 export const upsertSupabaseTables = async (
   allTracks: Track[],
   allArtists: Artist[],
