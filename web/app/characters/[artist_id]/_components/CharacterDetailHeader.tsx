@@ -21,9 +21,9 @@ const CharacterDetailHeader: FC<Props> = ({ character }) => {
     <>
       <div
         style={{
-          background: `linear-gradient(to bottom, ${character.color} 0%, white 100%)`,
-          height: "250px",
+          background: `linear-gradient(to bottom, ${character.color} 0%, white 100%)`
         }}
+        className={styles["character-color-background"]}
       />
       <div className={styles["character-detail-header"]}>
         <Image
