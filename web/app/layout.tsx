@@ -9,7 +9,9 @@ import {
   description,
   openGraphMeta,
   twitterMeta,
+  url,
 } from "@/utils/shared-metadata";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +27,9 @@ export const metadata: Metadata = {
   twitter: {
     ...twitterMeta,
   },
+  alternates: {
+    canonical: url,
+  },
 };
 
 export default function RootLayout({
@@ -39,6 +44,7 @@ export default function RootLayout({
           <Aside />
           {children}
           <Footer />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>
