@@ -10,7 +10,13 @@
 .audio-feature-label-container {
   display: flex;
   justify-content: space-between;
-  width: 10rem;
+  width: 9rem;
   word-break: break-all;
   margin-right: 1rem;
+}
+
+@media screen and (max-width: 686px) {
+  .track-analytics-container {
+    height: 30px;
+  }
 }

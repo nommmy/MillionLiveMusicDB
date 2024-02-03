@@ -25,7 +25,7 @@ const RankingListItem: FC<Props> = async ({ track, index = 1 }) => {
 
   return (
     <ListItem disablePadding>
-      <ListItemButton className={styles["nested-links"]}>
+      <ListItemButton className={`${styles["nested-links"]} ranking-list-item`}>
         <Link
           href={`/tracks/${track.track_id}`}
           className={styles["stretched-link"]}

@@ -55,3 +55,24 @@
   line-height: 40px;
   padding-top: 3px;
 }
+
+@media screen and (max-width: 686px) {
+  .subscribe-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .subscribe-icon:not(.line-music-icon) img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .line-music-icon {
+    line-height: 30px;
+  }
+
+  .line-music-icon img {
+    width: 25.5px;
+    height: 15px;
+  }
+}

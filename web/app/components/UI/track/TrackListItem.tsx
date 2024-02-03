@@ -23,7 +23,9 @@ const TrackListItem: FC<Props> = ({ track }) => {
 
   return (
     <ListItem disablePadding>
-      <ListItemButton className={styles["nested-links"]}>
+      <ListItemButton
+        className={`${styles["nested-links"]} simple-track-list-item`}
+      >
         <Link
           href={`/tracks/${track.track_id}`}
           className={styles["stretched-link"]}

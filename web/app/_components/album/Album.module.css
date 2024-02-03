@@ -14,6 +14,13 @@
   height: 100%;
 }
 
+@media screen and (max-width: 686px) {
+  .album-card-grid {
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+}
+
 .album-card:hover {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   cursor: pointer;

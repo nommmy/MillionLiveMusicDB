@@ -17,7 +17,7 @@ const TrackList: FC<Props> = ({ title, description, data }) => {
       <div className={styles["track-relation-header"]}>
         <h2>{title}</h2>
         <div className="tooltip-top">
-          <HelpRoundedIcon sx={{ marginTop: "4px", fontSize: 28 }} />
+          <HelpRoundedIcon className="help-round-icon" />
           <span>{description}</span>
         </div>
       </div>

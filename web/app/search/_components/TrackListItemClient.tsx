@@ -27,7 +27,9 @@ const TrackListItemClient = ({ track, albumImageUrl, albumName }: Props) => {
 
   return (
     <ListItem disablePadding>
-      <ListItemButton className={styles["nested-links"]}>
+      <ListItemButton
+        className={`${styles["nested-links"]} simple-track-list-item`}
+      >
         <Link
           href={`/tracks/${track.track_id}`}
           className={styles["stretched-link"]}

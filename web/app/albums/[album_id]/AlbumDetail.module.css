@@ -10,6 +10,16 @@
   padding: 2rem 2vw 10px;
 }
 
+@media screen and (max-width: 686px) {
+  .album-header-wrapper {
+    display: block;
+  }
+
+  .album-header-wrapper img {
+    margin-left: 1rem;
+  }
+}
+
 .flex-1 {
   flex: 1;
 }
