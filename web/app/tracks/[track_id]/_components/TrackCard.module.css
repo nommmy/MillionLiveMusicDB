@@ -80,7 +80,7 @@
 }
 
 @media screen and (max-width: 834px) {
-  .track-album-img {
+  .track-album-img-link {
     display: none;
   }
 }

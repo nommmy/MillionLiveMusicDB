@@ -17,6 +17,7 @@ type Props = {
 };
 
 type AlbumType = {
+  album_id: string;
   name: string;
   album_image_url: string;
 };
@@ -56,7 +57,7 @@ async function fetchTrack(track_id: string) {
         speechiness,
         valence,
         tempo,
-        mst_albums (name, album_image_url)`
+        mst_albums (album_id, name, album_image_url)`
     )
     .eq("track_id", track_id)
     .returns<TrackType[]>()
@@ -107,6 +108,7 @@ export default async function TrackDetailPage({ params }: Props) {
         <TrackCard
           name={track.track_name}
           imageUrl={track.mst_albums.album_image_url}
+          albumId={track.mst_albums.album_id}
           albumName={track.mst_albums.name}
           characters={uniqueCharacters}
           artistNameArray={track.artist_names}
@@ -162,7 +164,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: track
         ? [track.mst_albums.album_image_url]
         : [
-            "https://aupeferaibudquqmgdne.supabase.co/storage/v1/object/public/MillionLiveImageBucket/logo_large.webp",
+            "https://aupeferaibudquqmgdne.supabase.co/storage/v1/object/public/MillionLiveImageBucket/opengraph-image.png",
           ],
     },
     twitter: {

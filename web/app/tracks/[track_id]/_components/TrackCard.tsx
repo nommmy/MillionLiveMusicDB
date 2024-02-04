@@ -5,10 +5,12 @@ import TrackArtists from "./TrackArtists";
 import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
 import type { CharacterType } from "@/utils/supabase";
 import SubscribeSpeedDial from "@/app/components/UI/track/SubscribeSpeedDial";
+import Link from "next/link";
 
 type Props = {
   name: string;
   imageUrl: string;
+  albumId: string;
   albumName: string;
   characters: CharacterType[];
   artistNameArray: string[];
@@ -18,6 +20,7 @@ type Props = {
 const TrackCard: FC<Props> = ({
   name,
   imageUrl,
+  albumId,
   albumName,
   characters,
   artistNameArray,
@@ -34,21 +37,28 @@ const TrackCard: FC<Props> = ({
     <div className={styles["track-card-relative"]}>
       <div className={styles["track-card"]}>
         <div className={styles["track-card-header"]}>
-          <Image
-            width={160}
-            height={160}
-            alt={name}
-            src={imageUrl}
-            className={styles["track-album-img"]}
-            priority={true}
-          />
+          <Link
+            href={`/albums/${albumId}`}
+            className={styles["track-album-img-link"]}
+          >
+            <Image
+              width={160}
+              height={160}
+              alt={name}
+              src={imageUrl}
+              className={styles["track-album-img"]}
+              priority={true}
+            />
+          </Link>
           <TrackArtists characters={characters} />
         </div>
         <div className={styles["track-card-right-content"]}>
           <div className={styles["track-names-container"]}>
             <p className={styles["track-title"]}>{name}</p>
             <p className={styles["track-sub-title"]}>{artistName}</p>
-            <p className={styles["track-sub-title"]}>{albumName}</p>
+            <Link href={`/albums/${albumId}`}>
+              <p className={styles["track-sub-title"]}>{albumName}</p>
+            </Link>
           </div>
           <div className={styles["function-icon-list"]}>
             <PlayTrackButton

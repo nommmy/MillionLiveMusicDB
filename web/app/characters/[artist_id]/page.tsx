@@ -92,7 +92,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: character
         ? [...character.hero_images]
         : [
-            "https://aupeferaibudquqmgdne.supabase.co/storage/v1/object/public/MillionLiveImageBucket/logo_large.webp",
+            "https://aupeferaibudquqmgdne.supabase.co/storage/v1/object/public/MillionLiveImageBucket/opengraph-image.png",
           ],
     },
     twitter: {
