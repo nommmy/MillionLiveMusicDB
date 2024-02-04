@@ -116,7 +116,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: album
         ? [album.album_image_url]
         : [
-            "https://aupeferaibudquqmgdne.supabase.co/storage/v1/object/public/MillionLiveImageBucket/logo_large.webp",
+            "https://aupeferaibudquqmgdne.supabase.co/storage/v1/object/public/MillionLiveImageBucket/opengraph-image.png",
           ],
     },
     twitter: {
