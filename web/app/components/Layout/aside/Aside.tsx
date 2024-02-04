@@ -4,14 +4,20 @@ import styles from "./Aside.module.css";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AsideContents from "./AsideContents";
 import Drawer from "@mui/material/Drawer";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 export default function Aside() {
+  const [isReady, setIsReady] = useState(false);
   const matches = useMediaQuery("(min-width:835px)");
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setIsReady(true);
+  }, [matches]);
+  if (isReady === false) return null;
 
   const handleDrawerOpen = () => {
     setOpen(true);

@@ -6,7 +6,7 @@ import {
   featureList,
   featureKeyAtomsInAtom,
 } from "@/app/components/Provider/Providers";
-import FeatureButton from "../_components/FeatureButton";
+import FeatureButton from "./FeatureButton";
 
 const FeatureButtonPannel = () => {
   const featureKeyAtoms = useAtomValue(featureKeyAtomsInAtom);

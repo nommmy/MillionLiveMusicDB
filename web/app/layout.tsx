@@ -12,6 +12,7 @@ import {
   url,
 } from "@/utils/shared-metadata";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,12 +40,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className={inter.className}>
         <Providers>
           <Aside />
           {children}
           <Footer />
           <SpeedInsights />
+          <Analytics />
         </Providers>
       </body>
     </html>
