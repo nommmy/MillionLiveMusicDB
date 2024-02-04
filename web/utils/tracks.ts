@@ -91,7 +91,7 @@ export const fetchAllMillionTracksFromPlaylist = async (
     let next =
       "https://api.spotify.com/v1/playlists/" +
       playlistId +
-      "/tracks?limit=100";
+      "/tracks?market=JP&limit=100";
 
     while (next) {
       const response = await fetch(next, {
