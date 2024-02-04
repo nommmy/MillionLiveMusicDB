@@ -33,14 +33,14 @@ const AsideContents = () => {
       {/* ページ内リンク */}
       <div className={styles["search-link-container"]}>
         <Link
-          href="/search/tracks_by_character"
+          href="/search/tracks-by-character"
           className={styles["search-link"]}
         >
           <PersonSearchIcon />
           キャラクターから楽曲を探す
         </Link>
         <Link
-          href="/search/tracks_by_feature"
+          href="/search/tracks-by-feature"
           className={styles["search-link"]}
         >
           <GraphicEqIcon />

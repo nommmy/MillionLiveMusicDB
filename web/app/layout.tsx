@@ -17,7 +17,6 @@ import { Analytics } from '@vercel/analytics/react';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.VERCEL_URL ?? "http://localhost:12000"),
   title: {
     default: siteName,
     template: `%s | ${siteName}`,
