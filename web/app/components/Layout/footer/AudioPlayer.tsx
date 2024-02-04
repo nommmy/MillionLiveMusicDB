@@ -7,6 +7,7 @@ import TrackInfo from "./TrackInfo";
 import VolumeController from "./VolumeController";
 import PlayControlButton from "./PlayControlButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import SpotifyIcon from "./SpotifyIcon";
 
 type Props = {
   currentSong?: {
@@ -133,6 +134,7 @@ const AudioPlayer: FC<Props> = ({
           />
 
           <TrackInfo currentSong={currentSong} />
+          <SpotifyIcon trackName={currentSong.title} />
 
           <div className="player-control-container">
             <PlayControlButton
@@ -168,9 +170,9 @@ const AudioPlayer: FC<Props> = ({
 
           {matches && (
             <VolumeController
-            volume={volume}
-            handleMuteUnmute={handleMuteUnmute}
-            handleVolumeChange={handleVolumeChange}
+              volume={volume}
+              handleMuteUnmute={handleMuteUnmute}
+              handleVolumeChange={handleVolumeChange}
             />
           )}
         </>
