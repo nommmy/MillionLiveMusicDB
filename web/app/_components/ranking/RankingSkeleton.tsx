@@ -5,7 +5,7 @@ import styles from "./Ranking.module.css";
 const RankingSkeleton: React.FC = () => (
   <div className="main-contents-wrapper">
     <SkeletonText additionalClass="title-h2" />
-    <div className={styles["ranking-cards-container"]}>
+    <div className={styles["ranking-cards-container-skeleton"]}>
       {[...Array(3)].map((_, index) => (
         <div className={styles["card"]} key={index}>
           <Skeleton

@@ -1,4 +1,16 @@
 .ranking-cards-container {
+  display: flex;
+  gap: 2vw;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.ranking-cards-container > a {
+  max-width: 320px;
+  flex: 1;
+}
+
+.ranking-cards-container-skeleton {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2vw;
