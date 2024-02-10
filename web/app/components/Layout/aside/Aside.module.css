@@ -78,10 +78,35 @@
   padding: 2rem 10px 100px;
 }
 
-.twitter-account {
+.aside-footer {
   margin-top: auto;
-  color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 10px;
   padding: 0 2vw;
+}
+
+.aside-footer .attribution-tooptip > span {
+  white-space: normal;
+  width: 200px;
+  top: -7rem;
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+.aside-footer .attribution-tooptip > span::before {
+  right: 20px;
+}
+
+.attribution-comment {
+  border-bottom: 1px dotted;
+}
+
+.attribution-comment,
+.twitter-account {
+  color: gray;
   margin-left: auto;
   font-size: 0.8rem;
   opacity: 0.7;
