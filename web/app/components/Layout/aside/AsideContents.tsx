@@ -52,16 +52,26 @@ const AsideContents = () => {
       {/* Accordion */}
       <CharacterListAccordion />
       <AlbumListAccordion />
-      <span className={styles["twitter-account"]}>
-        Twitter:
-        <a
-          href="https://twitter.com/millionlive2"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          りんごよーぐると
-        </a>
-      </span>
+
+      {/* 帰属等 */}
+      <div className={styles["aside-footer"]}>
+        <div className={`tooltip-top ${styles["attribution-tooptip"]}`}>
+          <p className={styles["attribution-comment"]}>attribution</p>
+          <span>
+            楽曲に関する情報（アーティスト/アルバム/トラック名、アルバムアートワーク、オーディオ再生等）はすべてSpotifyメタデータを使用しています
+          </span>
+        </div>
+        <span className={styles["twitter-account"]}>
+          Twitter:
+          <a
+            href="https://twitter.com/millionlive2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            りんごよーぐると
+          </a>
+        </span>
+      </div>
     </>
   );
 };

@@ -70,8 +70,11 @@ export const upsertSupabaseTables = async (
   allAlbums: Album[],
   allAudioFeatures: AudioFeatures[]
 ) => {
+  console.log("upsert albums...")
   const albumData = await upsertAlbums(allAlbums);
+  console.log("upsert artists...")
   const artistData = await upsertArtists(allArtists);
+  console.log("upsert tracks...")
   const trackData = await upsertTracks(allTracks, allAudioFeatures);
 
   return !!(albumData && artistData && trackData);
@@ -114,7 +117,7 @@ const upsertTracks = async (
 
   const { data, error } = await supabase
     .from("mst_tracks")
-    .upsert(trackData)
+    .upsert(trackData, { ignoreDuplicates: true, onConflict: "track_id" })
     .select();
   if (error) console.error(error);
 
