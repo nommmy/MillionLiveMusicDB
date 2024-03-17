@@ -117,8 +117,7 @@ const upsertTracks = async (
 
   const { data, error } = await supabase
     .from("mst_tracks")
-    .upsert(trackData, { ignoreDuplicates: true, onConflict: "track_id" })
-    .select();
+    .upsert(trackData);
   if (error) console.error(error);
 
   return data;
@@ -137,8 +136,8 @@ const upsertArtists = async (allArtists: Artist[]) => {
 
   const { data, error } = await supabase
     .from("mst_artists")
-    .upsert(artistData)
-    .select();
+    .upsert(artistData);
+  
   if (error) console.error(error);
 
   return data;
@@ -173,8 +172,7 @@ const upsertAlbums = async (allAlbums: Album[]) => {
 
   const { data, error } = await supabase
     .from("mst_albums")
-    .upsert(albumData)
-    .select();
+    .upsert(albumData);
   if (error) console.error(error);
 
   return data;

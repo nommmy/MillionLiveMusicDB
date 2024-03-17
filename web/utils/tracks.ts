@@ -106,7 +106,14 @@ export const fetchAllMillionTracksFromPlaylist = async (
       next = data.next;
     }
 
-    return allTracks;
+    const uniqueTracks = allTracks.reduce((unique, track) => {
+      if (!unique.some((item) => item.id === track.id)) {
+        unique.push(track);
+      }
+      return unique;
+    }, [] as Track[]);
+
+    return uniqueTracks;
   } catch (error) {
     console.error("Error during playlist tracks request:", error);
     return;
