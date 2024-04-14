@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
   // authorization ヘッダーには “Bearer ” がプレフィクスにつくことに注意
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-    return new Response("Unauthorized", {
+    return new Response(`Unauthorized ${authHeader}`, {
       status: 401,
     });
   }

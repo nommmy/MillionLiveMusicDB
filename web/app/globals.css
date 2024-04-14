@@ -10,7 +10,7 @@
   --main-color-lighten: #ffd146;
   /* --main-color-darken: #ffba00; */
   --main-color-darken: #f0b400;
-  --aside-width: 25%;
+  --aside-width: 22%;
 
   --footer-height: 80px;
   --footer-bar-color: #4c4c4c;
@@ -345,7 +345,7 @@ button:hover {
     margin: 4px;
   }
 
-  .MuiSpeedDial-root .MuiSpeedDial-actions{
+  .MuiSpeedDial-root .MuiSpeedDial-actions {
     padding-left: 38px;
   }
 }
