@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import AsideContents from "./AsideContents";
 import Drawer from "@mui/material/Drawer";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import Suspending from "./Suspending";
 
 export default function Aside() {
   const [isReady, setIsReady] = useState(false);
@@ -17,7 +18,7 @@ export default function Aside() {
   useEffect(() => {
     setIsReady(true);
   }, [matches]);
-  if (isReady === false) return null;
+  if (isReady === false) return <Suspending />;
 
   const handleDrawerOpen = () => {
     setOpen(true);

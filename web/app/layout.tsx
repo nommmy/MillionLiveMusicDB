@@ -12,9 +12,13 @@ import {
   url,
 } from "@/utils/shared-metadata";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
-const inter = Noto_Sans_JP({ subsets: ["latin"], weight: ["400", "800"], display: 'swap' });
+const inter = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "800"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
