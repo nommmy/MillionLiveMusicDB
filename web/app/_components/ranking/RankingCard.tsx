@@ -31,8 +31,8 @@ const RankingCard: FC<Props> = ({ track, rank }) => {
           />
         )}
         <Image
-          width={400}
-          height={400}
+          width={300}
+          height={300}
           alt={track.album_name}
           src={track.album_image_url}
           className={styles["card-img"]}
@@ -42,7 +42,13 @@ const RankingCard: FC<Props> = ({ track, rank }) => {
             height: "auto",
           }}
         />
-        <PlayTrackButton title={track.track_name} src={track.preview_url} artistName={artistName} albumImage={track.album_image_url} additionalClassName="ranking-track-button" />
+        <PlayTrackButton
+          title={track.track_name}
+          src={track.preview_url}
+          artistName={artistName}
+          albumImage={track.album_image_url}
+          additionalClassName="ranking-track-button"
+        />
         <p className={styles["card-name"]}>{track.track_name}</p>
         <p className={styles["card-description"]}>{artistName}</p>
       </div>

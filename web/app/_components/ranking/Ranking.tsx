@@ -3,6 +3,9 @@ import RankingCard from "./RankingCard";
 import styles from "./Ranking.module.css";
 import RankingList from "./RankingList";
 import type { CharacterType } from "@/utils/supabase";
+import Skeleton from "@/app/components/UI/skeleton/Skeleton";
+import RankingCardSkeleton from "./RankingCardSkeleton";
+import { Suspense } from "react";
 
 export type RankingTrackType = {
   track_id: string;
@@ -13,7 +16,7 @@ export type RankingTrackType = {
   album_name: string;
   album_image_url: string;
   artists: CharacterType[] | null;
-}
+};
 
 export default async function Ranking() {
   const { data, error } = await supabase
@@ -31,12 +34,16 @@ export default async function Ranking() {
   return (
     <div className="main-contents-wrapper">
       <h2 className="title-h2">HOT CHARTS</h2>
-      <div className={styles["ranking-cards-container"]}>
-        {cards.map((track, index) => (
-          <RankingCard key={track.track_id} track={track} rank={index + 1} />
-        ))}
-      </div>
-      <RankingList listItems={listItems} startIndex={HOT_DISPLAY_NUMBER} />
+      <Suspense fallback={<RankingCardSkeleton />}>
+        <div className={styles["ranking-cards-container"]}>
+          {cards.map((track, index) => (
+            <RankingCard key={track.track_id} track={track} rank={index + 1} />
+          ))}
+        </div>
+      </Suspense>
+      <Suspense fallback={<Skeleton additionalClass="list-skeleton-300" />}>
+        <RankingList listItems={listItems} startIndex={HOT_DISPLAY_NUMBER} />
+      </Suspense>
     </div>
   );
 }

@@ -354,6 +354,10 @@ button:hover {
   font-size: 0.9rem;
 }
 
+ul.MuiList-root::-webkit-scrollbar {
+  display: none;
+}
+
 @media screen and (max-width: 686px) {
   .MuiListItemButton-root {
     padding-left: 8px;
