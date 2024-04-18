@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import Aside from "./components/Layout/aside/Aside";
 import Footer from "./components/Layout/footer/Footer";
 import "./globals.css";
@@ -12,9 +12,13 @@ import {
   url,
 } from "@/utils/shared-metadata";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "800"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
