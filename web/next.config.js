@@ -29,3 +29,8 @@ module.exports = withPWA({
   // next.js config
   ...nextConfig,
 });
+
+// const withBundleAnalyzer = require("@next/bundle-analyzer")();
+
+// module.exports =
+//   process.env.ANALYZE === "true" ? withBundleAnalyzer(nextConfig) : nextConfig;
