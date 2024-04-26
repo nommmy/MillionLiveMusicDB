@@ -4,7 +4,7 @@ import type { RankingTrackType } from "@/app/_components/ranking/Ranking";
 import type { TrackFeaturesType } from "@/utils/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import ListItem from "@mui/material/ListItem";
+import ListItem from "@/app/components/UI/list/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import styles from "@/app/components/UI/track/TrackList.module.css";
@@ -26,7 +26,7 @@ const TrackListItemClient = ({ track, albumImageUrl, albumName }: Props) => {
     .join(", ");
 
   return (
-    <ListItem disablePadding>
+    <ListItem>
       <ListItemButton
         className={`${styles["nested-links"]} simple-track-list-item`}
       >

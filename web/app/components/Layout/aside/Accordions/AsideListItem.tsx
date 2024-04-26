@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import Image from "next/image";
-import ListItem from "@mui/material/ListItem";
+import ListItem from "@/app/components/UI/list/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
 
@@ -13,7 +13,7 @@ type Props = {
 
 const AsideListItem: FC<Props> = ({ name, img }) => {
   return (
-      <ListItem disablePadding>
+      <ListItem>
         <ListItemButton>
           <Image
             width={45}

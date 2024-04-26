@@ -1,9 +1,9 @@
 import { supabase } from "@/utils/supabase";
 import AlbumCard from "./AlbumCard";
 import styles from "./Album.module.css";
-import List from "@mui/material/List";
 import { Suspense } from "react";
 import Skeleton from "@/app/components/UI/skeleton/Skeleton";
+import List from "@/app/components/UI/list/List";
 
 export type AlbumCardType = {
   album_id: string;
@@ -22,13 +22,7 @@ export default async function AlbumCardGrid() {
     <div className="main-contents-wrapper">
       <h2 className="title-h2">ALBUMS</h2>
       <Suspense fallback={<Skeleton additionalClass="list-skeleton-500" />}>
-        <List
-          sx={{
-            maxHeight: 500,
-            position: "relative",
-            overflow: "auto",
-          }}
-        >
+        <List maxHeight={500}>
           <div className={styles["album-card-grid"]}>
             {data.map((album) => (
               <AlbumCard key={album.album_id} album={album} />

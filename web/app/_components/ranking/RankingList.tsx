@@ -1,7 +1,7 @@
 import { FC } from "react";
-import List from "@mui/material/List";
 import RankingListItem from "./RankingListItem";
 import type { RankingTrackType } from "./Ranking";
+import List from "@/app/components/UI/list/List";
 
 type Props = {
   listItems: RankingTrackType[];
@@ -10,13 +10,7 @@ type Props = {
 
 const RankingList: FC<Props> = async ({ listItems, startIndex }) => {
   return (
-    <List
-      sx={{
-        maxHeight: 300,
-        position: "relative",
-        overflow: "auto",
-      }}
-    >
+    <List maxHeight={300}>
       {listItems.map((track, index) => (
         <RankingListItem
           key={track.track_id}

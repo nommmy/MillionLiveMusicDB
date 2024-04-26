@@ -1,6 +1,6 @@
 "use client";
 
-import List from "@mui/material/List";
+import List from "@/app/components/UI/list/List";
 import AsideListItem from "./AsideListItem";
 import { useState } from "react";
 import Link from "next/link";
@@ -51,12 +51,7 @@ const CharacterListAccordion = () => {
           <div className="circle circle-2"></div>
         </div>
       ) : (
-        <List
-          sx={{
-            maxHeight: 500,
-            overflow: "auto",
-          }}
-        >
+        <List maxHeight={500}>
           {data.length > 0 &&
             data.map((character) => (
               <Link

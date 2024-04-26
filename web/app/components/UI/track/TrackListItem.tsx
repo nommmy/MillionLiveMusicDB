@@ -2,7 +2,7 @@ import { FC } from "react";
 import type { TrackItemType } from "@/utils/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import ListItem from "@mui/material/ListItem";
+import ListItem from "@/app/components/UI/list/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import styles from "./TrackList.module.css";
@@ -22,7 +22,7 @@ const TrackListItem: FC<Props> = ({ track }) => {
     .join(", ");
 
   return (
-    <ListItem disablePadding>
+    <ListItem>
       <ListItemButton
         className={`${styles["nested-links"]} simple-track-list-item`}
       >
