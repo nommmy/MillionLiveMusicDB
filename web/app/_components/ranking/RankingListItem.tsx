@@ -1,8 +1,8 @@
 import type { RankingTrackType } from "./Ranking";
 import React, { FC } from "react";
 import ListItem from "@/app/components/UI/list/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import ListItemButton from "@/app/components/UI/list/ListItemButton";
+import ListItemText from "@/app/components/UI/list/ListItemText";
 import CharacterIconList from "../../components/UI/character/CharacterIconList";
 import styles from "./Ranking.module.css";
 import Link from "next/link";

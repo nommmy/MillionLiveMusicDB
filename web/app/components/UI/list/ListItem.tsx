@@ -1,5 +1,3 @@
-import styles from "./List.module.css";
-
 type Props = {
   children: React.ReactNode;
   className?: string;
@@ -7,7 +5,7 @@ type Props = {
 
 const ListItem = (props: Props) => {
   return (
-    <li className={`${styles["MyList-item-root"]} ${props.className ?? ""}`}>
+    <li className={`MyList-item-root ${props.className ?? ""}`}>
       {props.children}
     </li>
   );

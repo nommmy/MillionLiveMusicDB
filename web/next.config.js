@@ -30,7 +30,7 @@ module.exports = withPWA({
   ...nextConfig,
 });
 
-// const withBundleAnalyzer = require("@next/bundle-analyzer")();
+const withBundleAnalyzer = require("@next/bundle-analyzer")();
 
-// module.exports =
-//   process.env.ANALYZE === "true" ? withBundleAnalyzer(nextConfig) : nextConfig;
+module.exports =
+  process.env.ANALYZE === "true" ? withBundleAnalyzer(nextConfig) : nextConfig;
