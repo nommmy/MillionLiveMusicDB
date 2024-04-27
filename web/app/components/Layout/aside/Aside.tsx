@@ -1,26 +1,16 @@
 "use client";
 
-import styles from "./Aside.module.css";
+import SPAsideContentsWrapper from "./SPAsideContentsWrapper";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useEffect, useState } from "react";
 import Suspending from "./Suspending";
-import dynamic from "next/dynamic";
+import styles from "./Aside.module.css";
 
-const AsideContentsWithDynamicImport = dynamic(
-  () => import("./AsideContents"),
-  {
-    ssr: true,
-  }
-);
+type Props = {
+  children: React.ReactNode;
+};
 
-const SpAsideWithDynamicImport = dynamic(
-  () => import("./SpAside"),
-  {
-    ssr: true,
-  }
-);
-
-export default function Aside() {
+export default function Aside({ children }: Props) {
   const [isReady, setIsReady] = useState(false);
   const matches = useMediaQuery("(min-width:835px)");
 
@@ -32,11 +22,9 @@ export default function Aside() {
   return (
     <>
       {matches ? (
-        <div className={styles["aside-wrapper"]}>
-          <AsideContentsWithDynamicImport />
-        </div>
+        <div className={styles["aside-wrapper"]}>{children}</div>
       ) : (
-        <SpAsideWithDynamicImport />
+        <SPAsideContentsWrapper>{children}</SPAsideContentsWrapper>
       )}
     </>
   );

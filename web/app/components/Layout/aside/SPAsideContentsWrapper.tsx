@@ -1,21 +1,18 @@
 "use client";
 
+import { ReactNode } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Drawer from "@mui/material/Drawer";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
 import styles from "./Aside.module.css";
-import dynamic from "next/dynamic";
 
-const AsideContentsWithDynamicImport = dynamic(
-  () => import("./AsideContents"),
-  {
-    ssr: true,
-  }
-);
+type Props = {
+  children: ReactNode;
+};
 
-const SpAside = () => {
+const SPAsideContentsWrapper = ({ children }: Props) => {
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -45,11 +42,11 @@ const SpAside = () => {
           >
             <ChevronRightIcon />
           </IconButton>
-          <AsideContentsWithDynamicImport />
+          {children}
         </div>
       </Drawer>
     </>
   );
 };
 
-export default SpAside;
+export default SPAsideContentsWrapper;
