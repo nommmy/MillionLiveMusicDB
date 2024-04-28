@@ -326,20 +326,10 @@ button:hover {
 }
 
 .MyList-item-root {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  -webkit-justify-content: flex-start;
   justify-content: flex-start;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   position: relative;
-  -webkit-text-decoration: none;
   text-decoration: none;
   width: 100%;
   box-sizing: border-box;
@@ -348,21 +338,11 @@ button:hover {
 }
 
 .MyList-item-button-root {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
   position: relative;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
   background-color: transparent;
   outline: 0;
   border: 0;
@@ -370,48 +350,27 @@ button:hover {
   border-radius: 0;
   padding: 0;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   vertical-align: middle;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: inherit;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  -webkit-justify-content: flex-start;
   justify-content: flex-start;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   position: relative;
-  -webkit-text-decoration: none;
   text-decoration: none;
   min-width: 0;
   box-sizing: border-box;
   text-align: left;
   padding-top: 8px;
   padding-bottom: 8px;
-  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   padding-left: 16px;
   padding-right: 16px;
 }
 
 .MyList-item-button-root:hover {
-  -webkit-text-decoration: none;
   text-decoration: none;
   background-color: rgba(0, 0, 0, 0.04);
 }
@@ -424,8 +383,6 @@ button:hover {
 }
 
 .MyList-item-text-root {
-  -webkit-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   min-width: 0;
   margin-top: 4px;
@@ -454,6 +411,148 @@ button:hover {
   letter-spacing: 0.03071em;
   color: rgba(0, 0, 0, 0.5);
 }
+
+/* speed dial */
+.MySpeed-dial-root {
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.MySpeed-dial-root-direction-left {
+  flex-direction: row-reverse;
+}
+
+.MySpeed-dial-root-direction-right {
+  flex-direction: row;
+}
+
+.MySpeed-dial-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-height: 36px;
+  border-radius: 50%;
+  padding: 0;
+  min-width: 0;
+  z-index: 1050;
+  pointer-events: auto;
+  width: 42px;
+  height: 42px;
+  background-color: inherit;
+  box-shadow: none;
+  color: #4c4c4c;
+}
+
+.MySpeed-dial-fab:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+}
+
+.MySpeed-dial-root-direction-left .MySpeed-dial-actions {
+  flex-direction: row-reverse;
+  margin-right: -32px;
+  padding-right: 48px;
+}
+.MySpeed-dial-root-direction-right .MySpeed-dial-actions {
+  flex-direction: row;
+  margin-left: -32px;
+  padding-left: 48px;
+}
+
+.MySpeed-dial-actions {
+  display: flex;
+  pointer-events: none;
+  transition: top 0s linear 0.2s;
+}
+
+.MySpeed-dial-root:hover .MySpeed-dial-actions {
+  pointer-events: auto;
+  transition: unset;
+}
+
+.MySpeed-dial-action-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-height: 36px;
+  border-radius: 50%;
+  padding: 0;
+  min-width: 0;
+  width: 40px;
+  height: 40px;
+  z-index: 1050;
+  margin: 8px;
+  color: rgba(0, 0, 0, 0.6);
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, opacity 0.8s;
+  opacity: 0;
+  transform: scale(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+}
+
+.MySpeed-dial-root:hover .MySpeed-dial-action-fab {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.MySpeed-dial-action-fab:hover {
+  background-color: transparent;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@media screen and (max-width: 686px) {
+  .MyList-item-button-root {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .MySpeed-dial-action-fab {
+    width: 30px;
+    height: 30px;
+    min-height: 30px;
+    margin: 4px;
+  }
+
+  .MySpeed-dial-root .MySpeed-dial-actions {
+    padding-left: 38px;
+  }
+}
+
 
 /* MUI Re Styled */
 /* Aside Search Input */
@@ -494,46 +593,6 @@ button:hover {
 .MuiAutocomplete-root .MuiOutlinedInput-root {
   padding: 5px 9px;
   font-size: 0.9rem;
-}
-
-@media screen and (max-width: 686px) {
-  .MyList-item-button-root {
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-
-  .MuiSpeedDialAction-fab {
-    width: 30px;
-    height: 30px;
-    min-height: 30px;
-    margin: 4px;
-  }
-
-  .MuiSpeedDial-root .MuiSpeedDial-actions {
-    padding-left: 38px;
-  }
-}
-
-.MuiSpeedDial-fab {
-  width: 42px;
-  height: 42px;
-  background-color: inherit;
-  box-shadow: none;
-  color: #4c4c4c;
-}
-
-.MuiSpeedDial-fab:hover {
-  background-color: rgba(0, 0, 0, 0.06);
-}
-
-.MuiSpeedDialAction-fab {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  background-color: transparent;
-}
-
-.MuiSpeedDialAction-fab:hover {
-  background-color: transparent;
 }
 
 /* Aside Accordion */
