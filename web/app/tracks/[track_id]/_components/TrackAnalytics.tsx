@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Slider from "@mui/material/Slider";
+import Slider from "./Slider";
 import styles from "./TrackAnalytics.module.css";
 import type { TrackType } from "@/app/tracks/[track_id]/page";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
@@ -27,7 +27,7 @@ const TrackAnalytics: FC<Props> = ({ track }) => {
   };
 
   return (
-    <div>
+    <>
       {Object.keys(audioFeatures).map((feature, index) => (
         <div key={index} className={styles["track-analytics-container"]}>
           <div className={styles["audio-feature-label-container"]}>
@@ -37,18 +37,10 @@ const TrackAnalytics: FC<Props> = ({ track }) => {
               <span>{audioFeatures[feature]}</span>
             </div>
           </div>
-          <Slider
-            disabled
-            defaultValue={track[`${feature}`] as number}
-            aria-label={feature}
-            min={0}
-            max={1}
-            valueLabelDisplay="auto"
-            className={styles["audio-feature-slider"]}
-          />
+          <Slider value={track[`${feature}`] as number} />
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
