@@ -29,8 +29,15 @@ const SPAsideContentsWrapper = ({ children }: Props) => {
         aria-label="open drawer"
         onClick={handleDrawerOpen}
         edge="start"
-        className={styles["menu-button"]}
-        sx={{ display: open ? "none" : undefined }}
+        sx={{
+          width: "40px",
+          height: "40px",
+          margin: "16px 8px",
+          position: "absolute",
+          right: "0",
+          zIndex: "2",
+          display: open ? "none" : undefined,
+        }}
       >
         <MenuIcon />
       </IconButton>

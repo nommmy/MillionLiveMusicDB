@@ -53,15 +53,6 @@
   font-size: 0.9rem;
 }
 
-.menu-button {
-  width: 40px;
-  height: 40px;
-  margin: 16px 8px;
-  position: absolute;
-  right: 0;
-  z-index: 2;
-}
-
 .close-menu-button {
   width: 40px;
   height: 40px;
