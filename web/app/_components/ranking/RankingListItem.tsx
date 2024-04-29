@@ -1,8 +1,8 @@
 import type { RankingTrackType } from "./Ranking";
 import React, { FC } from "react";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import ListItem from "@/app/components/UI/list/ListItem";
+import ListItemButton from "@/app/components/UI/list/ListItemButton";
+import ListItemText from "@/app/components/UI/list/ListItemText";
 import CharacterIconList from "../../components/UI/character/CharacterIconList";
 import styles from "./Ranking.module.css";
 import Link from "next/link";
@@ -13,6 +13,8 @@ type Props = {
   index: number;
 };
 
+const SIZE = 35;
+
 const RankingListItem: FC<Props> = async ({ track, index = 1 }) => {
   const artistName = track.artist_names
     .map((character) => {
@@ -21,10 +23,8 @@ const RankingListItem: FC<Props> = async ({ track, index = 1 }) => {
     })
     .join(", ");
 
-  const SIZE = 35;
-
   return (
-    <ListItem disablePadding>
+    <ListItem>
       <ListItemButton className={`${styles["nested-links"]} ranking-list-item`}>
         <Link
           href={`/tracks/${track.track_id}`}

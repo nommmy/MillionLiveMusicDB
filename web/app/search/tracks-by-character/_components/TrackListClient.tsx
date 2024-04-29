@@ -3,7 +3,7 @@
 import type { RankingTrackType } from "@/app/_components/ranking/Ranking";
 import { characterIdAtom } from "@/app/components/Provider/Providers";
 import { useAtomValue } from "jotai";
-import List from "@mui/material/List";
+import List from "@/app/components/UI/list/List";
 import TrackListItemClient from "../../_components/TrackListItemClient";
 import styles from "@/app/search/SearchPage.module.css";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
@@ -31,13 +31,7 @@ const TrackListClient = ({ tracks }: Props) => {
             <LibraryMusicIcon />
             {filteredList.length}曲
           </p>
-          <List
-            sx={{
-              maxHeight: 500,
-              position: "relative",
-              overflow: "auto",
-            }}
-          >
+          <List maxHeight={500}>
             {filteredList.map((track, index) => (
               <TrackListItemClient
                 key={index}

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import List from "@mui/material/List";
+import List from "@/app/components/UI/list/List";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 import TrackListItem from "./TrackListItem";
 import styles from "./TrackList.module.css";
@@ -21,13 +21,7 @@ const TrackList: FC<Props> = ({ title, description, data }) => {
           <span>{description}</span>
         </div>
       </div>
-      <List
-        sx={{
-          maxHeight: 350,
-          position: "relative",
-          overflow: "auto",
-        }}
-      >
+      <List maxHeight={350}>
         {data.map((track, index) => (
           <TrackListItem key={index} track={track} />
         ))}

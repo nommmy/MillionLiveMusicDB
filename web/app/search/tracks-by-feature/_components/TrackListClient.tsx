@@ -1,6 +1,6 @@
 "use client";
 
-import List from "@mui/material/List";
+import List from "@/app/components/UI/list/List";
 import {
   featureKeyAtom,
   featureList,
@@ -61,13 +61,7 @@ const TrackListClient = ({ tracks }: Props) => {
             <LibraryMusicIcon />
             {filteredList.length}曲
           </p>
-          <List
-            sx={{
-              maxHeight: 500,
-              position: "relative",
-              overflow: "auto",
-            }}
-          >
+          <List maxHeight={500}>
             {filteredList.map((track, index) => (
               <TrackListItemClient
                 key={index}

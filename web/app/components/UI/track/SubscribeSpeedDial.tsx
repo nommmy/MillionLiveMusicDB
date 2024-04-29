@@ -1,15 +1,18 @@
-import SpeedDial from "@mui/material/SpeedDial";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
 import styles from "./TrackList.module.css";
 import Image from "next/image";
 
 type Props = {
   trackName: string;
-  direction: "up" | "down" | "left" | "right";
+  direction: "left" | "right";
 };
 
 export default function SubscribeSpeedDial({ trackName, direction }: Props) {
+  const flexDirection =
+    direction == "right"
+      ? "MySpeed-dial-root-direction-right"
+      : "MySpeed-dial-root-direction-left";
+
   const actions = [
     {
       icon: (
@@ -104,18 +107,42 @@ export default function SubscribeSpeedDial({ trackName, direction }: Props) {
   ];
 
   return (
-    <SpeedDial
-      ariaLabel="Subscribe Icons"
-      direction={direction}
-      icon={<QueueMusicIcon />}
-    >
-      {actions.map((action) => (
-        <SpeedDialAction
-          key={action.name}
-          icon={action.icon}
-          tooltipTitle={action.name}
-        />
-      ))}
-    </SpeedDial>
+    <div className={`MySpeed-dial-root ${flexDirection}`} role="presentation">
+      <button
+        tabIndex={0}
+        type="button"
+        aria-label="Subscribe Icons"
+        aria-controls="SubscribeIcons-actions"
+        style={{
+          transform: "none",
+          transition: `transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms`,
+        }}
+        className="MySpeed-dial-fab"
+      >
+        <QueueMusicIcon />
+      </button>
+      <div
+        id="SubscribeIcons-actions"
+        role="menu"
+        aria-orientation="horizontal"
+        className="MySpeed-dial-actions"
+      >
+        {actions.map((action, index) => (
+          <button
+            key={action.name}
+            tabIndex={-1 as number}
+            type="button"
+            role="menuitem"
+            style={{
+              transitionDelay: `${(index + 1) * 30}ms`,
+            }}
+            aria-label={action.name}
+            className="MySpeed-dial-action-fab"
+          >
+            {action.icon}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }

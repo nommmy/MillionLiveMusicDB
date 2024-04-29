@@ -1,5 +1,6 @@
 import { supabase } from "@/utils/supabase";
 
+export const revalidate = 86400;
 export async function GET() {
   try {
     const { data, error } = await supabase

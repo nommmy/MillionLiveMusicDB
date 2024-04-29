@@ -18,6 +18,8 @@ export type RankingTrackType = {
   artists: CharacterType[] | null;
 };
 
+const HOT_DISPLAY_NUMBER = 3;
+
 export default async function Ranking() {
   const { data, error } = await supabase
     .rpc("get_hot_tracks", {
@@ -27,7 +29,6 @@ export default async function Ranking() {
 
   if (error) return <></>;
 
-  const HOT_DISPLAY_NUMBER = 3;
   const cards: RankingTrackType[] = data.slice(0, HOT_DISPLAY_NUMBER);
   const listItems: RankingTrackType[] = data.slice(HOT_DISPLAY_NUMBER);
 
