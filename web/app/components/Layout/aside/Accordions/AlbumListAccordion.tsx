@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import AsideListItem from "./AsideListItem";
-import List from "@mui/material/List";
+import List from "@/app/components/UI/list/List";
 import { useState } from "react";
 
 type Albums = {
@@ -48,12 +48,7 @@ const AlbumListAccordion = () => {
           <div className="circle circle-2"></div>
         </div>
       ) : (
-        <List
-          sx={{
-            maxHeight: 500,
-            overflow: "auto",
-          }}
-        >
+        <List maxHeight={500}>
           {data.length > 0 &&
             data.map((album) => (
               <Link href={`/albums/${album.album_id}`} key={album.album_id}>

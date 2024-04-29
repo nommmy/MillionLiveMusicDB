@@ -13,6 +13,14 @@ import {
 } from "@/utils/shared-metadata";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import dynamic from "next/dynamic";
+
+const AsideContentsWithDynamicImport = dynamic(
+  () => import("@/app/components/Layout/aside/AsideContents"),
+  {
+    ssr: true,
+  }
+);
 
 const inter = Noto_Sans_JP({
   subsets: ["latin"],
@@ -49,7 +57,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Providers>
-          <Aside />
+          <Aside>
+            <AsideContentsWithDynamicImport />
+          </Aside>
           {children}
           <Footer />
           <SpeedInsights />

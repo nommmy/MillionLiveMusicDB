@@ -4,9 +4,9 @@ import type { RankingTrackType } from "@/app/_components/ranking/Ranking";
 import type { TrackFeaturesType } from "@/utils/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import ListItem from "@/app/components/UI/list/ListItem";
+import ListItemButton from "@/app/components/UI/list/ListItemButton";
+import ListItemText from "@/app/components/UI/list/ListItemText";
 import styles from "@/app/components/UI/track/TrackList.module.css";
 import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
 import SubscribeSpeedDial from "@/app/components/UI/track/SubscribeSpeedDial";
@@ -26,7 +26,7 @@ const TrackListItemClient = ({ track, albumImageUrl, albumName }: Props) => {
     .join(", ");
 
   return (
-    <ListItem disablePadding>
+    <ListItem>
       <ListItemButton
         className={`${styles["nested-links"]} simple-track-list-item`}
       >
