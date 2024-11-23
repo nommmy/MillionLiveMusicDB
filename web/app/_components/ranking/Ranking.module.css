@@ -62,7 +62,9 @@
 
 .list-index {
   margin-right: 0.5rem;
-  width: 20px;
+  width: 18px;
+  flex-shrink: 0;
+  text-align: center;
 }
 
 @media screen and (max-width: 686px) {

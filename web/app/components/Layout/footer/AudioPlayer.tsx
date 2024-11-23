@@ -102,6 +102,11 @@ const AudioPlayer: FC<Props> = ({
     }
   };
 
+  // mobileだとonCanPlayが正常に動かないことがあるため
+  useEffect(() => {
+    setIsReady(true);
+  }, [])
+
   // time
   const durationDisplay = formatDurationDisplay(duration);
   const elapsedDisplay = formatDurationDisplay(currrentProgress);
