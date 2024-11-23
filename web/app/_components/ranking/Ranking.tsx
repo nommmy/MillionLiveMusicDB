@@ -24,7 +24,7 @@ export const revalidate = 86400;
 export default async function Ranking() {
   const { data, error } = await supabase
     .rpc("get_hot_tracks", {
-      limits: 200,
+      limits: 99,
     })
     .returns<RankingTrackType[]>();
 

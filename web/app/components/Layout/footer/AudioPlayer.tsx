@@ -121,6 +121,7 @@ const AudioPlayer: FC<Props> = ({
               e.currentTarget.volume = volume;
               setIsReady(true);
             }}
+            onCanPlayThrough={() => setIsReady(true)}
             onPlaying={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
             onVolumeChange={(e) => setVolume(e.currentTarget.volume)}

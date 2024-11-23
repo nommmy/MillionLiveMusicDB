@@ -13,6 +13,7 @@ import {
 } from "@/utils/shared-metadata";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import dynamic from "next/dynamic";
 
 const AsideContentsWithDynamicImport = dynamic(
@@ -56,15 +57,17 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={inter.className}>
-        <Providers>
-          <Aside>
-            <AsideContentsWithDynamicImport />
-          </Aside>
-          {children}
-          <Footer />
-          <SpeedInsights />
-          <Analytics />
-        </Providers>
+        <AppRouterCacheProvider>
+          <Providers>
+            <Aside>
+              <AsideContentsWithDynamicImport />
+            </Aside>
+            {children}
+            <Footer />
+            <SpeedInsights />
+            <Analytics />
+          </Providers>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
