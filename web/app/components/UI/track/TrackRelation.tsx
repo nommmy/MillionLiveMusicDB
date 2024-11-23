@@ -8,6 +8,7 @@ type Props = {
   excludeTrackIds: string[];
 };
 
+export const revalidate = 86400;
 const TrackRelation: FC<Props> = async ({ characterIds, excludeTrackIds }) => {
   // 歌唱メンバーの他楽曲を取得
   const { data, error } = await supabase

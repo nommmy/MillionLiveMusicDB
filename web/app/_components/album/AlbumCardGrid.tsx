@@ -11,6 +11,7 @@ export type AlbumCardType = {
   album_image_url: string;
 };
 
+export const revalidate = 86400;
 export default async function AlbumCardGrid() {
   const { data, error } = await supabase
     .from("mst_albums")
