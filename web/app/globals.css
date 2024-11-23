@@ -715,7 +715,7 @@ details[open] summary ~ * {
     position: absolute;
     margin: 0;
     left: 15px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8) !important;
   }
 
   .ranking-list-item .icon-list-wrapper {

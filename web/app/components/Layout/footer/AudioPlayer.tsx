@@ -102,6 +102,11 @@ const AudioPlayer: FC<Props> = ({
     }
   };
 
+  // mobileだとonCanPlayが正常に動かないことがあるため
+  useEffect(() => {
+    setIsReady(true);
+  }, [])
+
   // time
   const durationDisplay = formatDurationDisplay(duration);
   const elapsedDisplay = formatDurationDisplay(currrentProgress);
@@ -121,7 +126,6 @@ const AudioPlayer: FC<Props> = ({
               e.currentTarget.volume = volume;
               setIsReady(true);
             }}
-            onCanPlayThrough={() => setIsReady(true)}
             onPlaying={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
             onVolumeChange={(e) => setVolume(e.currentTarget.volume)}
