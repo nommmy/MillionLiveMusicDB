@@ -75,8 +75,8 @@ export async function GET(request: NextRequest) {
     allAudioFeatures
   );
 
-  console.log("revalidate top page...");
-  await fetch("/api/revalidate?path=/");
+  // console.log("revalidate top page...");
+  // await fetch("/api/revalidate?path=/");
 
   console.log("finished successfully");
   return NextResponse.json({

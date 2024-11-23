@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { url } from "../utils/shared-metadata";
 import { supabase } from "@/utils/supabase";
 
+export const revalidate = 86400;
 async function fetchAllCharacterIds() {
   const { data, error } = await supabase
     .from("mst_characters")

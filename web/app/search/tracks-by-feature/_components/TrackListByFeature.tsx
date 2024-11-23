@@ -3,6 +3,7 @@ import styles from "@/app/search/SearchPage.module.css";
 import TrackListClient from "./TrackListClient";
 import type { TrackFeaturesType } from "@/utils/supabase";
 
+export const revalidate = 86400;
 const TrackListByFeature = async () => {
   const { data, error } = await supabase
     .from("mst_tracks")

@@ -21,6 +21,7 @@ export type TrackType = TrackItemType & {
   tempo: number;
 };
 
+export const revalidate = 86400;
 const TrackSimilar: FC<Props> = async ({
   excludeTrackId,
   acousticness,
