@@ -68,12 +68,16 @@ export async function GET(request: NextRequest) {
   console.log("results: ", allAlbums.length, "albums.");
   console.log("example album: ", allAlbums[0]);
 
-  const result = await upsertSupabaseTables(
+  await upsertSupabaseTables(
     allTracks,
     allArtists,
     allAlbums,
     allAudioFeatures
   );
+
+  console.log("revalidate top page...");
+  await fetch("/api/revalidate?path=/");
+
   console.log("finished successfully");
   return NextResponse.json({
     status: 200,
