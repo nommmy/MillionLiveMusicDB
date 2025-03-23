@@ -7,7 +7,7 @@ import Skeleton from "@/app/components/UI/skeleton/Skeleton";
 import styles from "@/app/search/SearchPage.module.css";
 
 export const metadata: Metadata = {
-  title: "キャラクターから楽曲を探す",
+  title: "キャラクターから楽曲を探す"
 }
 
 export default function SearchTracksByCharacterPage() {

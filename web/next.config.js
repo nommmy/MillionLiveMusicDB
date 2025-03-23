@@ -18,6 +18,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    useCache: true,
+  },
 };
 
 const withPWA = require("next-pwa")({

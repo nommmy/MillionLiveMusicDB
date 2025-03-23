@@ -13,7 +13,7 @@ import { Metadata } from "next";
 import { siteName, openGraphMeta, twitterMeta } from "@/utils/shared-metadata";
 
 type Props = {
-  params: { track_id: string };
+  params: Promise<{ track_id: string }>;
 };
 
 type AlbumType = {
@@ -67,7 +67,8 @@ async function fetchTrack(track_id: string) {
   return data;
 }
 
-export default async function TrackDetailPage({ params }: Props) {
+export default async function TrackDetailPage(props: Props) {
+  const params = await props.params;
   const track = await fetchTrack(params.track_id);
   if (!track) return notFound();
 
@@ -153,7 +154,8 @@ export async function generateStaticParams(): Promise<any[]> {
   return data;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const track = await fetchTrack(params.track_id);
 
   return {

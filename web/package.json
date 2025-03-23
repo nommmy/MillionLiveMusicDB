@@ -10,30 +10,35 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
-    "@emotion/cache": "^11.13.5",
-    "@mui/icons-material": "^5.14.18",
-    "@mui/material": "^5.14.18",
-    "@mui/material-nextjs": "^6.1.8",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.7",
+    "@mui/material": "^6.4.7",
+    "@mui/material-nextjs": "^6.4.3",
     "@supabase/supabase-js": "^2.38.4",
     "@vercel/analytics": "^1.1.2",
     "@vercel/speed-insights": "^1.0.9",
-    "colorthief": "^2.4.0",
-    "embla-carousel-autoplay": "^8.0.0-rc17",
-    "embla-carousel-react": "^8.0.0-rc17",
+    "embla-carousel-autoplay": "^8.5.2",
+    "embla-carousel-react": "^8.5.2",
     "jotai": "^2.6.1",
-    "next": "^13.5.6",
+    "next": "15.2.2",
     "next-pwa": "^5.6.0",
-    "react": "^18",
-    "react-dom": "^18"
+    "node-vibrant": "^4.0.3",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^14.2.3",
+    "@next/bundle-analyzer": "15.2.2",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
     "eslint": "^8",
-    "eslint-config-next": "^13.5.6",
+    "eslint-config-next": "15.2.2",
     "supabase": "^1.110.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4"
   }
 }

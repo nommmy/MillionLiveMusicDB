@@ -201,58 +201,58 @@ export interface Database {
       }
       mst_tracks: {
         Row: {
-          acousticness: number
+          acousticness?: number
           album_id: string
-          analysis_url: string
+          analysis_url?: string
           artist_ids: string[]
           artist_names: string[]
           created_at: string
-          danceability: number
+          danceability?: number
           disc_number: number
           duration_ms: number
-          energy: number
-          instrumentalness: number
-          key: number
-          liveness: number
-          loudness: number
-          mode: number
+          energy?: number
+          instrumentalness?: number
+          key?: number
+          liveness?: number
+          loudness?: number
+          mode?: number
           popularity: number
           preview_url: string | null
-          speechiness: number
-          tempo: number
-          time_signature: number
-          track_href: string
+          speechiness?: number
+          tempo?: number
+          time_signature?: number
+          track_href?: string
           track_id: string
           track_name: string
           track_number: number
-          valence: number
+          valence?: number
         }
         Insert: {
-          acousticness: number
+          acousticness?: number
           album_id: string
-          analysis_url: string
+          analysis_url?: string
           artist_ids: string[]
           artist_names: string[]
           created_at?: string
-          danceability: number
+          danceability?: number
           disc_number: number
           duration_ms: number
-          energy: number
-          instrumentalness: number
-          key: number
-          liveness: number
-          loudness: number
-          mode: number
+          energy?: number
+          instrumentalness?: number
+          key?: number
+          liveness?: number
+          loudness?: number
+          mode?: number
           popularity: number
           preview_url?: string | null
-          speechiness: number
-          tempo: number
-          time_signature: number
-          track_href: string
+          speechiness?: number
+          tempo?: number
+          time_signature?: number
+          track_href?: string
           track_id: string
           track_name: string
           track_number: number
-          valence: number
+          valence?: number
         }
         Update: {
           acousticness?: number
