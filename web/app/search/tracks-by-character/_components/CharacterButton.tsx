@@ -30,6 +30,7 @@ const CharacterButton = ({ character, characterIdAtom }: Props) => {
         opacity: characterId == "" ? 1 : 0.5,
       }}
       onClick={() => handleClick()}
+      unoptimized
     />
   );
 };

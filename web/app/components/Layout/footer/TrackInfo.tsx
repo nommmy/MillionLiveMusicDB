@@ -18,6 +18,7 @@ const TrackInfo = React.memo(({currentSong}: Props) => {
         height={56}
         src={currentSong?.albumImage}
         alt={`${currentSong?.title} album image`}
+        unoptimized
       />
       <div className="song-title-container">
         <p className="song-title">{currentSong?.title ?? "Select a song"}</p>

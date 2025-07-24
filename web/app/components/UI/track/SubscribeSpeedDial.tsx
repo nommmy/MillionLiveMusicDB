@@ -27,6 +27,7 @@ export default function SubscribeSpeedDial({ trackName, direction }: Props) {
             height={40}
             src="/subscribe-icons/icon_applemusic.webp"
             alt="apple music icon"
+            unoptimized
           />
         </a>
       ),
@@ -45,6 +46,7 @@ export default function SubscribeSpeedDial({ trackName, direction }: Props) {
             height={40}
             src="/subscribe-icons/icon_spotify.webp"
             alt="spotify icon"
+            unoptimized
           />
         </a>
       ),
@@ -63,6 +65,7 @@ export default function SubscribeSpeedDial({ trackName, direction }: Props) {
             height={40}
             src="/subscribe-icons/icon_amazonmusic.webp"
             alt="amazon music icon"
+            unoptimized
           />
         </a>
       ),
@@ -81,6 +84,7 @@ export default function SubscribeSpeedDial({ trackName, direction }: Props) {
             height={40}
             src="/subscribe-icons/icon_youtubemusic.webp"
             alt="youtube music icon"
+            unoptimized
           />
         </a>
       ),
@@ -99,6 +103,7 @@ export default function SubscribeSpeedDial({ trackName, direction }: Props) {
             height={20}
             src="/subscribe-icons/icon_linemusic.webp"
             alt="line music icon"
+            unoptimized
           />
         </a>
       ),

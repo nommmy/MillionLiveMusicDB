@@ -28,6 +28,7 @@ const RankingCard: FC<Props> = ({ track, rank }) => {
             alt={`${rank}`}
             className={styles["rank-number"]}
             priority={true}
+            unoptimized
           />
         )}
         <Image

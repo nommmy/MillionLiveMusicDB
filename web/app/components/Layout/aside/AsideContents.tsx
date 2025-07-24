@@ -18,6 +18,7 @@ const AsideContents = () => {
             src="/logo.webp"
             alt="logo"
             priority={true}
+            unoptimized
           />
           <p className={styles["aside-title"]}>MILLIONLIVE MUSIC DB</p>
         </div>

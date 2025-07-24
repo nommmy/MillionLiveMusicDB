@@ -18,6 +18,7 @@ const AlbumCard: FC<Props> = ({ album }) => {
           alt={album.name}
           className={styles["album-card-img"]}
           src={album.album_image_url}
+          unoptimized
         />
       </div>
     </Link>
