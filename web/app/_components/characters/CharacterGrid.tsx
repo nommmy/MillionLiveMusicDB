@@ -30,6 +30,7 @@ export default async function CharacterGrid() {
                   style={{
                     border: `3px solid ${character.color}`,
                   }}
+                  unoptimized
                 />
                 <span
                   style={{

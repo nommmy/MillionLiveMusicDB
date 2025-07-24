@@ -18,8 +18,9 @@ const CharacterIcon: FC<Props> = ({ artist, imageColumn, size }) => (
       className="character-icon"
       src={(artist[imageColumn] as string) ?? artist.image_uniform}
       style={{
-        border: `3px solid ${artist.color}`
+        border: `3px solid ${artist.color}`,
       }}
+      unoptimized
     />
   </Link>
 );

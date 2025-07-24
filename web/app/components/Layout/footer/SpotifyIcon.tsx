@@ -17,6 +17,7 @@ const SpotifyIcon = React.memo(({ trackName }: Props) => {
         height={21}
         src="/subscribe-icons/icon_spotify_black.webp"
         alt="spotify icon"
+        unoptimized
       />
     </a>
   );
