@@ -23,6 +23,7 @@ export default function Suspending() {
         src="/logo.webp"
         alt="logo"
         priority={true}
+        unoptimized
       />
       <div className="pulse-motion"></div>
     </div>

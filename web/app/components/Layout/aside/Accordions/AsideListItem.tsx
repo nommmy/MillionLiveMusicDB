@@ -21,6 +21,7 @@ const AsideListItem: FC<Props> = ({ name, img }) => {
           alt={name}
           src={img}
           className="margin-right-little"
+          unoptimized
         />
         <ListItemText
           primary={name}

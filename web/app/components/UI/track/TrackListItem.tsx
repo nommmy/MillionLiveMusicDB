@@ -41,6 +41,7 @@ const TrackListItem: FC<Props> = ({ track }) => {
             height={50}
             alt={track.mst_albums.name}
             src={track.mst_albums.album_image_url}
+            unoptimized
           />
           <ListItemText primary={track.track_name} secondary={artistName} />
         </Link>

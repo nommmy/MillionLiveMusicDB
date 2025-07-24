@@ -40,7 +40,13 @@ const TrackListItemClient = ({ track, albumImageUrl, albumName }: Props) => {
             artistName={artistName}
             albumImage={albumImageUrl}
           />
-          <Image width={50} height={50} alt={albumName} src={albumImageUrl} />
+          <Image
+            width={50}
+            height={50}
+            alt={albumName}
+            src={albumImageUrl}
+            unoptimized
+          />
           <ListItemText primary={track.track_name} secondary={artistName} />
         </Link>
         <div className={styles["inner-link"]}>
