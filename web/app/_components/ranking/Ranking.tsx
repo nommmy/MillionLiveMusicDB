@@ -23,12 +23,10 @@ const HOT_DISPLAY_NUMBER = 3;
 
 export default async function Ranking() {
   "use cache";
-  cacheLife("weeks");
+  cacheLife("days");
 
   const { data, error } = await supabase
-    .rpc("get_hot_tracks", {
-      limits: 99,
-    })
+    .rpc("get_daily_tracks", { limits: 30 })
     .returns<RankingTrackType[]>();
 
   if (error || !data || !Array.isArray(data)) return <></>;
@@ -38,11 +36,11 @@ export default async function Ranking() {
 
   return (
     <div className="main-contents-wrapper">
-      <h2 className="title-h2">HOT CHARTS</h2>
+      <h2 className="title-h2">TODAY&apos;S <span className={styles["picks-number"]}>30</span> PICKS</h2>
       <Suspense fallback={<RankingCardSkeleton />}>
         <div className={styles["ranking-cards-container"]}>
-          {cards.map((track, index) => (
-            <RankingCard key={track.track_id} track={track} rank={index + 1} />
+          {cards.map((track) => (
+            <RankingCard key={track.track_id} track={track} />
           ))}
         </div>
       </Suspense>
