@@ -26,7 +26,7 @@ const AlbumDetailContents: FC<Props> = async ({ characterIds, albumId }) => {
     .eq("album_id", albumId)
     .order("track_number", { ascending: true })
     .returns<TrackItemType[]>();
-  if (error) return <></>;
+  if (error || !data) return <></>;
 
   // Album収録曲は関連楽曲から省く
   const excludeTrackIds = data.map((track) => track.track_id);

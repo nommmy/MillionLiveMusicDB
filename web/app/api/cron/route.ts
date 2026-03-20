@@ -15,6 +15,7 @@ import {
   Album,
 } from "@/utils/spotify-response.type";
 import { upsertSupabaseTables } from "@/utils/supabase";
+import { revalidatePath } from "next/cache";
 
 export const revalidate = 0;
 export async function GET(request: NextRequest) {
@@ -75,8 +76,8 @@ export async function GET(request: NextRequest) {
     allAudioFeatures
   );
 
-  // console.log("revalidate top page...");
-  // await fetch("/api/revalidate?path=/");
+  console.log("revalidate all pages...");
+  revalidatePath("/", "layout");
 
   console.log("finished successfully");
   return NextResponse.json({

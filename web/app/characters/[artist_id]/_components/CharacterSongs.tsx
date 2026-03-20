@@ -14,8 +14,8 @@ const CharacterSongs: FC<Props> = async ({ artistId }) => {
       artist_ids: [artistId],
     })
     .returns<CharacterType[]>();
-  if (error) return <></>;
-  
+  if (error || !data || !Array.isArray(data)) return <></>;
+
   const characterIds = data.map((character) => character.artist_id);
 
   return (

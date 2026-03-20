@@ -34,16 +34,20 @@ export const metadata: Metadata = {
     default: siteName,
     template: `%s | ${siteName}`,
   },
+
   description: description,
+
   openGraph: {
     ...openGraphMeta,
   },
+
   twitter: {
     ...twitterMeta,
   },
+
   alternates: {
     canonical: url,
-  },
+  }
 };
 
 export default function RootLayout({

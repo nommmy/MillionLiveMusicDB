@@ -4,22 +4,23 @@ import type { CharacterType } from "@/utils/supabase";
 import { Database } from "@/database.types";
 import AlbumDetailHeader from "./_components/AlbumDetailHeader";
 import styles from "./AlbumDetail.module.css";
-import ColorThief from "colorthief";
 import AlbumDetailContents from "./_components/AlbumDetailContents";
 import { Metadata } from "next";
 import { siteName, openGraphMeta, twitterMeta } from "@/utils/shared-metadata";
+import { Vibrant } from "node-vibrant/node";
 
 type AlbumType = Database["public"]["Tables"]["mst_albums"]["Row"];
 
 type Props = {
-  params: { album_id: string };
+  params: Promise<{ album_id: string }>;
 };
 
 const getDominantColor = async (imgPath: string) => {
   try {
-    const color = await ColorThief.getColor(imgPath);
-    return color;
+    const color = await Vibrant.from(imgPath).getPalette();
+    return color.LightVibrant == null ? [255, 195, 11] : color.LightVibrant.rgb;
   } catch (error) {
+    console.log(error);
     return [255, 195, 11];
   }
 };
@@ -43,7 +44,8 @@ async function fetchAlbum(album_id: string) {
   return data;
 }
 
-export default async function AlbumDetailPage({ params }: Props) {
+export default async function AlbumDetailPage(props: Props) {
+  const params = await props.params;
   const album = await fetchAlbum(params.album_id);
   if (!album) return notFound();
 
@@ -55,7 +57,7 @@ export default async function AlbumDetailPage({ params }: Props) {
       artist_ids: album.artist_ids,
     })
     .returns<CharacterType[]>();
-  if (error) return <></>;
+  if (error || !data || !Array.isArray(data)) return <></>;
 
   // CDメンバーのartistIdを取得
   // 表記ユレで同キャラ異IDも含まれる
@@ -100,12 +102,13 @@ export default async function AlbumDetailPage({ params }: Props) {
 export async function generateStaticParams(): Promise<any[]> {
   const { data, error } = await supabase.from("mst_albums").select(`album_id`);
 
-  if (error) return [];
+  if (error || !data) return [];
 
   return data;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const album = await fetchAlbum(params.album_id);
 
   return {

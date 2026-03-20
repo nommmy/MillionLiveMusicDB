@@ -7,7 +7,7 @@ import TrackListByFeature from "./_components/TrackListByFeature";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 
 export const metadata: Metadata = {
-  title: "曲調から楽曲を探す",
+  title: "曲調から楽曲を探す"
 };
 
 export default async function SearchTracksByFeaturePage() {
