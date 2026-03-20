@@ -10,3 +10,18 @@ services:
     volumes:
       - ./web:/workspace:cached
       - /workspace/node_modules
+
+  apple_music_sandbox:
+    container_name: apple_music_sandbox
+    build:
+      context: ./web
+      target: base
+    ports:
+      - 12001:3000
+    command: sh -c "npm install && npm start"
+    working_dir: /workspace
+    volumes:
+      - ./apple-music-sandbox:/workspace:cached
+      - /workspace/node_modules
+    env_file:
+      - ./web/.env

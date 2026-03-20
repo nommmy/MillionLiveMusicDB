@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple Music API Sandbox</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a1a; color: #e0e0e0; padding: 24px; }
+    h1 { font-size: 20px; margin-bottom: 16px; color: #fa586a; }
+    .input-row { display: flex; gap: 8px; margin-bottom: 12px; }
+    input { flex: 1; padding: 10px 12px; background: #2a2a2a; border: 1px solid #444; border-radius: 6px; color: #e0e0e0; font-size: 14px; font-family: monospace; }
+    button { padding: 10px 20px; background: #fa586a; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    button:hover { background: #e0475a; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .category { margin-bottom: 12px; }
+    .category-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .presets { display: flex; gap: 6px; flex-wrap: wrap; }
+    .presets button { padding: 6px 12px; font-size: 12px; background: #333; font-weight: 400; }
+    .presets button:hover { background: #444; }
+    .status { font-size: 13px; margin-bottom: 8px; color: #888; }
+    .status .code { font-weight: 600; }
+    .status .code.ok { color: #4caf50; }
+    .status .code.err { color: #f44336; }
+    pre { background: #222; border: 1px solid #333; border-radius: 6px; padding: 16px; overflow: auto; max-height: 65vh; font-size: 13px; line-height: 1.5; white-space: pre-wrap; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <h1>Apple Music API Sandbox</h1>
+  <div class="input-row">
+    <input id="endpoint" type="text" value="/v1/catalog/jp/search?term=idolmaster+million+live&types=songs&limit=5" placeholder="/v1/catalog/jp/..." />
+    <button id="send" onclick="sendRequest()">Send</button>
+  </div>
+
+  <div class="category">
+    <div class="category-label">Search</div>
+    <div class="presets">
+      <button onclick="setEndpoint('/v1/catalog/jp/search?term=idolmaster+million+live&types=songs&limit=25')">Songs</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/search?term=idolmaster+million+live&types=albums&limit=25')">Albums</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/search?term=idolmaster+million+live&types=artists&limit=25')">Artists</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/search?term=idolmaster+million+live&types=songs,albums,artists&limit=5')">All Types</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/search/hints?term=million+live')">Hints</button>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-label">Songs</div>
+    <div class="presets">
+      <button onclick="setEndpoint('/v1/catalog/jp/songs/{id}')">By ID</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/songs?ids={id1},{id2}')">Multiple</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/songs/{id}/artists')">Artists</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/songs/{id}/albums')">Albums</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/songs?filter[isrc]={isrc}')">By ISRC</button>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-label">Albums</div>
+    <div class="presets">
+      <button onclick="setEndpoint('/v1/catalog/jp/albums/{id}')">By ID</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/albums?ids={id1},{id2}')">Multiple</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/albums/{id}/tracks')">Tracks</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/albums/{id}/artists')">Artists</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/albums/{id}/record-labels')">Labels</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/albums?filter[upc]={upc}')">By UPC</button>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-label">Artists</div>
+    <div class="presets">
+      <button onclick="setEndpoint('/v1/catalog/jp/artists/{id}')">By ID</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/artists?ids={id1},{id2}')">Multiple</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/artists/{id}/albums')">Albums</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/artists/{id}/songs')">Songs</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/artists/{id}/playlists')">Playlists</button>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-label">Playlists</div>
+    <div class="presets">
+      <button onclick="setEndpoint('/v1/catalog/jp/playlists/{id}')">By ID</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/playlists/{id}/tracks')">Tracks</button>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-label">Charts / Genres / Record Labels</div>
+    <div class="presets">
+      <button onclick="setEndpoint('/v1/catalog/jp/charts?types=songs&limit=25')">Song Charts</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/charts?types=albums&limit=25')">Album Charts</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/genres')">All Genres</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/record-labels/{id}')">Label by ID</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/record-labels/{id}/view/latest-releases')">Label Releases</button>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-label">Music Videos / Stations</div>
+    <div class="presets">
+      <button onclick="setEndpoint('/v1/catalog/jp/music-videos/{id}')">MV by ID</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/music-videos?filter[isrc]={isrc}')">MV by ISRC</button>
+      <button onclick="setEndpoint('/v1/catalog/jp/stations/{id}')">Station by ID</button>
+    </div>
+  </div>
+
+  <div class="status" id="status"></div>
+  <pre id="result">レスポンスがここに表示されます</pre>
+  <script>
+    function setEndpoint(v) { document.getElementById("endpoint").value = v; }
+
+    async function sendRequest() {
+      const endpoint = document.getElementById("endpoint").value;
+      const btn = document.getElementById("send");
+      const status = document.getElementById("status");
+      const result = document.getElementById("result");
+
+      btn.disabled = true;
+      status.innerHTML = "Requesting...";
+      result.textContent = "";
+
+      try {
+        const res = await fetch("/api/request", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ endpoint }),
+        });
+        const json = await res.json();
+        const cls = json.status >= 200 && json.status < 300 ? "ok" : "err";
+        status.innerHTML = `Status: <span class="code ${cls}">${json.status}</span>`;
+        result.textContent = JSON.stringify(json.data, null, 2);
+      } catch (e) {
+        status.innerHTML = `<span class="code err">Error</span>`;
+        result.textContent = e.message;
+      } finally {
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
