@@ -7,10 +7,9 @@ import PlayTrackButton from "@/app/components/UI/icon-button/PlayTrackButton";
 
 type Props = {
   track: RankingTrackType;
-  rank: number;
 };
 
-const RankingCard: FC<Props> = ({ track, rank }) => {
+const RankingCard: FC<Props> = ({ track }) => {
   const artistName = track.artist_names
     .map((character) => {
       const match = character.match(/^(.*?)\s*(?:\([^)]*\)|$)/);
@@ -20,17 +19,6 @@ const RankingCard: FC<Props> = ({ track, rank }) => {
   return (
     <Link href={`/tracks/${track.track_id}`}>
       <div className={styles["card"]}>
-        {rank == 1 && (
-          <Image
-            width={80}
-            height={80}
-            src="/ml_initial_logo.webp"
-            alt={`${rank}`}
-            className={styles["rank-number"]}
-            priority={true}
-            unoptimized
-          />
-        )}
         <Image
           width={300}
           height={300}

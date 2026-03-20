@@ -1,3 +1,8 @@
+.picks-number {
+  font-size: 1.3em;
+  color: var(--main-color);
+}
+
 .ranking-cards-container {
   display: flex;
   gap: 2vw;
