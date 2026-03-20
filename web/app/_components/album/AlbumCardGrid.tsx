@@ -4,7 +4,7 @@ import styles from "./Album.module.css";
 import { Suspense } from "react";
 import Skeleton from "@/app/components/UI/skeleton/Skeleton";
 import List from "@/app/components/UI/list/List";
-import { unstable_cacheLife as cacheLife } from "next/cache";
+import { cacheLife } from "next/cache";
 
 export type AlbumCardType = {
   album_id: string;

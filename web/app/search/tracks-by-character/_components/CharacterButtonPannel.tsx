@@ -10,7 +10,7 @@ const CharacterButtonPannel = async () => {
     .eq("unique_flg", true)
     .order("character_name", { ascending: true })
     .returns<CharacterType[]>();
-  if (error) return <></>;
+  if (error || !data) return <></>;
 
   return (
     <div className={styles["character-icon-grid"]}>

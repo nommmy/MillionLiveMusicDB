@@ -11,7 +11,7 @@ export default async function CharacterGrid() {
     .select(`artist_id, character_name, image_favorite, image_uniform, color`)
     .eq("unique_flg", true)
     .order("character_name", { ascending: true });
-  if (error) return <></>;
+  if (error || !data) return <></>;
 
   return (
     <div className="main-contents-wrapper">

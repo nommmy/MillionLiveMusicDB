@@ -8,7 +8,7 @@ const TrackListByCharacter = async () => {
     limits: 999,
   });
 
-  if (error) return <></>;
+  if (error || !data) return <></>;
 
   return (
     <div className={styles["track-list-container"]}>

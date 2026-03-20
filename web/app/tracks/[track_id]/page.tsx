@@ -80,7 +80,7 @@ export default async function TrackDetailPage(props: Props) {
       artist_ids: track.artist_ids,
     })
     .returns<CharacterType[]>();
-  if (error) return <></>;
+  if (error || !data || !Array.isArray(data)) return <></>;
 
   // キャラ名でUniqueなリストを取得
   const uniqueCharacters = data.filter((character) => character.unique_flg);
@@ -149,7 +149,7 @@ export default async function TrackDetailPage(props: Props) {
 export async function generateStaticParams(): Promise<any[]> {
   const { data, error } = await supabase.from("mst_tracks").select(`track_id`);
 
-  if (error) return [];
+  if (error || !data) return [];
 
   return data;
 }

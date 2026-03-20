@@ -57,7 +57,7 @@ export default async function AlbumDetailPage(props: Props) {
       artist_ids: album.artist_ids,
     })
     .returns<CharacterType[]>();
-  if (error) return <></>;
+  if (error || !data || !Array.isArray(data)) return <></>;
 
   // CDメンバーのartistIdを取得
   // 表記ユレで同キャラ異IDも含まれる
@@ -102,7 +102,7 @@ export default async function AlbumDetailPage(props: Props) {
 export async function generateStaticParams(): Promise<any[]> {
   const { data, error } = await supabase.from("mst_albums").select(`album_id`);
 
-  if (error) return [];
+  if (error || !data) return [];
 
   return data;
 }

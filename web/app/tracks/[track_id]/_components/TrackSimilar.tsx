@@ -56,7 +56,7 @@ const TrackSimilar: FC<Props> = async ({
     .lte("valence", valence + 0.2)
     .neq("track_id", excludeTrackId)
     .returns<TrackType[]>();
-  if (error) return <></>;
+  if (error || !data) return <></>;
 
   const [normalizedData, normalizedTempo] = normalizeTempo(data, tempo);
 

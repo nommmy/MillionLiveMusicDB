@@ -25,7 +25,7 @@ const TrackRelation: FC<Props> = async ({ characterIds, excludeTrackIds }) => {
     .not("track_id", "in", `(${excludeTrackIds.join(",")})`)
     .order("popularity", { ascending: false })
     .returns<TrackItemType[]>();
-  if (error) return <></>;
+  if (error || !data) return <></>;
 
   return (
     <>

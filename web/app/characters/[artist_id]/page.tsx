@@ -77,7 +77,7 @@ export async function generateStaticParams(): Promise<any[]> {
     .select(`artist_id`)
     .eq("unique_flg", true);
 
-  if (error) return [];
+  if (error || !data) return [];
 
   return data;
 }

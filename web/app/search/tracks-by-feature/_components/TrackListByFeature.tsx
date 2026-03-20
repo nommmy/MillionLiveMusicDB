@@ -27,7 +27,7 @@ const TrackListByFeature = async () => {
     .order("popularity", { ascending: false })
     .returns<TrackFeaturesType[]>();
 
-  if (error) return <></>;
+  if (error || !data) return <></>;
 
   return (
     <div className={styles["track-list-container"]}>

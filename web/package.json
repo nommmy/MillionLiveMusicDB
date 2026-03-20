@@ -11,34 +11,36 @@
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.7",
     "@mui/material-nextjs": "^6.4.3",
-    "@supabase/supabase-js": "^2.38.4",
-    "@vercel/analytics": "^1.1.2",
-    "@vercel/speed-insights": "^1.0.9",
+    "@serwist/next": "^9.5.7",
+    "@supabase/supabase-js": "^2.99.3",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "embla-carousel-autoplay": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "jotai": "^2.6.1",
-    "next": "15.2.2",
-    "next-pwa": "^5.6.0",
+    "next": "16.2.0",
     "node-vibrant": "^4.0.3",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.2.2",
+    "@next/bundle-analyzer": "16.2.0",
     "@types/node": "^20",
-    "@types/react": "19.0.10",
-    "@types/react-dom": "19.0.4",
-    "eslint": "^8",
-    "eslint-config-next": "15.2.2",
-    "supabase": "^1.110.1",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.0",
+    "serwist": "^9.5.7",
+    "supabase": "^2.82.0",
     "typescript": "^5"
   },
   "overrides": {
-    "@types/react": "19.0.10",
-    "@types/react-dom": "19.0.4"
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3"
   }
 }

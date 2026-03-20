@@ -1,7 +1,7 @@
-/**
- * @type {import('next').NextConfig}
- * */
-const nextConfig = {
+import type { NextConfig } from "next";
+import withSerwistInit from "@serwist/next";
+
+const nextConfig: NextConfig = {
   images: {
     minimumCacheTTL: 2678400, // 31 days
     remotePatterns: [
@@ -22,19 +22,13 @@ const nextConfig = {
   experimental: {
     useCache: true,
   },
+  turbopack: {},
 };
 
-const withPWA = require("next-pwa")({
-  dest: "public",
-  disable: process.env.NODE_ENV == "development",
+const withSerwist = withSerwistInit({
+  swSrc: "app/sw.ts",
+  swDest: "public/sw.js",
+  disable: process.env.NODE_ENV === "development",
 });
 
-module.exports = withPWA({
-  // next.js config
-  ...nextConfig,
-});
-
-// const withBundleAnalyzer = require("@next/bundle-analyzer")();
-
-// module.exports =
-//   process.env.ANALYZE === "true" ? withBundleAnalyzer(nextConfig) : nextConfig;
+export default withSerwist(nextConfig);

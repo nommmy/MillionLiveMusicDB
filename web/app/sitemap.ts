@@ -9,7 +9,7 @@ async function fetchAllCharacterIds() {
     .select(`artist_id`)
     .eq("unique_flg", true);
 
-  if (error) return [];
+  if (error || !data) return [];
 
   return data;
 }
@@ -17,7 +17,7 @@ async function fetchAllCharacterIds() {
 async function fetchAllTrackIds() {
   const { data, error } = await supabase.from("mst_tracks").select(`track_id`);
 
-  if (error) return [];
+  if (error || !data) return [];
 
   return data;
 }
@@ -25,7 +25,7 @@ async function fetchAllTrackIds() {
 async function fetchAllAlbumIds() {
   const { data, error } = await supabase.from("mst_albums").select(`album_id`);
 
-  if (error) return [];
+  if (error || !data) return [];
 
   return data;
 }
