@@ -15,7 +15,7 @@ export type AlbumCardType = {
 
 export default async function AlbumCardGrid() {
   "use cache";
-  cacheLife('days');
+  cacheLife("weeks");
 
   const { data, error } = await supabase
     .from("mst_albums")

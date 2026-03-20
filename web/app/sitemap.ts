@@ -1,8 +1,7 @@
 import { MetadataRoute } from "next";
 import { url } from "../utils/shared-metadata";
 import { supabase } from "@/utils/supabase";
-
-export const revalidate = 86400;
+import { cacheLife } from "next/cache";
 async function fetchAllCharacterIds() {
   const { data, error } = await supabase
     .from("mst_characters")
@@ -31,6 +30,8 @@ async function fetchAllAlbumIds() {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  "use cache";
+  cacheLife("weeks");
   const baseURL = url;
   const lastModified = new Date();
 

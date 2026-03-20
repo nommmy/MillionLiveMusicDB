@@ -23,7 +23,7 @@ const HOT_DISPLAY_NUMBER = 3;
 
 export default async function Ranking() {
   "use cache";
-  cacheLife("days");
+  cacheLife("weeks");
 
   const { data, error } = await supabase
     .rpc("get_hot_tracks", {

@@ -1,7 +1,9 @@
 import { supabase } from "@/utils/supabase";
+import { cacheLife } from "next/cache";
 
-export const revalidate = 86400;
 export async function GET() {
+  "use cache";
+  cacheLife("weeks");
   try {
     const { data, error } = await supabase
       .from("mst_tracks")

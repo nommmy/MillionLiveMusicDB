@@ -4,8 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import CharacterGridSkeleton from "./CharacterGridSkeleton";
+import { cacheLife } from "next/cache";
 
 export default async function CharacterGrid() {
+  "use cache";
+  cacheLife("weeks");
   const { data, error } = await supabase
     .from("mst_characters")
     .select(`artist_id, character_name, image_favorite, image_uniform, color`)

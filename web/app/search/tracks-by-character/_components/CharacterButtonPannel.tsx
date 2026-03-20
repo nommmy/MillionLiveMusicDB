@@ -2,8 +2,11 @@ import { supabase } from "@/utils/supabase";
 import styles from "@/app/search/SearchPage.module.css";
 import CharacterButtonWrapper from "./CharacterButtonWrapper";
 import type { CharacterType } from "@/utils/supabase";
+import { cacheLife } from "next/cache";
 
 const CharacterButtonPannel = async () => {
+  "use cache";
+  cacheLife("weeks");
   const { data, error } = await supabase
     .from("mst_characters")
     .select(`artist_id, character_name, image_favorite, image_uniform, color`)

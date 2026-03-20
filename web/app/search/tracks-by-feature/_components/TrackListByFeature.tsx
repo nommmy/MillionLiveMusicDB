@@ -2,9 +2,11 @@ import { supabase } from "@/utils/supabase";
 import styles from "@/app/search/SearchPage.module.css";
 import TrackListClient from "./TrackListClient";
 import type { TrackFeaturesType } from "@/utils/supabase";
+import { cacheLife } from "next/cache";
 
-export const revalidate = 86400;
 const TrackListByFeature = async () => {
+  "use cache";
+  cacheLife("weeks");
   const { data, error } = await supabase
     .from("mst_tracks")
     .select(
