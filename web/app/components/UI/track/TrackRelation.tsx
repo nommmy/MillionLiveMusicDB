@@ -2,14 +2,16 @@ import { FC } from "react";
 import { supabase } from "@/utils/supabase";
 import type { TrackItemType } from "@/utils/supabase";
 import TrackList from "./TrackList";
+import { cacheLife } from "next/cache";
 
 type Props = {
   characterIds: string[];
   excludeTrackIds: string[];
 };
 
-export const revalidate = 86400;
 const TrackRelation: FC<Props> = async ({ characterIds, excludeTrackIds }) => {
+  "use cache";
+  cacheLife("weeks");
   // 歌唱メンバーの他楽曲を取得
   const { data, error } = await supabase
     .from("mst_tracks")
@@ -25,7 +27,7 @@ const TrackRelation: FC<Props> = async ({ characterIds, excludeTrackIds }) => {
     .not("track_id", "in", `(${excludeTrackIds.join(",")})`)
     .order("popularity", { ascending: false })
     .returns<TrackItemType[]>();
-  if (error) return <></>;
+  if (error || !data) return <></>;
 
   return (
     <>

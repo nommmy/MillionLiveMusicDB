@@ -14,7 +14,7 @@ import { siteName, openGraphMeta, twitterMeta } from "@/utils/shared-metadata";
 
 type CharacterType = Database["public"]["Tables"]["mst_characters"]["Row"];
 type Props = {
-  params: { artist_id: string };
+  params: Promise<{ artist_id: string }>;
 };
 
 async function fetchCharacter(artist_id: string) {
@@ -50,7 +50,8 @@ async function fetchCharacter(artist_id: string) {
   return data;
 }
 
-export default async function CharacterDetailPage({ params }: Props) {
+export default async function CharacterDetailPage(props: Props) {
+  const params = await props.params;
   const character = await fetchCharacter(params.artist_id);
   if (!character) return notFound();
 
@@ -76,12 +77,13 @@ export async function generateStaticParams(): Promise<any[]> {
     .select(`artist_id`)
     .eq("unique_flg", true);
 
-  if (error) return [];
+  if (error || !data) return [];
 
   return data;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const character = await fetchCharacter(params.artist_id);
 
   return {

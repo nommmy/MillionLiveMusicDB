@@ -6,6 +6,7 @@ import type { CharacterType } from "@/utils/supabase";
 import Skeleton from "@/app/components/UI/skeleton/Skeleton";
 import RankingCardSkeleton from "./RankingCardSkeleton";
 import { Suspense } from "react";
+import { cacheLife } from "next/cache";
 
 export type RankingTrackType = {
   track_id: string;
@@ -20,15 +21,17 @@ export type RankingTrackType = {
 
 const HOT_DISPLAY_NUMBER = 3;
 
-export const revalidate = 86400;
 export default async function Ranking() {
+  "use cache";
+  cacheLife("weeks");
+
   const { data, error } = await supabase
     .rpc("get_hot_tracks", {
       limits: 99,
     })
     .returns<RankingTrackType[]>();
 
-  if (error) return <></>;
+  if (error || !data || !Array.isArray(data)) return <></>;
 
   const cards: RankingTrackType[] = data.slice(0, HOT_DISPLAY_NUMBER);
   const listItems: RankingTrackType[] = data.slice(HOT_DISPLAY_NUMBER);

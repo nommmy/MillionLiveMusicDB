@@ -4,6 +4,7 @@ import styles from "./Album.module.css";
 import { Suspense } from "react";
 import Skeleton from "@/app/components/UI/skeleton/Skeleton";
 import List from "@/app/components/UI/list/List";
+import { cacheLife } from "next/cache";
 
 export type AlbumCardType = {
   album_id: string;
@@ -11,8 +12,11 @@ export type AlbumCardType = {
   album_image_url: string;
 };
 
-export const revalidate = 86400;
+
 export default async function AlbumCardGrid() {
+  "use cache";
+  cacheLife("weeks");
+
   const { data, error } = await supabase
     .from("mst_albums")
     .select(`album_id, name, album_image_url`)

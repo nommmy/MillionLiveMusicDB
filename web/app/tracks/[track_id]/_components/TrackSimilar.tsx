@@ -3,6 +3,7 @@ import { supabase } from "@/utils/supabase";
 import TrackList from "@/app/components/UI/track/TrackList";
 import type { TrackItemType } from "@/utils/supabase";
 import { sortSimilarityTop100, normalizeTempo } from "@/utils/calc_similarity";
+import { cacheLife } from "next/cache";
 
 type Props = {
   excludeTrackId: string;
@@ -21,7 +22,6 @@ export type TrackType = TrackItemType & {
   tempo: number;
 };
 
-export const revalidate = 86400;
 const TrackSimilar: FC<Props> = async ({
   excludeTrackId,
   acousticness,
@@ -30,6 +30,8 @@ const TrackSimilar: FC<Props> = async ({
   valence,
   tempo,
 }) => {
+  "use cache";
+  cacheLife("weeks");
   // 楽曲分析に基づく類似楽曲を取得
   const { data, error } = await supabase
     .from("mst_tracks")
@@ -56,7 +58,7 @@ const TrackSimilar: FC<Props> = async ({
     .lte("valence", valence + 0.2)
     .neq("track_id", excludeTrackId)
     .returns<TrackType[]>();
-  if (error) return <></>;
+  if (error || !data) return <></>;
 
   const [normalizedData, normalizedTempo] = normalizeTempo(data, tempo);
 
