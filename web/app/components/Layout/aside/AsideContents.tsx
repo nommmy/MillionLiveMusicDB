@@ -27,7 +27,8 @@ const AsideContents = () => {
       <TrackSearch />
       {/* サイト概要 */}
       <p className={styles["intro-message"]}>
-        MILLIONLIVEのキャラクターと楽曲を知るための非公式ファンサイトです
+        THE IDOLM@STER
+        MILLIONLIVE!のキャラクターと楽曲を知るための非公式ファンサイトです
       </p>
       {/* ページ内リンク */}
       <div className={styles["search-link-container"]}>

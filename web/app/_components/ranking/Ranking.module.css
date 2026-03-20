@@ -73,11 +73,27 @@
 }
 
 @media screen and (max-width: 686px) {
+  .ranking-cards-container {
+    margin: 0 1px 0;
+    gap: 2px;
+  }
+
   .rank-number {
     width: 10vw;
     height: 10vw;
     top: -15px;
     right: -15px;
+  }
+
+  .card {
+    padding: 0.5rem;
+  }
+
+  .card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .list-index {
